@@ -86,7 +86,7 @@ for (const paramName of UUID_PARAM_NAMES) {
   app.param(paramName, validateUUIDParam);
 }
 
-const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:5176,http://localhost:5177,https://auto-assist-360.vercel.app,https://auto-assist-360-user.vercel.app,https://auto-assist-360-technician.vercel.app,https://auto-assist-360-vendor.vercel.app,https://auto-assist-360-admin.vercel.app")
+const allowedOrigins = (process.env.CORS_ORIGIN || ['http://localhost:5173', 'http://localhost:5174', 'http://localhost:5175', 'http://localhost:5176', 'http://localhost:5177', 'https://auto-assist-360.vercel.app', 'https://auto-assist-360-user.vercel.app', 'https://auto-assist-360-technician.vercel.app', 'https://auto-assist-360-vendor.vercel.app', 'https://auto-assist-360-admin.vercel.app'])
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
