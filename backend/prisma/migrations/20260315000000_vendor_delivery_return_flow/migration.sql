@@ -1,0 +1,17 @@
+ALTER TABLE "orders"
+ADD COLUMN "delivery_contact_name" TEXT,
+ADD COLUMN "delivery_phone" TEXT,
+ADD COLUMN "delivery_address" TEXT,
+ADD COLUMN "delivery_city" TEXT,
+ADD COLUMN "delivery_state" TEXT,
+ADD COLUMN "delivery_postal_code" TEXT,
+ADD COLUMN "delivery_latitude" DOUBLE PRECISION,
+ADD COLUMN "delivery_longitude" DOUBLE PRECISION,
+ADD COLUMN "delivery_instructions" TEXT,
+ADD COLUMN "stock_committed_at" TIMESTAMP(3),
+ADD COLUMN "return_status" TEXT,
+ADD COLUMN "return_reason" TEXT,
+ADD COLUMN "return_requested_at" TIMESTAMP(3),
+ADD COLUMN "return_requested_by" TEXT,
+ADD COLUMN "return_reviewed_at" TIMESTAMP(3),
+ADD COLUMN "return_resolution_notes" TEXT;

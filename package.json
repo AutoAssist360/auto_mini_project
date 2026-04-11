@@ -1,0 +1,36 @@
+{
+  "name": "myrepo",
+  "version": "1.0.0",
+  "description": "- for production use only. ## Team Members - Shivanand Gupta (as Svont) (Developer) - Soham Dhakate (Developer) - Shobhit Choradia (Developer) - member_name (Developer) - member_name (Developer)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "private": true,
+  "scripts": {
+    "install-all": "npm install && npm install --prefix admin_dashboard && npm install --prefix backend && npm install --prefix landing_page && npm install --prefix technician_dashboard && npm install --prefix user_dashboard && npm install --prefix vender_dashboard",
+    "dev": "concurrently --kill-others -n \"ADMIN,BACK,LAND,TECH,USER,VEND\" -c \"bgBlue,bgGreen,bgMagenta,bgCyan,bgYellow,bgRed\" \"npm run dev --prefix admin_dashboard\" \"npm run dev --prefix backend\" \"npm run dev --prefix landing_page\" \"npm run dev --prefix technician_dashboard\" \"npm run dev --prefix user_dashboard\" \"npm run dev --prefix vender_dashboard\"",
+    "prisma:studio": "npm --prefix backend run prisma:studio",
+    "prisma:migrate": "npm --prefix backend run prisma:migrate",
+    "prisma:seed": "npm --prefix backend run prisma:seed"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AutoAssist360/myRepo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AutoAssist360/myRepo/issues"
+  },
+  "homepage": "https://github.com/AutoAssist360/myRepo#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  },
+  "dependencies": {
+    "ioredis": "^5.10.0",
+    "razorpay": "^2.9.6"
+  }
+}

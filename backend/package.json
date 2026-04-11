@@ -1,0 +1,50 @@
+{
+  "name": "mini-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "tsx src/index.js",
+    "dev": "tsx watch src/index.js",
+    "prisma:studio": "prisma studio",
+    "prisma:migrate": "prisma migrate deploy",
+    "prisma:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "prisma": "^7.3.0",
+    "tsx": "^4.21.0"
+  },
+  "dependencies": {
+    "@google/genai": "^1.46.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "decimal.js": "^10.6.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.10.0",
+    "jsonwebtoken": "^9.0.3",
+    "morgan": "^1.10.1",
+    "multer": "^2.1.0",
+    "myrepo": "file:..",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.1",
+    "pg": "^8.17.2",
+    "razorpay": "^2.9.6",
+    "socket.io": "^4.8.3",
+    "stripe": "^20.4.0",
+    "zod": "^4.3.6"
+  }
+}
