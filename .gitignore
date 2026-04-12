@@ -136,9 +136,7 @@ dist
 *.db
 *.db-journal
 
-# Uploads
-/backend/uploads/
-/uploads/
+
 
 # Build artifacts for Vite projects
 admin_dashboard/dist/
