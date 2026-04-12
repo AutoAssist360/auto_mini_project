@@ -49,6 +49,7 @@ const UserResetPasswordPage = lazyPage(() => import('./pages/UserResetPasswordPa
 const UserChangePasswordPage = lazyPage(() => import('./pages/UserChangePasswordPage'))
 const UserPartsPage = lazyPage(() => import('./pages/UserPartsPage'))
 const UserCheckoutPage = lazyPage(() => import('./pages/UserCheckoutPage'))
+const UserFeedbackPage = lazyPage(() => import('./pages/UserFeedbackPage'))
 
 import { PageSkeleton } from './components/Skeleton'
 import { ToastProvider } from './components/Toast'
@@ -124,6 +125,7 @@ function App() {
         UserPartsPage,
         UserProfilePage,
         UserNotificationsPage,
+        UserFeedbackPage,
       ].forEach((page) => page.preload?.())
     })
   }, [isAuthenticated])
@@ -292,6 +294,14 @@ function App() {
             element={(
               <RequireAuth>
                 <UserCheckoutPage theme={theme} onToggleTheme={toggleTheme} />
+              </RequireAuth>
+            )}
+          />
+          <Route
+            path="/feedback"
+            element={(
+              <RequireAuth>
+                <UserFeedbackPage theme={theme} onToggleTheme={toggleTheme} />
               </RequireAuth>
             )}
           />

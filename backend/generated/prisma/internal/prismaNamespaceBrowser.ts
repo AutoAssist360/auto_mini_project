@@ -73,6 +73,7 @@ export const ModelName = {
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   Review: 'Review',
+  VendorReview: 'VendorReview',
   AuditLog: 'AuditLog',
   Warehouse: 'Warehouse',
   Inventory: 'Inventory',
@@ -82,7 +83,8 @@ export const ModelName = {
   Fulfillment: 'Fulfillment',
   Notification: 'Notification',
   FileUpload: 'FileUpload',
-  Payout: 'Payout'
+  Payout: 'Payout',
+  FeedbackSubmission: 'FeedbackSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -382,6 +384,19 @@ export const ReviewScalarFieldEnum = {
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
+export const VendorReviewScalarFieldEnum = {
+  review_id: 'review_id',
+  user_id: 'user_id',
+  order_id: 'order_id',
+  vendor_id: 'vendor_id',
+  rating: 'rating',
+  comment: 'comment',
+  created_at: 'created_at'
+} as const
+
+export type VendorReviewScalarFieldEnum = (typeof VendorReviewScalarFieldEnum)[keyof typeof VendorReviewScalarFieldEnum]
+
+
 export const AuditLogScalarFieldEnum = {
   log_id: 'log_id',
   entity_type: 'entity_type',
@@ -558,6 +573,22 @@ export const PayoutScalarFieldEnum = {
 } as const
 
 export type PayoutScalarFieldEnum = (typeof PayoutScalarFieldEnum)[keyof typeof PayoutScalarFieldEnum]
+
+
+export const FeedbackSubmissionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  type: 'type',
+  subject: 'subject',
+  message: 'message',
+  status: 'status',
+  admin_reply: 'admin_reply',
+  admin_reply_at: 'admin_reply_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type FeedbackSubmissionScalarFieldEnum = (typeof FeedbackSubmissionScalarFieldEnum)[keyof typeof FeedbackSubmissionScalarFieldEnum]
 
 
 export const SortOrder = {

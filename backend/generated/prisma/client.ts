@@ -152,6 +152,11 @@ export type InvoiceItem = Prisma.InvoiceItemModel
  */
 export type Review = Prisma.ReviewModel
 /**
+ * Model VendorReview
+ * 
+ */
+export type VendorReview = Prisma.VendorReviewModel
+/**
  * Model AuditLog
  * 
  */
@@ -204,3 +209,8 @@ export type FileUpload = Prisma.FileUploadModel
  * Auto-created when user pays an invoice/order, admin marks as completed after transfer.
  */
 export type Payout = Prisma.PayoutModel
+/**
+ * Model FeedbackSubmission
+ * 
+ */
+export type FeedbackSubmission = Prisma.FeedbackSubmissionModel

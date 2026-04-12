@@ -44,6 +44,13 @@ const WORKFLOW_ITEMS = [
     to: '/earnings',
     matches: (pathname) => pathname === '/earnings',
   },
+  {
+    label: 'My reviews',
+    shortLabel: 'Reviews',
+    hint: 'Read customer feedback on your past jobs.',
+    to: '/reviews',
+    matches: (pathname) => pathname === '/reviews',
+  },
 ]
 
 function getHistoryIndex() {

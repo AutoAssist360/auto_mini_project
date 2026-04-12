@@ -406,6 +406,7 @@ export const ModelName = {
   Invoice: 'Invoice',
   InvoiceItem: 'InvoiceItem',
   Review: 'Review',
+  VendorReview: 'VendorReview',
   AuditLog: 'AuditLog',
   Warehouse: 'Warehouse',
   Inventory: 'Inventory',
@@ -415,7 +416,8 @@ export const ModelName = {
   Fulfillment: 'Fulfillment',
   Notification: 'Notification',
   FileUpload: 'FileUpload',
-  Payout: 'Payout'
+  Payout: 'Payout',
+  FeedbackSubmission: 'FeedbackSubmission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -431,7 +433,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "carCompany" | "carModel" | "carVariant" | "carPartCategory" | "carPart" | "partPrice" | "userVehicle" | "serviceRequest" | "serviceRequestPart" | "serviceRequestMedia" | "technicianProfile" | "technicianCarSupport" | "technicianPartSkill" | "technicianCertification" | "technicianResource" | "technicianOffer" | "job" | "platformMessage" | "invoice" | "invoiceItem" | "review" | "auditLog" | "warehouse" | "inventory" | "inventoryReservation" | "order" | "orderItem" | "fulfillment" | "notification" | "fileUpload" | "payout"
+    modelProps: "user" | "carCompany" | "carModel" | "carVariant" | "carPartCategory" | "carPart" | "partPrice" | "userVehicle" | "serviceRequest" | "serviceRequestPart" | "serviceRequestMedia" | "technicianProfile" | "technicianCarSupport" | "technicianPartSkill" | "technicianCertification" | "technicianResource" | "technicianOffer" | "job" | "platformMessage" | "invoice" | "invoiceItem" | "review" | "vendorReview" | "auditLog" | "warehouse" | "inventory" | "inventoryReservation" | "order" | "orderItem" | "fulfillment" | "notification" | "fileUpload" | "payout" | "feedbackSubmission"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -2063,6 +2065,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    VendorReview: {
+      payload: Prisma.$VendorReviewPayload<ExtArgs>
+      fields: Prisma.VendorReviewFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.VendorReviewFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.VendorReviewFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        findFirst: {
+          args: Prisma.VendorReviewFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.VendorReviewFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        findMany: {
+          args: Prisma.VendorReviewFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>[]
+        }
+        create: {
+          args: Prisma.VendorReviewCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        createMany: {
+          args: Prisma.VendorReviewCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.VendorReviewCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>[]
+        }
+        delete: {
+          args: Prisma.VendorReviewDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        update: {
+          args: Prisma.VendorReviewUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        deleteMany: {
+          args: Prisma.VendorReviewDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.VendorReviewUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.VendorReviewUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>[]
+        }
+        upsert: {
+          args: Prisma.VendorReviewUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$VendorReviewPayload>
+        }
+        aggregate: {
+          args: Prisma.VendorReviewAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateVendorReview>
+        }
+        groupBy: {
+          args: Prisma.VendorReviewGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VendorReviewGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.VendorReviewCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.VendorReviewCountAggregateOutputType> | number
+        }
+      }
+    }
     AuditLog: {
       payload: Prisma.$AuditLogPayload<ExtArgs>
       fields: Prisma.AuditLogFieldRefs
@@ -2803,6 +2879,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    FeedbackSubmission: {
+      payload: Prisma.$FeedbackSubmissionPayload<ExtArgs>
+      fields: Prisma.FeedbackSubmissionFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FeedbackSubmissionFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FeedbackSubmissionFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        findFirst: {
+          args: Prisma.FeedbackSubmissionFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FeedbackSubmissionFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        findMany: {
+          args: Prisma.FeedbackSubmissionFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>[]
+        }
+        create: {
+          args: Prisma.FeedbackSubmissionCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        createMany: {
+          args: Prisma.FeedbackSubmissionCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.FeedbackSubmissionCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>[]
+        }
+        delete: {
+          args: Prisma.FeedbackSubmissionDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        update: {
+          args: Prisma.FeedbackSubmissionUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        deleteMany: {
+          args: Prisma.FeedbackSubmissionDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FeedbackSubmissionUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.FeedbackSubmissionUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>[]
+        }
+        upsert: {
+          args: Prisma.FeedbackSubmissionUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FeedbackSubmissionPayload>
+        }
+        aggregate: {
+          args: Prisma.FeedbackSubmissionAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFeedbackSubmission>
+        }
+        groupBy: {
+          args: Prisma.FeedbackSubmissionGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackSubmissionGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FeedbackSubmissionCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FeedbackSubmissionCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -3123,6 +3273,19 @@ export const ReviewScalarFieldEnum = {
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
 
 
+export const VendorReviewScalarFieldEnum = {
+  review_id: 'review_id',
+  user_id: 'user_id',
+  order_id: 'order_id',
+  vendor_id: 'vendor_id',
+  rating: 'rating',
+  comment: 'comment',
+  created_at: 'created_at'
+} as const
+
+export type VendorReviewScalarFieldEnum = (typeof VendorReviewScalarFieldEnum)[keyof typeof VendorReviewScalarFieldEnum]
+
+
 export const AuditLogScalarFieldEnum = {
   log_id: 'log_id',
   entity_type: 'entity_type',
@@ -3299,6 +3462,22 @@ export const PayoutScalarFieldEnum = {
 } as const
 
 export type PayoutScalarFieldEnum = (typeof PayoutScalarFieldEnum)[keyof typeof PayoutScalarFieldEnum]
+
+
+export const FeedbackSubmissionScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  type: 'type',
+  subject: 'subject',
+  message: 'message',
+  status: 'status',
+  admin_reply: 'admin_reply',
+  admin_reply_at: 'admin_reply_at',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+} as const
+
+export type FeedbackSubmissionScalarFieldEnum = (typeof FeedbackSubmissionScalarFieldEnum)[keyof typeof FeedbackSubmissionScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -3676,6 +3855,34 @@ export type EnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<
 export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType[]'>
     
 
+
+/**
+ * Reference to a field of type 'FeedbackType'
+ */
+export type EnumFeedbackTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackType'>
+    
+
+
+/**
+ * Reference to a field of type 'FeedbackType[]'
+ */
+export type ListEnumFeedbackTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'FeedbackStatus'
+ */
+export type EnumFeedbackStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FeedbackStatus[]'
+ */
+export type ListEnumFeedbackStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FeedbackStatus[]'>
+    
+
 /**
  * Batch Payload for updateMany & deleteMany & createMany
  */
@@ -3793,6 +4000,7 @@ export type GlobalOmitConfig = {
   invoice?: Prisma.InvoiceOmit
   invoiceItem?: Prisma.InvoiceItemOmit
   review?: Prisma.ReviewOmit
+  vendorReview?: Prisma.VendorReviewOmit
   auditLog?: Prisma.AuditLogOmit
   warehouse?: Prisma.WarehouseOmit
   inventory?: Prisma.InventoryOmit
@@ -3803,6 +4011,7 @@ export type GlobalOmitConfig = {
   notification?: Prisma.NotificationOmit
   fileUpload?: Prisma.FileUploadOmit
   payout?: Prisma.PayoutOmit
+  feedbackSubmission?: Prisma.FeedbackSubmissionOmit
 }
 
 /* Types for Logging */

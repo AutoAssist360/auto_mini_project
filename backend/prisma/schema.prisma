@@ -146,6 +146,19 @@ enum NotificationType {
   system
 }
 
+enum FeedbackType {
+  suggestion
+  complaint
+  bug_report
+  other
+}
+
+enum FeedbackStatus {
+  pending
+  under_review
+  resolved
+}
+
 // ═══════════════════════════════════════════════════════════════
 //  EXISTING MODELS
 // ═══════════════════════════════════════════════════════════════
@@ -165,6 +178,8 @@ model User {
   sentMessages      PlatformMessage[]      @relation("sentMessages")
   receivedMessages  PlatformMessage[]      @relation("receivedMessages")
   reviews           Review[]
+  vendorReviews     VendorReview[]     @relation("VendorReviews")
+  submittedVendorReviews VendorReview[] @relation("SubmittedVendorReviews")
   technicianProfile TechnicianProfile?
   auditLogs         AuditLog[]
   deleted_at        DateTime?
@@ -179,6 +194,7 @@ model User {
   // ── Notifications & Uploads ──
   notifications     Notification[]
   fileUploads       FileUpload[]
+  feedbackSubmissions FeedbackSubmission[]
   // ── Payouts ──
   payoutsReceived   Payout[]       @relation("payoutRecipient")
   payoutsPerformed  Payout[]       @relation("payoutPerformer")
@@ -527,6 +543,23 @@ model Review {
   @@map("reviews")
 }
 
+model VendorReview {
+  review_id     String             @id @default(uuid()) @db.Uuid
+  user_id       String             @db.Uuid
+  order_id      String             @unique @db.Uuid
+  vendor_id     String             @db.Uuid
+  rating        Int
+  comment       String?
+  created_at    DateTime           @default(now())
+  user          User               @relation("SubmittedVendorReviews", fields: [user_id], references: [user_id])
+  order         Order              @relation(fields: [order_id], references: [order_id])
+  vendor        User               @relation("VendorReviews", fields: [vendor_id], references: [user_id])
+
+  @@index([user_id])
+  @@index([vendor_id])
+  @@map("vendor_reviews")
+}
+
 model AuditLog {
   log_id       String   @id @default(uuid()) @db.Uuid
   entity_type  String
@@ -657,6 +690,7 @@ model Order {
   items          OrderItem[]
   fulfillments   Fulfillment[]
   reservations   InventoryReservation[]
+  vendorReview   VendorReview?
 
   @@index([user_id])
   @@index([warehouse_id])
@@ -765,4 +799,26 @@ model Payout {
   @@index([month, year])
   @@index([status])
   @@map("payouts")
+}
+
+// ═══════════════════════════════════════════════════════════════
+//  FEEDBACK SUBMISSIONS
+// ═══════════════════════════════════════════════════════════════
+
+model FeedbackSubmission {
+  id             String         @id @default(uuid()) @db.Uuid
+  user_id        String         @db.Uuid
+  type           FeedbackType
+  subject        String
+  message        String         @db.Text
+  status         FeedbackStatus @default(pending)
+  admin_reply    String?        @db.Text
+  admin_reply_at DateTime?
+  created_at     DateTime       @default(now())
+  updated_at     DateTime       @updatedAt
+  user           User           @relation(fields: [user_id], references: [user_id], onDelete: Cascade)
+
+  @@index([user_id])
+  @@index([status])
+  @@map("feedback_submissions")
 }

@@ -179,6 +179,7 @@ orderRouter.get(
         request: {
           select: { request_id: true, issue_description: true, status: true },
         },
+        vendorReview: true,
       },
     });
 

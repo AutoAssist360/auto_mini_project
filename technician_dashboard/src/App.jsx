@@ -39,6 +39,7 @@ const TechnicianNotificationsPage = lazyPage(() => import('./pages/TechnicianNot
 const TechnicianForgotPasswordPage = lazyPage(() => import('./pages/TechnicianForgotPasswordPage'))
 const TechnicianResetPasswordPage = lazyPage(() => import('./pages/TechnicianResetPasswordPage'))
 const TechnicianChangePasswordPage = lazyPage(() => import('./pages/TechnicianChangePasswordPage'))
+const TechnicianReviewsPage = lazyPage(() => import('./pages/TechnicianReviewsPage'))
 
 import { PageSkeleton } from './components/Skeleton'
 import { ToastProvider } from './components/Toast'
@@ -112,6 +113,7 @@ function App() {
         TechnicianEarningsPage,
         TechnicianProfilePage,
         TechnicianNotificationsPage,
+        TechnicianReviewsPage,
       ].forEach((page) => page.preload?.())
     })
   }, [isAuthenticated])
@@ -149,6 +151,7 @@ function App() {
       <Route path="/earnings" element={<RequireAuth><TechnicianEarningsPage {...tp} /></RequireAuth>} />
       <Route path="/messages/:requestId" element={<RequireAuth><TechnicianMessagesPage {...tp} /></RequireAuth>} />
       <Route path="/notifications" element={<RequireAuth><TechnicianNotificationsPage {...tp} /></RequireAuth>} />
+      <Route path="/reviews" element={<RequireAuth><TechnicianReviewsPage {...tp} /></RequireAuth>} />
       <Route path="/change-password" element={<RequireAuth><TechnicianChangePasswordPage {...tp} /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/auth/technician/signin" replace />} />
     </Routes>

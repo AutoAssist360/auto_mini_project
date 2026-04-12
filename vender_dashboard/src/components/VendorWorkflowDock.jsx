@@ -51,6 +51,13 @@ const WORKFLOW_ITEMS = [
     to: '/ledger',
     matches: (pathname) => pathname === '/ledger',
   },
+  {
+    label: 'My reviews',
+    shortLabel: 'Reviews',
+    hint: 'See customer reviews on your fulfillment orders.',
+    to: '/reviews',
+    matches: (pathname) => pathname === '/reviews',
+  },
 ]
 
 function getHistoryIndex() {

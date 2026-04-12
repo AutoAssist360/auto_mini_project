@@ -383,3 +383,11 @@ export async function confirmVendorCommissionPayment(payload = {}) {
   })
 }
 
+/* ================================================================== */
+/*  REVIEWS                                                            */
+/* ================================================================== */
+
+export async function getVendorReviews(page = 1, limit = 20) {
+  return apiRequest(`/vendor/reviews?page=${page}&limit=${limit}`, { method: 'GET' })
+}
+

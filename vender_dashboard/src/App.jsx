@@ -37,6 +37,7 @@ const VendorForgotPasswordPage = lazyPage(() => import('./pages/VendorForgotPass
 const VendorResetPasswordPage = lazyPage(() => import('./pages/VendorResetPasswordPage'))
 const VendorChangePasswordPage = lazyPage(() => import('./pages/VendorChangePasswordPage'))
 const VendorProfilePage = lazyPage(() => import('./pages/VendorProfilePage'))
+const VendorReviewsPage = lazyPage(() => import('./pages/VendorReviewsPage'))
 const VendorReservationsPage = lazyPage(() => import('./pages/VendorReservationsPage'))
 const VendorBulkImportPage = lazyPage(() => import('./pages/VendorBulkImportPage'))
 const VendorLedgerPage = lazyPage(() => import('./pages/VendorLedgerPage'))
@@ -112,6 +113,7 @@ function App() {
         VendorAnalyticsPage,
         VendorLedgerPage,
         VendorNotificationsPage,
+        VendorReviewsPage,
       ].forEach((page) => page.preload?.())
     })
   }, [isAuthenticated])
@@ -151,6 +153,7 @@ function App() {
       <Route path="/analytics" element={<RequireAuth><VendorAnalyticsPage {...vp} /></RequireAuth>} />
       <Route path="/notifications" element={<RequireAuth><VendorNotificationsPage {...vp} /></RequireAuth>} />
       <Route path="/profile" element={<RequireAuth><VendorProfilePage {...vp} /></RequireAuth>} />
+      <Route path="/reviews" element={<RequireAuth><VendorReviewsPage {...vp} /></RequireAuth>} />
       <Route path="/change-password" element={<RequireAuth><VendorChangePasswordPage {...vp} /></RequireAuth>} />
       <Route path="/ledger" element={<RequireAuth><VendorLedgerPage {...vp} /></RequireAuth>} />
       <Route path="*" element={<Navigate to="/auth/vendor/signin" replace />} />

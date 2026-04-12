@@ -61,6 +61,13 @@ const WORKFLOW_ITEMS = [
     matches: (pathname) => pathname === '/admin/payouts',
   },
   {
+    label: 'Feedback',
+    shortLabel: 'Feedback',
+    hint: 'Review platform suggestions, bug reports, and resolve user complaints.',
+    to: '/admin/feedback',
+    matches: (pathname) => pathname === '/admin/feedback',
+  },
+  {
     label: 'Analytics',
     shortLabel: 'Analytics',
     hint: 'Review trends, reports, and overall performance.',

@@ -495,3 +495,11 @@ export async function getEntityFiles(entityType, entityId, { page = 1, limit = 5
   return apiRequest(`/uploads/entity/${entityType}/${entityId}${qs}`, { method: 'GET' })
 }
 
+/* ================================================================== */
+/*  REVIEWS                                                            */
+/* ================================================================== */
+
+export async function getMyReviews(page = 1, limit = 20) {
+  return apiRequest(`/tech/reviews?page=${page}&limit=${limit}`, { method: 'GET' })
+}
+

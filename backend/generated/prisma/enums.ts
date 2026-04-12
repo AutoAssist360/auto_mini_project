@@ -193,3 +193,22 @@ export const NotificationType = {
 } as const
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
+
+
+export const FeedbackType = {
+  suggestion: 'suggestion',
+  complaint: 'complaint',
+  bug_report: 'bug_report',
+  other: 'other'
+} as const
+
+export type FeedbackType = (typeof FeedbackType)[keyof typeof FeedbackType]
+
+
+export const FeedbackStatus = {
+  pending: 'pending',
+  under_review: 'under_review',
+  resolved: 'resolved'
+} as const
+
+export type FeedbackStatus = (typeof FeedbackStatus)[keyof typeof FeedbackStatus]

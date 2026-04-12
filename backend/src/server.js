@@ -20,6 +20,7 @@ import { orderRouter } from "./modules/user/orders/orders.routes.js";
 import { reviewRouter } from "./modules/user/reviews/reviews.routes.js";
 import { messageRouter } from "./modules/user/messages/messages.routes.js";
 import { partsRouter } from "./modules/user/parts/parts.routes.js";
+import { userFeedbackRouter } from "./modules/user/feedback/feedback.routes.js";
 
 // ─── Technician module routers ───────────────────────────────
 import { techAuthRouter } from "./modules/technician/auth/auth.routes.js";
@@ -32,6 +33,7 @@ import { techEarningsRouter } from "./modules/technician/earnings/earnings.route
 import { techMessagesRouter } from "./modules/technician/messages/messages.routes.js";
 import { techLocationRouter } from "./modules/technician/location/location.routes.js";
 import { techDiscoveryRouter } from "./modules/technician/discovery/discovery.routes.js";
+import { technicianReviewRouter } from "./modules/technician/reviews/reviews.routes.js";
 
 // ─── Admin module routers ────────────────────────────────────
 import { adminAuthRouter } from "./modules/admin/auth/auth.routes.js";
@@ -48,6 +50,7 @@ import { adminPayoutsRouter } from "./modules/admin/payouts/payouts.routes.js";
 import { adminAnalyticsRouter } from "./modules/admin/analytics/analytics.routes.js";
 import { adminAuditLogsRouter } from "./modules/admin/auditLogs/auditLogs.routes.js";
 import { adminCatalogRouter } from "./modules/admin/catalog/catalog.routes.js";
+import { adminFeedbackRouter } from "./modules/admin/feedback/feedback.routes.js";
 
 // ─── Vendor module routers ───────────────────────────────────
 import { vendorAuthRouter } from "./modules/vendor/auth/auth.routes.js";
@@ -58,6 +61,7 @@ import { vendorOrdersRouter } from "./modules/vendor/orders/orders.routes.js";
 import { vendorFulfillmentRouter } from "./modules/vendor/fulfillment/fulfillment.routes.js";
 import { vendorAnalyticsRouter } from "./modules/vendor/analytics/analytics.routes.js";
 import { vendorProfileRouter } from "./modules/vendor/profile/profile.routes.js";
+import { vendorReviewRouter } from "./modules/vendor/reviews/reviews.routes.js";
 
 // ─── Shared module routers ───────────────────────────────────
 import { notificationRouter } from "./modules/notifications/notifications.routes.js";
@@ -139,6 +143,7 @@ app.use("/orders", orderRouter);
 app.use("/reviews", reviewRouter);
 app.use("/", messageRouter);     // handles /requests/:id/messages
 app.use("/parts", partsRouter);
+app.use("/feedback", userFeedbackRouter);
 
 // ─── Technician routes ───────────────────────────────────────
 app.use("/tech/auth", authLimiter, techAuthRouter);
@@ -151,6 +156,7 @@ app.use("/tech/earnings", techEarningsRouter);
 app.use("/tech/requests", techMessagesRouter);
 app.use("/tech/discover", techDiscoveryRouter);
 app.use("/tech/location", techLocationRouter);
+app.use("/tech/reviews", technicianReviewRouter);
 
 // ─── Admin routes ────────────────────────────────────────────
 app.use("/admin/auth", authLimiter, adminAuthRouter);
@@ -167,6 +173,7 @@ app.use("/admin/payouts", adminPayoutsRouter);
 app.use("/admin/analytics", adminAnalyticsRouter);
 app.use("/admin/audit-logs", adminAuditLogsRouter);
 app.use("/admin/catalog", adminCatalogRouter);
+app.use("/admin/feedback", adminFeedbackRouter);
 
 // ─── Vendor routes ───────────────────────────────────────────
 app.use("/vendor/auth", authLimiter, vendorAuthRouter);
@@ -178,6 +185,7 @@ app.use("/vendor/orders", vendorOrdersRouter);
 app.use("/vendor", vendorFulfillmentRouter);      // handles /vendor/orders/:id/fulfillment & /vendor/fulfillment/:id/status
 app.use("/vendor/analytics", vendorAnalyticsRouter);
 app.use("/vendor", vendorAnalyticsRouter);        // handles /vendor/warehouses/:id/low-stock AND /vendor/ledger
+app.use("/vendor/reviews", vendorReviewRouter);
 
 // ─── Shared routes (all roles) ───────────────────────────────
 app.use("/notifications", notificationRouter);

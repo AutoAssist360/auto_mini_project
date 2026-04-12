@@ -446,3 +446,24 @@ export async function deleteNotification(notificationId) {
   return apiRequest(`/notifications/${notificationId}`, { method: 'DELETE' })
 }
 
+/* ================================================================== */
+/*  14. FEEDBACK                                                      */
+/* ================================================================== */
+export function getAllFeedback(params) {
+  return apiRequest(`/admin/feedback${qs(params)}`)
+}
+
+export function updateFeedbackStatus(feedbackId, status) {
+  return apiRequest(`/admin/feedback/${feedbackId}/status`, {
+    method: 'PATCH',
+    body: JSON.stringify({ status })
+  })
+}
+
+export function replyToFeedback(feedbackId, replyText, status) {
+  return apiRequest(`/admin/feedback/${feedbackId}/reply`, {
+    method: 'PATCH',
+    body: JSON.stringify({ replyText, status })
+  })
+}
+

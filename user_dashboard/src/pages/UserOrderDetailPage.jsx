@@ -12,6 +12,7 @@ import {
   payOrder,
   requestOrderReturn,
   userLogout,
+  createVendorReview,
 } from '../lib/api'
 import { clearAuth } from '../store/authSlice'
 import { ListSkeleton } from '../components/Skeleton'
@@ -100,6 +101,9 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
   const [isSubmittingReturn, setIsSubmittingReturn] = useState(false)
   const [isCancelling, setIsCancelling] = useState(false)
   const [liveStatus, setLiveStatus] = useState('connecting')
+  
+  const [vendorReview, setVendorReview] = useState({ rating: 5, comment: '' })
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false)
 
   const loadOrder = useCallback(async () => {
     setIsLoading(true)
@@ -205,6 +209,28 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
     await userLogout().catch(() => null)
     dispatch(clearAuth())
     navigate('/auth/user/signin')
+  }
+
+  const handleVendorReview = async () => {
+    if (!vendorReview.comment.trim()) {
+      setError('Please provide a comment for your review.')
+      return
+    }
+    setIsSubmittingReview(true)
+    setError(''); setMessage('')
+    try {
+      await createVendorReview({
+        order_id: orderId,
+        rating: vendorReview.rating,
+        comment: vendorReview.comment.trim()
+      })
+      setMessage('Vendor review submitted successfully.')
+      await loadOrder()
+    } catch (err) {
+      setError(err instanceof ApiError ? err.message : 'Unable to submit review.')
+    } finally {
+      setIsSubmittingReview(false)
+    }
   }
 
   const latestFulfillment = fulfillments[0] || null
@@ -560,6 +586,83 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
                            className="h-14 px-10 bg-white text-slate-900 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:shadow-2xl active:scale-95 transition-all shadow-xl"
                         >
                            {isSubmittingReturn ? 'SUBMITTING...' : 'REQUEST RETURN'}
+                        </button>
+                     </div>
+                  )}
+               </section>
+            )}
+
+            {/* VENDOR REVIEW SYSTEM */}
+            {order.order_status === 'delivered' && (
+               <section className="p-10 rounded-[40px] bg-white border border-slate-200 dark:bg-[#0B1120]/50 dark:border-slate-800 shadow-2xl overflow-hidden relative">
+                  <h2 className="text-sm font-black uppercase tracking-[0.2em] mb-8 text-slate-900 dark:text-white">Vendor Review</h2>
+                  
+                  {order.vendorReview ? (
+                     <div className="space-y-6">
+                        <div className="flex items-center gap-2">
+                           <div className="flex text-amber-400">
+                             {[...Array(5)].map((_, i) => (
+                               <svg key={i} className={`w-6 h-6 outline-none ${i < order.vendorReview.rating ? 'fill-current' : 'text-slate-200 dark:text-slate-700'}`} viewBox="0 0 24 24" fill="currentColor">
+                                 <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                               </svg>
+                             ))}
+                           </div>
+                           <span className="text-xs font-black text-slate-400 uppercase tracking-widest">{order.vendorReview.rating} OUT OF 5</span>
+                        </div>
+                        <div className="p-6 rounded-3xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
+                           <p className="text-sm font-bold text-slate-700 dark:text-slate-300 leading-relaxed italic">"{order.vendorReview.comment}"</p>
+                        </div>
+                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                           Submitted on {formatDateTime(order.vendorReview.created_at)}
+                        </p>
+                     </div>
+                  ) : (
+                     <div className="max-w-xl space-y-6">
+                        <p className="text-xs text-slate-500 font-medium leading-relaxed uppercase tracking-wider">
+                           How was your experience ordering parts from <span className="text-slate-900 dark:text-white font-black">{order.warehouse?.name}</span>? Your review helps other mechanics find reliable parts.
+                        </p>
+                        
+                        <div className="space-y-2">
+                           <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                             Rating
+                             <RequiredAsterisk />
+                           </label>
+                           <div className="flex gap-2">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                 <button
+                                    key={star}
+                                    type="button"
+                                    onClick={() => setVendorReview(r => ({ ...r, rating: star }))}
+                                    className={`p-2 transition-all hover:scale-110 active:scale-95 outline-none`}
+                                 >
+                                    <svg className={`w-10 h-10 ${star <= vendorReview.rating ? 'text-amber-400 fill-current' : 'text-slate-200 dark:text-slate-800'}`} viewBox="0 0 24 24" fill="currentColor">
+                                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                 </button>
+                               ))}
+                           </div>
+                        </div>
+
+                        <div className="space-y-2">
+                           <label className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                             Review Description
+                             <RequiredAsterisk />
+                           </label>
+                           <textarea
+                              value={vendorReview.comment}
+                              onChange={(e) => setVendorReview(r => ({ ...r, comment: e.target.value }))}
+                              placeholder="Describe your experience with the seller..."
+                              rows={4}
+                              className="w-full bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 rounded-3xl px-6 py-4 text-xs font-bold text-slate-900 dark:text-white placeholder:text-slate-400 outline-none focus:border-blue-500 transition-all"
+                           />
+                        </div>
+
+                        <button
+                           onClick={handleVendorReview}
+                           disabled={isSubmittingReview || !vendorReview.comment.trim()}
+                           className="h-14 px-10 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:shadow-2xl hover:shadow-blue-500/30 active:scale-95 transition-all shadow-xl disabled:opacity-50"
+                        >
+                           {isSubmittingReview ? 'SUBMITTING...' : 'SUBMIT REVIEW'}
                         </button>
                      </div>
                   )}

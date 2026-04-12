@@ -401,6 +401,13 @@ export async function createReview(payload) {
   })
 }
 
+export async function createVendorReview(payload) {
+  return apiRequest('/reviews/vendor', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
 // ─── Messages ─────────────────────────────────────────────────
 export async function getRequestMessages(requestId, { page = 1, limit = 50 } = {}) {
   const params = new URLSearchParams({ page: String(page), limit: String(limit) })
@@ -548,4 +555,16 @@ export async function getCatalogPartsWithInventory({ search = '', page = 1, limi
 // ─── Platform Fee QR ─────────────────────────────────────────
 export async function getPlatformFeeQr() {
   return apiRequest('/payments/platform-fee/qr', { method: 'GET' })
+}
+
+// ─── Feedback & Complaints ───────────────────────────────────
+export async function submitFeedback(payload) {
+  return apiRequest('/feedback', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+  })
+}
+
+export async function getMyFeedback() {
+  return apiRequest('/feedback', { method: 'GET' })
 }

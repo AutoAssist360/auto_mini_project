@@ -221,6 +221,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
     ['Step 2', 'Monitor Jobs', 'Follow ongoing jobs and look for stalled or failed progress.', '/admin/jobs'],
     ['Step 3', 'Manage People', 'Verify technicians, support users, and review vendor accounts.', '/admin/technicians'],
     ['Step 4', 'Payouts & Analytics', 'Finish with payouts, invoices, and overall platform performance.', '/admin/payouts'],
+    ['Step 5', 'Feedback', 'Review and reply to user feedback and complaints.', '/admin/feedback'],
   ]
 
   return (
@@ -582,6 +583,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
                     ['/admin/jobs', 'Jobs', 'Follow assigned and completed work'],
                     ['/admin/payouts', 'Payouts', 'Handle technician and vendor payouts'],
                     ['/admin/analytics', 'Analytics', 'Review platform performance and trends'],
+                    ['/admin/feedback', 'Feedback', 'Review and reply to user feedback'],
                     ['/admin/audit-logs', 'Audit Logs', 'See important admin activity history'],
                     ['/admin/car-catalog', 'Car Catalog', 'Manage supported vehicle data'],
                   ].map(([to, label, description]) => (

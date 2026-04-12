@@ -49,6 +49,7 @@ const AdminChangePasswordPage = lazyPage(() => import('./pages/AdminChangePasswo
 const AdminCarCatalogPage = lazyPage(() => import('./pages/AdminCarCatalogPage'))
 const AdminNotificationsPage = lazyPage(() => import('./pages/AdminNotificationsPage'))
 const AdminPayoutsPage = lazyPage(() => import('./pages/AdminPayoutsPage'))
+const AdminFeedbackPage = lazyPage(() => import('./pages/AdminFeedbackPage'))
 
 import { PageSkeleton } from './components/Skeleton'
 import { ToastProvider } from './components/Toast'
@@ -125,6 +126,7 @@ function App() {
         AdminVendorsPage,
         AdminPayoutsPage,
         AdminAnalyticsPage,
+        AdminFeedbackPage,
       ].forEach((page) => page.preload?.())
     })
   }, [isAuthenticated])
@@ -180,6 +182,7 @@ function App() {
       <Route path="/admin/car-catalog"               element={<Auth><AdminCarCatalogPage {...tp} /></Auth>} />
       <Route path="/admin/notifications"             element={<Auth><AdminNotificationsPage {...tp} /></Auth>} />
       <Route path="/admin/payouts"                   element={<Auth><AdminPayoutsPage {...tp} /></Auth>} />
+      <Route path="/admin/feedback"                  element={<Auth><AdminFeedbackPage {...tp} /></Auth>} />
 
       <Route path="*" element={<Navigate to="/admin/login" replace />} />
     </Routes>

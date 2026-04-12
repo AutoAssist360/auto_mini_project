@@ -51,6 +51,13 @@ const WORKFLOW_ITEMS = [
       /^\/invoices\/[^/]+$/.test(pathname)
     ),
   },
+  {
+    label: 'Feedback',
+    shortLabel: 'Feedback',
+    hint: 'Share your feedback or report an issue.',
+    to: '/feedback',
+    matches: (pathname) => pathname === '/feedback',
+  },
 ]
 
 function getHistoryIndex() {

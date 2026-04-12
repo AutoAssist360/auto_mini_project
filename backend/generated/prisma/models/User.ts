@@ -259,12 +259,15 @@ export type UserWhereInput = {
   sentMessages?: Prisma.PlatformMessageListRelationFilter
   receivedMessages?: Prisma.PlatformMessageListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  vendorReviews?: Prisma.VendorReviewListRelationFilter
+  submittedVendorReviews?: Prisma.VendorReviewListRelationFilter
   technicianProfile?: Prisma.XOR<Prisma.TechnicianProfileNullableScalarRelationFilter, Prisma.TechnicianProfileWhereInput> | null
   auditLogs?: Prisma.AuditLogListRelationFilter
   warehouses?: Prisma.WarehouseListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   fileUploads?: Prisma.FileUploadListRelationFilter
+  feedbackSubmissions?: Prisma.FeedbackSubmissionListRelationFilter
   payoutsReceived?: Prisma.PayoutListRelationFilter
   payoutsPerformed?: Prisma.PayoutListRelationFilter
 }
@@ -289,12 +292,15 @@ export type UserOrderByWithRelationInput = {
   sentMessages?: Prisma.PlatformMessageOrderByRelationAggregateInput
   receivedMessages?: Prisma.PlatformMessageOrderByRelationAggregateInput
   reviews?: Prisma.ReviewOrderByRelationAggregateInput
+  vendorReviews?: Prisma.VendorReviewOrderByRelationAggregateInput
+  submittedVendorReviews?: Prisma.VendorReviewOrderByRelationAggregateInput
   technicianProfile?: Prisma.TechnicianProfileOrderByWithRelationInput
   auditLogs?: Prisma.AuditLogOrderByRelationAggregateInput
   warehouses?: Prisma.WarehouseOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   fileUploads?: Prisma.FileUploadOrderByRelationAggregateInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionOrderByRelationAggregateInput
   payoutsReceived?: Prisma.PayoutOrderByRelationAggregateInput
   payoutsPerformed?: Prisma.PayoutOrderByRelationAggregateInput
 }
@@ -322,12 +328,15 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sentMessages?: Prisma.PlatformMessageListRelationFilter
   receivedMessages?: Prisma.PlatformMessageListRelationFilter
   reviews?: Prisma.ReviewListRelationFilter
+  vendorReviews?: Prisma.VendorReviewListRelationFilter
+  submittedVendorReviews?: Prisma.VendorReviewListRelationFilter
   technicianProfile?: Prisma.XOR<Prisma.TechnicianProfileNullableScalarRelationFilter, Prisma.TechnicianProfileWhereInput> | null
   auditLogs?: Prisma.AuditLogListRelationFilter
   warehouses?: Prisma.WarehouseListRelationFilter
   orders?: Prisma.OrderListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   fileUploads?: Prisma.FileUploadListRelationFilter
+  feedbackSubmissions?: Prisma.FeedbackSubmissionListRelationFilter
   payoutsReceived?: Prisma.PayoutListRelationFilter
   payoutsPerformed?: Prisma.PayoutListRelationFilter
 }, "user_id" | "email" | "phone_number">
@@ -392,12 +401,15 @@ export type UserCreateInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -422,12 +434,15 @@ export type UserUncheckedCreateInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -452,12 +467,15 @@ export type UserUpdateInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -482,12 +500,15 @@ export type UserUncheckedUpdateInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -712,6 +733,34 @@ export type UserUpdateOneRequiredWithoutReviewsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutReviewsInput, Prisma.UserUpdateWithoutReviewsInput>, Prisma.UserUncheckedUpdateWithoutReviewsInput>
 }
 
+export type UserCreateNestedOneWithoutSubmittedVendorReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedCreateWithoutSubmittedVendorReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmittedVendorReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserCreateNestedOneWithoutVendorReviewsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVendorReviewsInput, Prisma.UserUncheckedCreateWithoutVendorReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVendorReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutSubmittedVendorReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedCreateWithoutSubmittedVendorReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutSubmittedVendorReviewsInput
+  upsert?: Prisma.UserUpsertWithoutSubmittedVendorReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSubmittedVendorReviewsInput, Prisma.UserUpdateWithoutSubmittedVendorReviewsInput>, Prisma.UserUncheckedUpdateWithoutSubmittedVendorReviewsInput>
+}
+
+export type UserUpdateOneRequiredWithoutVendorReviewsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutVendorReviewsInput, Prisma.UserUncheckedCreateWithoutVendorReviewsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutVendorReviewsInput
+  upsert?: Prisma.UserUpsertWithoutVendorReviewsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutVendorReviewsInput, Prisma.UserUpdateWithoutVendorReviewsInput>, Prisma.UserUncheckedUpdateWithoutVendorReviewsInput>
+}
+
 export type UserCreateNestedOneWithoutAuditLogsInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutAuditLogsInput, Prisma.UserUncheckedCreateWithoutAuditLogsInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutAuditLogsInput
@@ -812,6 +861,20 @@ export type UserUpdateOneWithoutPayoutsPerformedNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPayoutsPerformedInput, Prisma.UserUpdateWithoutPayoutsPerformedInput>, Prisma.UserUncheckedUpdateWithoutPayoutsPerformedInput>
 }
 
+export type UserCreateNestedOneWithoutFeedbackSubmissionsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedCreateWithoutFeedbackSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFeedbackSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutFeedbackSubmissionsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedCreateWithoutFeedbackSubmissionsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutFeedbackSubmissionsInput
+  upsert?: Prisma.UserUpsertWithoutFeedbackSubmissionsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutFeedbackSubmissionsInput, Prisma.UserUpdateWithoutFeedbackSubmissionsInput>, Prisma.UserUncheckedUpdateWithoutFeedbackSubmissionsInput>
+}
+
 export type UserCreateWithoutVehiclesInput = {
   user_id?: string
   full_name: string
@@ -831,12 +894,15 @@ export type UserCreateWithoutVehiclesInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -860,12 +926,15 @@ export type UserUncheckedCreateWithoutVehiclesInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -905,12 +974,15 @@ export type UserUpdateWithoutVehiclesInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -934,12 +1006,15 @@ export type UserUncheckedUpdateWithoutVehiclesInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -963,12 +1038,15 @@ export type UserCreateWithoutServiceRequestsInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -992,12 +1070,15 @@ export type UserUncheckedCreateWithoutServiceRequestsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1037,12 +1118,15 @@ export type UserUpdateWithoutServiceRequestsInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1066,12 +1150,15 @@ export type UserUncheckedUpdateWithoutServiceRequestsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1096,11 +1183,14 @@ export type UserCreateWithoutTechnicianProfileInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1125,11 +1215,14 @@ export type UserUncheckedCreateWithoutTechnicianProfileInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1170,11 +1263,14 @@ export type UserUpdateWithoutTechnicianProfileInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1199,11 +1295,14 @@ export type UserUncheckedUpdateWithoutTechnicianProfileInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1227,12 +1326,15 @@ export type UserCreateWithoutSentMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1256,12 +1358,15 @@ export type UserUncheckedCreateWithoutSentMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1290,12 +1395,15 @@ export type UserCreateWithoutReceivedMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1319,12 +1427,15 @@ export type UserUncheckedCreateWithoutReceivedMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1364,12 +1475,15 @@ export type UserUpdateWithoutSentMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1393,12 +1507,15 @@ export type UserUncheckedUpdateWithoutSentMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1433,12 +1550,15 @@ export type UserUpdateWithoutReceivedMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1462,12 +1582,15 @@ export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1491,12 +1614,15 @@ export type UserCreateWithoutReviewsInput = {
   serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1520,12 +1646,15 @@ export type UserUncheckedCreateWithoutReviewsInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1565,12 +1694,15 @@ export type UserUpdateWithoutReviewsInput = {
   serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1594,12 +1726,303 @@ export type UserUncheckedUpdateWithoutReviewsInput = {
   serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
+}
+
+export type UserCreateWithoutSubmittedVendorReviewsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
+  payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
+}
+
+export type UserUncheckedCreateWithoutSubmittedVendorReviewsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleUncheckedCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
+  payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
+}
+
+export type UserCreateOrConnectWithoutSubmittedVendorReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedCreateWithoutSubmittedVendorReviewsInput>
+}
+
+export type UserCreateWithoutVendorReviewsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
+  payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
+}
+
+export type UserUncheckedCreateWithoutVendorReviewsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleUncheckedCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
+  payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
+}
+
+export type UserCreateOrConnectWithoutVendorReviewsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutVendorReviewsInput, Prisma.UserUncheckedCreateWithoutVendorReviewsInput>
+}
+
+export type UserUpsertWithoutSubmittedVendorReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedUpdateWithoutSubmittedVendorReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedCreateWithoutSubmittedVendorReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutSubmittedVendorReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutSubmittedVendorReviewsInput, Prisma.UserUncheckedUpdateWithoutSubmittedVendorReviewsInput>
+}
+
+export type UserUpdateWithoutSubmittedVendorReviewsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
+  payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutSubmittedVendorReviewsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUncheckedUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
+}
+
+export type UserUpsertWithoutVendorReviewsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutVendorReviewsInput, Prisma.UserUncheckedUpdateWithoutVendorReviewsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutVendorReviewsInput, Prisma.UserUncheckedCreateWithoutVendorReviewsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutVendorReviewsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutVendorReviewsInput, Prisma.UserUncheckedUpdateWithoutVendorReviewsInput>
+}
+
+export type UserUpdateWithoutVendorReviewsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
+  payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutVendorReviewsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUncheckedUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1624,11 +2047,14 @@ export type UserCreateWithoutAuditLogsInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1653,11 +2079,14 @@ export type UserUncheckedCreateWithoutAuditLogsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1698,11 +2127,14 @@ export type UserUpdateWithoutAuditLogsInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1727,11 +2159,14 @@ export type UserUncheckedUpdateWithoutAuditLogsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1756,11 +2191,14 @@ export type UserCreateWithoutWarehousesInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1785,11 +2223,14 @@ export type UserUncheckedCreateWithoutWarehousesInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1830,11 +2271,14 @@ export type UserUpdateWithoutWarehousesInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1859,11 +2303,14 @@ export type UserUncheckedUpdateWithoutWarehousesInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -1888,11 +2335,14 @@ export type UserCreateWithoutOrdersInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -1917,11 +2367,14 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -1962,11 +2415,14 @@ export type UserUpdateWithoutOrdersInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -1991,11 +2447,14 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -2020,11 +2479,14 @@ export type UserCreateWithoutNotificationsInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -2049,11 +2511,14 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -2094,11 +2559,14 @@ export type UserUpdateWithoutNotificationsInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -2123,11 +2591,14 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -2152,11 +2623,14 @@ export type UserCreateWithoutFileUploadsInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
@@ -2181,11 +2655,14 @@ export type UserUncheckedCreateWithoutFileUploadsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
@@ -2226,11 +2703,14 @@ export type UserUpdateWithoutFileUploadsInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
@@ -2255,11 +2735,14 @@ export type UserUncheckedUpdateWithoutFileUploadsInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
@@ -2284,12 +2767,15 @@ export type UserCreateWithoutPayoutsReceivedInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
 }
 
@@ -2313,12 +2799,15 @@ export type UserUncheckedCreateWithoutPayoutsReceivedInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
 }
 
@@ -2347,12 +2836,15 @@ export type UserCreateWithoutPayoutsPerformedInput = {
   sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
 }
 
@@ -2376,12 +2868,15 @@ export type UserUncheckedCreateWithoutPayoutsPerformedInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
   receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
   reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
   auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
   warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
   fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedCreateNestedManyWithoutUserInput
   payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
 }
 
@@ -2421,12 +2916,15 @@ export type UserUpdateWithoutPayoutsReceivedInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
 }
 
@@ -2450,12 +2948,15 @@ export type UserUncheckedUpdateWithoutPayoutsReceivedInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
   payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
 
@@ -2490,12 +2991,15 @@ export type UserUpdateWithoutPayoutsPerformedInput = {
   sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
   orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUpdateManyWithoutUserNestedInput
   payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
 }
 
@@ -2519,6 +3023,152 @@ export type UserUncheckedUpdateWithoutPayoutsPerformedInput = {
   sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
   receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
   reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
+  feedbackSubmissions?: Prisma.FeedbackSubmissionUncheckedUpdateManyWithoutUserNestedInput
+  payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
+}
+
+export type UserCreateWithoutFeedbackSubmissionsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewCreateNestedManyWithoutUserInput
+  technicianProfile?: Prisma.TechnicianProfileCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadCreateNestedManyWithoutUploaderInput
+  payoutsReceived?: Prisma.PayoutCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutCreateNestedManyWithoutPerformerInput
+}
+
+export type UserUncheckedCreateWithoutFeedbackSubmissionsInput = {
+  user_id?: string
+  full_name: string
+  email: string
+  phone_number: string
+  password: string
+  role: $Enums.Role
+  is_active?: boolean
+  is_verified?: boolean
+  created_at?: Date | string
+  deleted_at?: Date | string | null
+  upi_id?: string | null
+  bank_account_number?: string | null
+  bank_ifsc?: string | null
+  bank_holder_name?: string | null
+  vehicles?: Prisma.UserVehicleUncheckedCreateNestedManyWithoutUserInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedCreateNestedManyWithoutUserInput
+  sentMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutSenderInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedCreateNestedManyWithoutReceiverInput
+  reviews?: Prisma.ReviewUncheckedCreateNestedManyWithoutUserInput
+  vendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutVendorInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedCreateNestedManyWithoutUserInput
+  technicianProfile?: Prisma.TechnicianProfileUncheckedCreateNestedOneWithoutUserInput
+  auditLogs?: Prisma.AuditLogUncheckedCreateNestedManyWithoutUserInput
+  warehouses?: Prisma.WarehouseUncheckedCreateNestedManyWithoutVendorInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  fileUploads?: Prisma.FileUploadUncheckedCreateNestedManyWithoutUploaderInput
+  payoutsReceived?: Prisma.PayoutUncheckedCreateNestedManyWithoutRecipientInput
+  payoutsPerformed?: Prisma.PayoutUncheckedCreateNestedManyWithoutPerformerInput
+}
+
+export type UserCreateOrConnectWithoutFeedbackSubmissionsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedCreateWithoutFeedbackSubmissionsInput>
+}
+
+export type UserUpsertWithoutFeedbackSubmissionsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedUpdateWithoutFeedbackSubmissionsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedCreateWithoutFeedbackSubmissionsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutFeedbackSubmissionsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutFeedbackSubmissionsInput, Prisma.UserUncheckedUpdateWithoutFeedbackSubmissionsInput>
+}
+
+export type UserUpdateWithoutFeedbackSubmissionsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUpdateManyWithoutUserNestedInput
+  technicianProfile?: Prisma.TechnicianProfileUpdateOneWithoutUserNestedInput
+  auditLogs?: Prisma.AuditLogUpdateManyWithoutUserNestedInput
+  warehouses?: Prisma.WarehouseUpdateManyWithoutVendorNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  fileUploads?: Prisma.FileUploadUpdateManyWithoutUploaderNestedInput
+  payoutsReceived?: Prisma.PayoutUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUpdateManyWithoutPerformerNestedInput
+}
+
+export type UserUncheckedUpdateWithoutFeedbackSubmissionsInput = {
+  user_id?: Prisma.StringFieldUpdateOperationsInput | string
+  full_name?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone_number?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  is_active?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  is_verified?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  created_at?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  deleted_at?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  upi_id?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_account_number?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_ifsc?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  bank_holder_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  vehicles?: Prisma.UserVehicleUncheckedUpdateManyWithoutUserNestedInput
+  serviceRequests?: Prisma.ServiceRequestUncheckedUpdateManyWithoutUserNestedInput
+  sentMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutSenderNestedInput
+  receivedMessages?: Prisma.PlatformMessageUncheckedUpdateManyWithoutReceiverNestedInput
+  reviews?: Prisma.ReviewUncheckedUpdateManyWithoutUserNestedInput
+  vendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutVendorNestedInput
+  submittedVendorReviews?: Prisma.VendorReviewUncheckedUpdateManyWithoutUserNestedInput
   technicianProfile?: Prisma.TechnicianProfileUncheckedUpdateOneWithoutUserNestedInput
   auditLogs?: Prisma.AuditLogUncheckedUpdateManyWithoutUserNestedInput
   warehouses?: Prisma.WarehouseUncheckedUpdateManyWithoutVendorNestedInput
@@ -2526,6 +3176,7 @@ export type UserUncheckedUpdateWithoutPayoutsPerformedInput = {
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
   fileUploads?: Prisma.FileUploadUncheckedUpdateManyWithoutUploaderNestedInput
   payoutsReceived?: Prisma.PayoutUncheckedUpdateManyWithoutRecipientNestedInput
+  payoutsPerformed?: Prisma.PayoutUncheckedUpdateManyWithoutPerformerNestedInput
 }
 
 
@@ -2539,11 +3190,14 @@ export type UserCountOutputType = {
   sentMessages: number
   receivedMessages: number
   reviews: number
+  vendorReviews: number
+  submittedVendorReviews: number
   auditLogs: number
   warehouses: number
   orders: number
   notifications: number
   fileUploads: number
+  feedbackSubmissions: number
   payoutsReceived: number
   payoutsPerformed: number
 }
@@ -2554,11 +3208,14 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   sentMessages?: boolean | UserCountOutputTypeCountSentMessagesArgs
   receivedMessages?: boolean | UserCountOutputTypeCountReceivedMessagesArgs
   reviews?: boolean | UserCountOutputTypeCountReviewsArgs
+  vendorReviews?: boolean | UserCountOutputTypeCountVendorReviewsArgs
+  submittedVendorReviews?: boolean | UserCountOutputTypeCountSubmittedVendorReviewsArgs
   auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
   warehouses?: boolean | UserCountOutputTypeCountWarehousesArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
   fileUploads?: boolean | UserCountOutputTypeCountFileUploadsArgs
+  feedbackSubmissions?: boolean | UserCountOutputTypeCountFeedbackSubmissionsArgs
   payoutsReceived?: boolean | UserCountOutputTypeCountPayoutsReceivedArgs
   payoutsPerformed?: boolean | UserCountOutputTypeCountPayoutsPerformedArgs
 }
@@ -2611,6 +3268,20 @@ export type UserCountOutputTypeCountReviewsArgs<ExtArgs extends runtime.Types.Ex
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountVendorReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VendorReviewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountSubmittedVendorReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.VendorReviewWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.AuditLogWhereInput
 }
@@ -2641,6 +3312,13 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
  */
 export type UserCountOutputTypeCountFileUploadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.FileUploadWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountFeedbackSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.FeedbackSubmissionWhereInput
 }
 
 /**
@@ -2678,12 +3356,15 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
   receivedMessages?: boolean | Prisma.User$receivedMessagesArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  vendorReviews?: boolean | Prisma.User$vendorReviewsArgs<ExtArgs>
+  submittedVendorReviews?: boolean | Prisma.User$submittedVendorReviewsArgs<ExtArgs>
   technicianProfile?: boolean | Prisma.User$technicianProfileArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   warehouses?: boolean | Prisma.User$warehousesArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   fileUploads?: boolean | Prisma.User$fileUploadsArgs<ExtArgs>
+  feedbackSubmissions?: boolean | Prisma.User$feedbackSubmissionsArgs<ExtArgs>
   payoutsReceived?: boolean | Prisma.User$payoutsReceivedArgs<ExtArgs>
   payoutsPerformed?: boolean | Prisma.User$payoutsPerformedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2747,12 +3428,15 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sentMessages?: boolean | Prisma.User$sentMessagesArgs<ExtArgs>
   receivedMessages?: boolean | Prisma.User$receivedMessagesArgs<ExtArgs>
   reviews?: boolean | Prisma.User$reviewsArgs<ExtArgs>
+  vendorReviews?: boolean | Prisma.User$vendorReviewsArgs<ExtArgs>
+  submittedVendorReviews?: boolean | Prisma.User$submittedVendorReviewsArgs<ExtArgs>
   technicianProfile?: boolean | Prisma.User$technicianProfileArgs<ExtArgs>
   auditLogs?: boolean | Prisma.User$auditLogsArgs<ExtArgs>
   warehouses?: boolean | Prisma.User$warehousesArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   fileUploads?: boolean | Prisma.User$fileUploadsArgs<ExtArgs>
+  feedbackSubmissions?: boolean | Prisma.User$feedbackSubmissionsArgs<ExtArgs>
   payoutsReceived?: boolean | Prisma.User$payoutsReceivedArgs<ExtArgs>
   payoutsPerformed?: boolean | Prisma.User$payoutsPerformedArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -2768,12 +3452,15 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sentMessages: Prisma.$PlatformMessagePayload<ExtArgs>[]
     receivedMessages: Prisma.$PlatformMessagePayload<ExtArgs>[]
     reviews: Prisma.$ReviewPayload<ExtArgs>[]
+    vendorReviews: Prisma.$VendorReviewPayload<ExtArgs>[]
+    submittedVendorReviews: Prisma.$VendorReviewPayload<ExtArgs>[]
     technicianProfile: Prisma.$TechnicianProfilePayload<ExtArgs> | null
     auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
     warehouses: Prisma.$WarehousePayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     fileUploads: Prisma.$FileUploadPayload<ExtArgs>[]
+    feedbackSubmissions: Prisma.$FeedbackSubmissionPayload<ExtArgs>[]
     payoutsReceived: Prisma.$PayoutPayload<ExtArgs>[]
     payoutsPerformed: Prisma.$PayoutPayload<ExtArgs>[]
   }
@@ -3191,12 +3878,15 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sentMessages<T extends Prisma.User$sentMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sentMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlatformMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   receivedMessages<T extends Prisma.User$receivedMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$receivedMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PlatformMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reviews<T extends Prisma.User$reviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  vendorReviews<T extends Prisma.User$vendorReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$vendorReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  submittedVendorReviews<T extends Prisma.User$submittedVendorReviewsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$submittedVendorReviewsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$VendorReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   technicianProfile<T extends Prisma.User$technicianProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$technicianProfileArgs<ExtArgs>>): Prisma.Prisma__TechnicianProfileClient<runtime.Types.Result.GetResult<Prisma.$TechnicianProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   auditLogs<T extends Prisma.User$auditLogsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   warehouses<T extends Prisma.User$warehousesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$warehousesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WarehousePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   fileUploads<T extends Prisma.User$fileUploadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$fileUploadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FileUploadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  feedbackSubmissions<T extends Prisma.User$feedbackSubmissionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$feedbackSubmissionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$FeedbackSubmissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payoutsReceived<T extends Prisma.User$payoutsReceivedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$payoutsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payoutsPerformed<T extends Prisma.User$payoutsPerformedArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$payoutsPerformedArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PayoutPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -3750,6 +4440,54 @@ export type User$reviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
+ * User.vendorReviews
+ */
+export type User$vendorReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorReview
+   */
+  select?: Prisma.VendorReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorReview
+   */
+  omit?: Prisma.VendorReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorReviewInclude<ExtArgs> | null
+  where?: Prisma.VendorReviewWhereInput
+  orderBy?: Prisma.VendorReviewOrderByWithRelationInput | Prisma.VendorReviewOrderByWithRelationInput[]
+  cursor?: Prisma.VendorReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VendorReviewScalarFieldEnum | Prisma.VendorReviewScalarFieldEnum[]
+}
+
+/**
+ * User.submittedVendorReviews
+ */
+export type User$submittedVendorReviewsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the VendorReview
+   */
+  select?: Prisma.VendorReviewSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the VendorReview
+   */
+  omit?: Prisma.VendorReviewOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.VendorReviewInclude<ExtArgs> | null
+  where?: Prisma.VendorReviewWhereInput
+  orderBy?: Prisma.VendorReviewOrderByWithRelationInput | Prisma.VendorReviewOrderByWithRelationInput[]
+  cursor?: Prisma.VendorReviewWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.VendorReviewScalarFieldEnum | Prisma.VendorReviewScalarFieldEnum[]
+}
+
+/**
  * User.technicianProfile
  */
 export type User$technicianProfileArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -3886,6 +4624,30 @@ export type User$fileUploadsArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   distinct?: Prisma.FileUploadScalarFieldEnum | Prisma.FileUploadScalarFieldEnum[]
+}
+
+/**
+ * User.feedbackSubmissions
+ */
+export type User$feedbackSubmissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the FeedbackSubmission
+   */
+  select?: Prisma.FeedbackSubmissionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the FeedbackSubmission
+   */
+  omit?: Prisma.FeedbackSubmissionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.FeedbackSubmissionInclude<ExtArgs> | null
+  where?: Prisma.FeedbackSubmissionWhereInput
+  orderBy?: Prisma.FeedbackSubmissionOrderByWithRelationInput | Prisma.FeedbackSubmissionOrderByWithRelationInput[]
+  cursor?: Prisma.FeedbackSubmissionWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.FeedbackSubmissionScalarFieldEnum | Prisma.FeedbackSubmissionScalarFieldEnum[]
 }
 
 /**

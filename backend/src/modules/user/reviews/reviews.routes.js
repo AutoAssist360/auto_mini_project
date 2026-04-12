@@ -5,7 +5,7 @@ import { roleGuard } from "../../../middleware/roleGuard.js";
 import { asyncWrapper } from "../../../utils/asyncWrapper.js";
 import { AppError } from "../../../utils/AppError.js";
 import { validate } from "../../../middleware/validate.js";
-import { createReviewSchema } from "./reviews.schemas.js";
+import { createReviewSchema, createVendorReviewSchema } from "./reviews.schemas.js";
 import { paginate, paginationQuery } from "../../../utils/paginate.js";
 
 export const reviewRouter = Router();
@@ -105,5 +105,59 @@ reviewRouter.get(
     ]);
 
     res.json({ reviews, total, page, limit });
+  })
+);
+
+// ─── POST /reviews/vendor ─────────────────────────────────────────
+reviewRouter.post(
+  "/vendor",
+  validate(createVendorReviewSchema),
+  asyncWrapper(async (req, res) => {
+    const { order_id, rating, comment } = req.body;
+
+    const order = await prisma.order.findUnique({
+      where: { order_id },
+      include: {
+        warehouse: true
+      }
+    });
+
+    if (!order) {
+      throw new AppError("Order not found", 404);
+    }
+
+    if (order.user_id !== req.userId) {
+      throw new AppError("You do not have access to this order", 403);
+    }
+
+    if (order.order_status !== "delivered") {
+      throw new AppError(
+        `Cannot review an order that is not delivered. Current status: ${order.order_status}`,
+        400
+      );
+    }
+
+    const existingReview = await prisma.vendorReview.findUnique({
+      where: { order_id }
+    });
+
+    if (existingReview) {
+      throw new AppError("You have already reviewed this order", 409);
+    }
+
+    const review = await prisma.vendorReview.create({
+      data: {
+        user_id: req.userId,
+        order_id,
+        vendor_id: order.warehouse.vendor_id,
+        rating,
+        comment,
+      }
+    });
+
+    res.status(201).json({
+      message: "Vendor review submitted successfully",
+      review,
+    });
   })
 );
