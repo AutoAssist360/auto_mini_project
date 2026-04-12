@@ -52,20 +52,20 @@ export function ToastProvider({ children }) {
       {/* ── Toast container (bottom-right) ──────────────── */}
       <div
         aria-live="polite"
-        className="pointer-events-none fixed bottom-4 right-4 z-9999 flex flex-col-reverse gap-2"
+        className="pointer-events-none fixed inset-x-3 bottom-3 z-9999 flex flex-col-reverse gap-2 sm:inset-x-auto sm:bottom-4 sm:right-4"
       >
         {toasts.map((t) => (
           <div
             key={t.id}
             role="status"
-            className={`pointer-events-auto flex w-80 max-w-[90vw] items-start gap-2 rounded-xl border px-4 py-3 text-sm shadow-lg backdrop-blur transition-all animate-slide-in ${variantStyles[t.variant]}`}
+            className={`pointer-events-auto flex w-full max-w-full items-start gap-2 rounded-xl border px-4 py-3 text-sm shadow-lg backdrop-blur transition-all animate-slide-in sm:w-80 sm:max-w-[90vw] ${variantStyles[t.variant]}`}
           >
             <span className="mt-0.5">{icons[t.variant]}</span>
-            <span className="flex-1">{t.message}</span>
+            <span className="min-w-0 flex-1 break-words">{t.message}</span>
             <button
               type="button"
               onClick={() => dismiss(t.id)}
-              className="ml-2 shrink-0 text-current opacity-60 hover:opacity-100"
+              className="ml-2 shrink-0 whitespace-nowrap text-current opacity-60 hover:opacity-100"
               aria-label="Dismiss"
             >
               ✕

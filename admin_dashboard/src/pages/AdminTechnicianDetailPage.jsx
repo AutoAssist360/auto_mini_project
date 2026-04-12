@@ -246,24 +246,24 @@ function AdminTechnicianDetailPage() {
             ) : (
               <div className="space-y-4">
                 <div className="overflow-x-auto">
-                  <table className="w-full text-left text-[11px] font-bold">
+                  <table className="w-full text-left text-[11px] font-bold min-w-[800px]">
                     <thead>
                       <tr className="border-b-2 border-slate-100 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                        <th className="pb-4 pr-3">Issue type</th>
-                        <th className="pb-4 pr-3">Status</th>
-                        <th className="pb-4">Timestamp</th>
+                        <th className="pb-4 pr-3 whitespace-nowrap">Issue type</th>
+                        <th className="pb-4 pr-3 whitespace-nowrap">Status</th>
+                        <th className="pb-4 whitespace-nowrap">Timestamp</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                       {jobs.map((j) => (
                         <tr key={j.job_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all">
-                          <td className="py-5 pr-3">
+                          <td className="py-5 pr-3 whitespace-nowrap">
                             <Link to={`/admin/jobs/${j.job_id}`} className="group-hover:text-blue-600 transition-colors uppercase tracking-tight font-black block">
                               {j.request?.issue_type?.replace(/_/g, ' ') || 'SYSTEM ERROR'}
                               <p className="text-[8px] text-slate-400 opacity-60 uppercase tracking-widest mt-0.5">ID: {j.job_id.slice(0, 8)}</p>
                             </Link>
                           </td>
-                          <td className="py-5 pr-3">
+                          <td className="py-5 pr-3 whitespace-nowrap">
                             <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
                               {j.status}
                             </span>

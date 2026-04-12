@@ -6,7 +6,7 @@
 
 const STEPS = [
   { key: 'created', label: 'Created', icon: 'M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z' },
-  { key: 'pending_offers', label: 'Awaiting Offers', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
+  { key: 'pending_offers', label: 'Waiting for Offers', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
   { key: 'offer_accepted', label: 'Offer Accepted', icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z' },
   { key: 'in_progress', label: 'In Progress', icon: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z M15 12a3 3 0 11-6 0 3 3 0 016 0z' },
   { key: 'completed', label: 'Completed', icon: 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z' },
@@ -21,11 +21,11 @@ function RequestStepper({ status }) {
   const activeIdx = currentIdx >= 0 ? currentIdx : 0
 
   return (
-    <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+    <div className="mt-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 dark:border-slate-800 dark:bg-slate-900">
       <h3 className="mb-4 text-sm font-semibold text-slate-700 dark:text-slate-300">Request Progress</h3>
 
       {/* Desktop stepper */}
-      <div className="hidden sm:block">
+      <div className="hidden md:block">
         <div className="relative flex items-start justify-between">
           {STEPS.map((step, idx) => {
             const isCompleted = !isCancelled && !isRejected && idx < activeIdx
@@ -83,7 +83,7 @@ function RequestStepper({ status }) {
       </div>
 
       {/* Mobile stepper (vertical) */}
-      <div className="sm:hidden">
+      <div className="md:hidden">
         <div className="space-y-3">
           {STEPS.map((step, idx) => {
             const isCompleted = !isCancelled && !isRejected && idx < activeIdx
@@ -131,13 +131,13 @@ function RequestStepper({ status }) {
 
       {/* Cancelled banner */}
       {(isCancelled || isRejected) && (
-        <div className="mt-4 flex items-center gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 dark:bg-red-900/20 dark:text-red-300">
+        <div className="mt-4 flex flex-wrap items-start gap-2 rounded-lg bg-red-50 px-3 py-2 text-sm font-medium text-red-700 dark:bg-red-900/20 dark:text-red-300">
           <svg className="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
           </svg>
           {isCancelled
             ? 'This request has been cancelled.'
-            : 'This request was automatically closed because no technician accepted it before the day ended.'}
+            : 'This request closed because no technician accepted it that day.'}
         </div>
       )}
     </div>

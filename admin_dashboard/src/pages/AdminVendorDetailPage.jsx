@@ -137,31 +137,31 @@ function AdminVendorDetailPage() {
           ) : (
             <>
               <div className="overflow-x-auto">
-                <table className="w-full text-left text-[11px] font-bold">
+                <table className="w-full text-left text-[11px] font-bold min-w-[800px]">
                   <thead>
                     <tr className="border-b-2 border-slate-100 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                      <th className="pb-4 pr-3 text-center w-12">#</th>
-                      <th className="pb-4 pr-3">Warehouse</th>
-                      <th className="pb-4 pr-3">Locale Intelligence</th>
-                      <th className="pb-4 pr-3">Status</th>
-                      <th className="pb-4 text-right">Inventory Vol</th>
+                      <th className="pb-4 pr-3 text-center w-12 whitespace-nowrap">#</th>
+                      <th className="pb-4 pr-3 whitespace-nowrap">Warehouse</th>
+                      <th className="pb-4 pr-3 whitespace-nowrap">Locale Intelligence</th>
+                      <th className="pb-4 pr-3 whitespace-nowrap">Status</th>
+                      <th className="pb-4 text-right whitespace-nowrap">Inventory Vol</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                     {warehouses.map((w, idx) => (
                       <tr key={w.warehouse_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all">
-                        <td className="py-5 pr-3 text-center text-slate-400 font-black">{(whPage - 1) * 10 + idx + 1}</td>
-                        <td className="py-5 pr-3">
+                        <td className="py-5 pr-3 text-center text-slate-400 font-black whitespace-nowrap">{(whPage - 1) * 10 + idx + 1}</td>
+                        <td className="py-5 pr-3 whitespace-nowrap">
                           <Link to={`/admin/warehouses/${w.warehouse_id}`} className="group-hover:text-indigo-600 transition-colors uppercase tracking-tight font-black block">
                             {w.name}
                             <p className="text-[8px] text-slate-400 opacity-60 uppercase tracking-widest mt-0.5">UID: {w.warehouse_id.slice(0, 8)}</p>
                           </Link>
                         </td>
-                        <td className="py-5 pr-3">
+                        <td className="py-5 pr-3 whitespace-nowrap">
                           <p className="text-slate-900 dark:text-white uppercase tracking-wider">{w.city}</p>
                           <p className="text-[9px] text-slate-400 uppercase tracking-widest">{w.state}</p>
                         </td>
-                        <td className="py-5 pr-3">
+                        <td className="py-5 pr-3 whitespace-nowrap">
                           {w.is_active ? (
                             <span className="inline-flex items-center gap-1.5 text-green-600 uppercase tracking-widest text-[10px]">
                               <div className="w-1 h-1 rounded-full bg-green-500"></div> Functional
@@ -172,7 +172,7 @@ function AdminVendorDetailPage() {
                             </span>
                           )}
                         </td>
-                        <td className="py-5 text-right font-black text-indigo-600 dark:text-indigo-400 text-sm">
+                        <td className="py-5 text-right font-black text-indigo-600 dark:text-indigo-400 text-sm whitespace-nowrap">
                           {w._count?.inventories ?? '--'}
                         </td>
                       </tr>

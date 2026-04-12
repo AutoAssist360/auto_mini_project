@@ -33,7 +33,7 @@ function AdminVendorsPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left flex-wrap">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Vendors</h1>
             <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">Manage supplier accounts and activity</p>
@@ -44,7 +44,7 @@ function AdminVendorsPage() {
         </div>
 
         {/* glass filters */}
-        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center">
+        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center flex-wrap">
           <div className="relative min-w-0 flex-grow sm:min-w-[300px]">
             <input
               value={search}
@@ -53,7 +53,7 @@ function AdminVendorsPage() {
               className="w-full rounded-[20px] bg-slate-50 dark:bg-slate-900/50 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 px-5 py-3.5 text-xs font-bold outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-inner"
             />
           </div>
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center flex-wrap">
             <select
               value={verifiedFilter}
               onChange={(e) => { setVerifiedFilter(e.target.value); setPage(1) }}
@@ -80,20 +80,20 @@ function AdminVendorsPage() {
         {!loading && (
           <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                     <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                      <th className="pb-6 pr-4">Vendor</th>
-                      <th className="pb-6 pr-4">Contact</th>
-                      <th className="pb-6 pr-4">Overview</th>
-                      <th className="pb-6 pr-4 text-center">Account Status</th>
-                      <th className="pb-6 text-right">Actions</th>
+                      <th className="pb-6 pr-4 whitespace-nowrap">Vendor</th>
+                      <th className="pb-6 pr-4 whitespace-nowrap">Contact</th>
+                      <th className="pb-6 pr-4 whitespace-nowrap">Overview</th>
+                      <th className="pb-6 pr-4 text-center whitespace-nowrap">Account Status</th>
+                      <th className="pb-6 text-right whitespace-nowrap">Actions</th>
                     </tr>
                   </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {vendors.map((v) => (
                     <tr key={v.user_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/vendors/${v.user_id}`} className="flex items-center gap-3 group">
                           <div className="w-12 h-12 rounded-[18px] bg-indigo-600/10 flex items-center justify-center text-indigo-600 text-sm font-black group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-inner uppercase">
                             {v.full_name[0]}
@@ -104,11 +104,11 @@ function AdminVendorsPage() {
                           </div>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-mono tracking-tighter lowercase">{v.email}</p>
                         <p className="text-[9px] text-slate-400 uppercase tracking-widest mt-0.5">{v.phone_number || 'No phone number'}</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <div className="flex items-center gap-6">
                            <div>
                             <p className="text-[10px] font-black text-indigo-600 dark:text-indigo-400">{v._count?.warehouses ?? '--'}</p>
@@ -120,7 +120,7 @@ function AdminVendorsPage() {
                           </div>
                         </div>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <div className="flex flex-wrap justify-center gap-2">
                           {v.is_verified ? (
                             <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 text-[9px] font-black uppercase tracking-widest border border-emerald-500/20">
@@ -142,7 +142,7 @@ function AdminVendorsPage() {
                           )}
                         </div>
                       </td>
-                      <td className="py-6 text-right">
+                      <td className="py-6 text-right whitespace-nowrap">
                         <div className="flex justify-end gap-2">
                           {!v.is_verified && (
                             <button disabled={busy === v.user_id} onClick={() => act(verifyVendor, v.user_id)} className="px-5 py-2.5 rounded-2xl bg-blue-600 text-white text-[9px] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/20 hover:bg-blue-700 hover:scale-105 transition-all active:scale-95 disabled:opacity-50">Verify vendor</button>

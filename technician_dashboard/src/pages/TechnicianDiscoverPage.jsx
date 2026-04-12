@@ -259,26 +259,26 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Floating Header */}
-        <header className="mb-10 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-4 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between transition-all sticky top-6">
+        <header className="mb-10 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-4 py-3 shadow-xl dark:shadow-2xl flex flex-wrap gap-4 items-center justify-between transition-all sticky top-6 z-50">
           <div className="flex items-center gap-4">
-            <button onClick={() => navigate('/dashboard')} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <button onClick={() => navigate('/dashboard')} className="w-10 h-10 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
             <div className="flex flex-col">
-              <h1 className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none">Today's Open Requests</h1>
-                <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-1 opacity-80">{total} requests available today</span>
+              <h1 className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none whitespace-nowrap">Today's Open Requests</h1>
+                <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-1 opacity-80 whitespace-nowrap">{total} requests available today</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="flex bg-slate-100 dark:bg-slate-800 rounded-full p-1 border border-slate-200 dark:border-slate-700">
-               <button onClick={() => setViewMode('list')} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>List</button>
-               <button onClick={() => setViewMode('map')} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${viewMode === 'map' ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>Map</button>
+          <div className="flex flex-wrap items-center gap-2 ml-auto">
+            <div className="flex flex-row bg-slate-100 dark:bg-slate-800 rounded-full p-1 border border-slate-200 dark:border-slate-700">
+               <button onClick={() => setViewMode('list')} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${viewMode === 'list' ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>List</button>
+               <button onClick={() => setViewMode('map')} className={`px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all whitespace-nowrap ${viewMode === 'map' ? 'bg-white dark:bg-slate-700 text-blue-600 shadow-sm' : 'text-slate-500 hover:text-slate-700 dark:hover:text-slate-300'}`}>Map</button>
             </div>
-            <button onClick={loadRequests} disabled={loading} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-blue-600 hover:text-white transition-all disabled:opacity-50">
+            <button onClick={loadRequests} disabled={loading} className="w-10 h-10 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-blue-600 hover:text-white transition-all disabled:opacity-50">
                <svg className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
             </button>
-            <button onClick={onToggleTheme} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <button onClick={onToggleTheme} className="w-10 h-10 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
                {theme === 'dark' ? '🌞' : '🌙'}
             </button>
           </div>
@@ -317,11 +317,11 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
                       <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-blue-600/10 transition-colors"></div>
                       
                       <div>
-                        <div className="flex items-center justify-between mb-6">
-                           <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest leading-none">
+                        <div className="flex flex-wrap items-center justify-between mb-6 gap-2">
+                           <span className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest leading-none whitespace-nowrap">
                               {ISSUE_LABELS[req.issue_type] || req.issue_type}
                            </span>
-                           <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{timeAgo(req.created_at)}</span>
+                           <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest whitespace-nowrap">{timeAgo(req.created_at)}</span>
                         </div>
 
                         <div className="mb-6">
@@ -336,19 +336,19 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
                               <span className="text-[10px] font-black text-slate-700 dark:text-slate-300 uppercase truncate max-w-[120px]">{vehicleLabel(req.vehicle)}</span>
                            </div>
                            <div className="flex flex-wrap gap-2 pt-2">
-                              <span className="px-2.5 py-1 rounded-lg bg-slate-200/50 dark:bg-slate-800/50 text-[9px] font-black text-slate-500 uppercase tracking-widest">
+                              <span className="px-2.5 py-1 rounded-lg bg-slate-200/50 dark:bg-slate-800/50 text-[9px] font-black text-slate-500 uppercase tracking-widest whitespace-nowrap">
                                 {LOCATION_LABELS[req.service_location_type] || req.service_location_type}
                               </span>
                               {req.distance_km != null && (
-                                <span className="px-2.5 py-1 rounded-lg bg-blue-500/10 text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">
+                                <span className="px-2.5 py-1 rounded-lg bg-blue-500/10 text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest whitespace-nowrap">
                              {req.distance_km} km away
                                 </span>
                               )}
                               {req.car_match && (
-                                <span className="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-[9px] font-black text-emerald-600 uppercase tracking-widest">Good fit</span>
+                                <span className="px-2.5 py-1 rounded-lg bg-emerald-500/10 text-[9px] font-black text-emerald-600 uppercase tracking-widest whitespace-nowrap">Good fit</span>
                               )}
                         {req.requires_towing && (
-                                <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-[9px] font-black text-amber-600 uppercase tracking-widest">Needs towing</span>
+                                <span className="px-2.5 py-1 rounded-lg bg-amber-500/10 text-[9px] font-black text-amber-600 uppercase tracking-widest whitespace-nowrap">Needs towing</span>
                               )}
                            </div>
                         </div>
@@ -365,13 +365,13 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
                         )}
                       </div>
 
-                      <div className="flex gap-2">
+                      <div className="flex flex-wrap sm:flex-nowrap gap-2">
                         {req.breakdown_latitude && req.breakdown_longitude && (
-                          <button onClick={() => setExpandedMapId(expandedMapId === req.request_id ? null : req.request_id)} className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex-shrink-0">
+                          <button onClick={() => setExpandedMapId(expandedMapId === req.request_id ? null : req.request_id)} className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all shrink-0">
                              <span className="text-lg">{expandedMapId === req.request_id ? '✕' : '📍'}</span>
                           </button>
                         )}
-                        <button onClick={() => openOfferModal(req)} className="flex-1 h-12 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden group/btn">
+                        <button onClick={() => openOfferModal(req)} className="flex-1 w-full sm:w-auto h-12 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-[0.2em] shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all relative overflow-hidden group/btn whitespace-nowrap">
                            <span className="relative z-10">Review and offer</span>
                            <div className="absolute inset-0 bg-blue-600 dark:bg-blue-400 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-500"></div>
                         </button>
@@ -381,10 +381,10 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
                 </div>
 
                 {totalPages > 1 && (
-                  <div className="mt-12 flex items-center justify-center gap-4">
-                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1} className="w-12 h-12 rounded-2xl bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all disabled:opacity-30">{'<'}</button>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">Page {page} of {totalPages}</span>
-                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className="w-12 h-12 rounded-2xl bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all disabled:opacity-30">{'>'}</button>
+                  <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
+                    <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page <= 1} className="w-12 h-12 rounded-2xl bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all disabled:opacity-30 shrink-0">{'<'}</button>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-500 whitespace-nowrap">Page {page} of {totalPages}</span>
+                    <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className="w-12 h-12 rounded-2xl bg-white/70 dark:bg-white/5 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-all disabled:opacity-30 shrink-0">{'>'}</button>
                   </div>
                 )}
               </>

@@ -100,7 +100,7 @@ export default function MobileNav({ children }) {
                 const spanClass = mobileSpan === 'full' || items.length === 1 ? 'col-span-2' : 'col-span-1'
 
                 return (
-                <div key={index} className={`flex min-w-0 items-center justify-center overflow-hidden ${spanClass}`}>
+                <div key={index} className={`flex min-w-0 items-center justify-center ${spanClass}`}>
                   {child}
                 </div>
                 )

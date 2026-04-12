@@ -69,48 +69,48 @@ function AdminInvoicesPage() {
         <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
           {loading ? <ListSkeleton /> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Invoice ID</th>
-                    <th className="pb-6 pr-4">Service Type</th>
-                    <th className="pb-6 pr-4">Technician</th>
-                    <th className="pb-6 pr-4">Total</th>
-                    <th className="pb-6 pr-4 text-center">Payment Status</th>
-                    <th className="pb-6 pr-4">Issued On</th>
-                    <th className="pb-6 text-right">Actions</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Invoice ID</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Service Type</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Technician</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Total</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Payment Status</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Issued On</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {invoices.map((inv) => (
                     <tr key={inv.invoice_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/invoices/${inv.invoice_id}`} className="group-hover/row:text-blue-600 transition-all">
                           <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">#{inv.invoice_id.slice(0, 8)}</p>
                           <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5">Invoice record</p>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
                           {formatLabel(inv.job?.request?.issue_type) || '--'}
                         </span>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight">{inv.job?.technician?.user?.full_name || '--'}</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                          <p className="text-sm font-black text-slate-900 dark:text-white">₹{Number(inv.total).toLocaleString()}</p>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${payColor(inv.payment_status)} shadow-sm`}>
                           <div className={`w-1 h-1 rounded-full ${inv.payment_status === 'completed' ? 'bg-green-500' : 'bg-current animate-pulse'}`}></div>
                           {formatLabel(inv.payment_status)}
                         </span>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">{new Date(inv.issued_at).toLocaleDateString()}</p>
                       </td>
-                      <td className="py-6 text-right">
+                      <td className="py-6 text-right whitespace-nowrap">
                         {inv.payment_status !== 'completed' && inv.payment_status !== 'refunded' ? (
                           <button 
                             disabled={busy === inv.invoice_id} 
@@ -141,7 +141,7 @@ function AdminInvoicesPage() {
           )}
 
           {/* pagination section */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between flex-wrap">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-600 text-center md:text-left">
               Page <span className="text-blue-600 dark:text-blue-400">{pagination.page || 1}</span> of <span className="text-slate-900 dark:text-white">{pagination.totalPages || 1}</span>
             </span>

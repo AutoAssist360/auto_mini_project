@@ -54,7 +54,7 @@ export default function MobileNav({ children }) {
 
       {open && (
         <div
-          className="absolute right-0 top-full z-50 mt-2 flex w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] flex-col gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-lg md:hidden dark:border-slate-700 dark:bg-slate-900"
+          className="absolute right-0 sm:left-auto sm:right-0 top-full z-50 mt-2 flex w-auto min-w-[12rem] flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-xl md:hidden dark:border-slate-800 dark:bg-[#0B1120]"
           onClick={() => setOpen(false)}
         >
           {children}

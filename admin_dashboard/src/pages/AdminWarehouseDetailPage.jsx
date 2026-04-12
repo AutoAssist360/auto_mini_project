@@ -116,29 +116,29 @@ function AdminWarehouseDetailPage() {
           </div>
 
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-[11px] font-bold">
+            <table className="w-full text-left text-[11px] font-bold min-w-[800px]">
               <thead>
                 <tr className="border-b-2 border-slate-100 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                  <th className="pb-4 pr-3">Part</th>
-                  <th className="pb-4 pr-3">Category Classification</th>
-                  <th className="pb-4 pr-3 text-center">Stock</th>
-                  <th className="pb-4 pr-3 text-center">Safety Reserve</th>
-                  <th className="pb-4 text-right">Unit Value (₹)</th>
+                  <th className="pb-4 pr-3 whitespace-nowrap">Part</th>
+                  <th className="pb-4 pr-3 whitespace-nowrap">Category Classification</th>
+                  <th className="pb-4 pr-3 text-center whitespace-nowrap">Stock</th>
+                  <th className="pb-4 pr-3 text-center whitespace-nowrap">Safety Reserve</th>
+                  <th className="pb-4 text-right whitespace-nowrap">Unit Value (₹)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                 {inventory.map((i) => (
                   <tr key={i.inventory_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all">
-                    <td className="py-5 pr-3">
+                    <td className="py-5 pr-3 whitespace-nowrap">
                       <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">{i.part?.part_name || '--'}</p>
                       <p className="text-[8px] text-slate-400 opacity-60 uppercase tracking-widest mt-0.5">REF: {i.inventory_id.slice(0, 8)}</p>
                     </td>
-                    <td className="py-5 pr-3">
+                    <td className="py-5 pr-3 whitespace-nowrap">
                        <span className="px-2.5 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
                         {i.part?.category?.category_name?.replace(/_/g, ' ') || 'UNSPECIFIED'}
                       </span>
                     </td>
-                    <td className="py-5 pr-3 text-center">
+                    <td className="py-5 pr-3 text-center whitespace-nowrap">
                       <div className="flex flex-col items-center">
                         <span className={`text-[13px] font-black ${i.quantity_available < 10 ? 'text-amber-600 animate-pulse' : 'text-slate-900 dark:text-white'}`}>
                           {i.quantity_available ?? '--'}
@@ -146,13 +146,13 @@ function AdminWarehouseDetailPage() {
                         <span className="text-[7px] text-slate-400 uppercase tracking-tighter">Available Nodes</span>
                       </div>
                     </td>
-                    <td className="py-5 pr-3 text-center">
+                    <td className="py-5 pr-3 text-center whitespace-nowrap">
                       <div className="flex flex-col items-center">
                          <span className="text-[11px] font-bold text-slate-500 dark:text-slate-500">{i.quantity_reserved ?? '0'}</span>
                          <span className="text-[7px] text-slate-400 uppercase tracking-tighter">Locked Ops</span>
                       </div>
                     </td>
-                    <td className="py-5 text-right font-black text-blue-600 dark:text-blue-400 text-sm">
+                    <td className="py-5 text-right font-black text-blue-600 dark:text-blue-400 text-sm whitespace-nowrap">
                       ₹{Number(i.unit_cost).toLocaleString()}
                     </td>
                   </tr>

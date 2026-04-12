@@ -219,26 +219,26 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
         
         {/* Floating Header */}
         <header className="mb-8 flex flex-wrap items-center justify-between gap-6">
-           <div className="flex items-center gap-4">
+           <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
               <button 
                 onClick={() => navigate('/orders')}
-                className="w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500 transition-all shadow-sm"
+                className="shrink-0 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500 transition-all shadow-sm"
               >
                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               </button>
-              <div>
-             <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase">ORDER DETAILS</span>
-                 <h1 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-tight">
+              <div className="flex-1 min-w-[200px]">
+             <span className="text-[10px] md:text-xs font-black tracking-widest text-slate-400 uppercase">ORDER DETAILS</span>
+                 <h1 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-tight break-all">
                     {order ? (order.order_number || `#${order.order_id.slice(0, 8)}`) : 'Loading...'}
                  </h1>
               </div>
            </div>
 
-           <div className="flex items-center gap-3">
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400">
                 {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase active:scale-95 transition-all shadow-lg">
+             <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase active:scale-95 transition-all shadow-lg">
                 LOGOUT
              </button>
            </div>
@@ -320,9 +320,9 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
                   {/* Tracking Section */}
                   {orderTrackingMode && (
                      <section className="rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-[#0B1120]/50 shadow-2xl p-4">
-                        <div className="mb-4 flex items-center justify-between px-4 pt-4">
-                           <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Live Delivery Tracking</h2>
-                           <div className="flex items-center gap-2">
+                        <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 pt-4">
+                           <h2 className="text-sm md:text-base font-black text-slate-900 dark:text-white uppercase tracking-widest">Live Delivery Tracking</h2>
+                           <div className="flex items-center gap-2 whitespace-nowrap">
                               <span className={`w-2 h-2 rounded-full ${liveStatus === 'live' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`}></span>
                               <span className="text-[10px] font-black text-slate-500 uppercase tracking-widest">{liveStatus === 'live' ? 'LIVE' : 'CONNECTING...'}</span>
                            </div>
@@ -461,7 +461,7 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
                      <button
                         onClick={handleCancelOrder}
                         disabled={isCancelling}
-                        className="w-full h-14 rounded-3xl border border-red-200 dark:border-red-900/30 text-red-500 dark:text-red-400 text-[10px] font-black uppercase tracking-[0.2em] hover:bg-red-500/5 transition-all active:scale-95 disabled:opacity-30"
+                        className="whitespace-nowrap w-full h-14 rounded-3xl border border-red-200 dark:border-red-900/30 text-red-500 dark:text-red-400 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] hover:bg-red-500/5 transition-all active:scale-95 disabled:opacity-30"
                      >
                         {isCancelling ? 'CANCELLING...' : 'CANCEL ORDER'}
                      </button>

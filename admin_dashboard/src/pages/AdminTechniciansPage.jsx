@@ -35,7 +35,7 @@ function AdminTechniciansPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left flex-wrap">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Technicians</h1>
             <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">Manage technician accounts and approval status</p>
@@ -46,7 +46,7 @@ function AdminTechniciansPage() {
         </div>
 
         {/* glass filters */}
-        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center">
+        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center flex-wrap">
           <div className="relative min-w-0 flex-grow sm:min-w-[280px]">
             <input
               value={search}
@@ -55,7 +55,7 @@ function AdminTechniciansPage() {
               className="w-full rounded-[20px] bg-slate-50 dark:bg-slate-900/50 border-2 border-transparent focus:border-blue-500 focus:bg-white dark:focus:bg-slate-900 px-5 py-3.5 text-xs font-bold outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-700 shadow-inner"
             />
           </div>
-          <div className="flex flex-wrap gap-4 items-center">
+          <div className="flex flex-wrap gap-4 items-center flex-wrap">
             <select
               value={verified}
               onChange={(e) => { setVerified(e.target.value); setPage(1) }}
@@ -91,20 +91,20 @@ function AdminTechniciansPage() {
         {!loading && (
           <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Technician</th>
-                    <th className="pb-6 pr-4">Business</th>
-                    <th className="pb-6 pr-4">Rating</th>
-                    <th className="pb-6 pr-4 text-center">Status</th>
-                    <th className="pb-6 text-right">Actions</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Technician</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Business</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Rating</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Status</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {techs.map((t) => (
                     <tr key={t.technician_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/technicians/${t.technician_id}`} className="flex items-center gap-3 group">
                           <div className="w-12 h-12 rounded-[18px] bg-blue-600/10 flex items-center justify-center text-blue-600 text-sm font-black group-hover:bg-blue-600 group-hover:text-white transition-all shadow-inner uppercase">
                             {t.user?.full_name[0]}
@@ -115,11 +115,11 @@ function AdminTechniciansPage() {
                           </div>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4 capitalize">
+                      <td className="py-6 pr-4 capitalize whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 uppercase tracking-wider">{t.business_name || '--'}</p>
                         <p className="text-[9px] text-slate-400 uppercase tracking-tighter mt-0.5">ID: {t.technician_id.slice(0, 12).toUpperCase()}...</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                            <div className="flex items-center gap-0.5 text-blue-600">
                             <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
@@ -128,7 +128,7 @@ function AdminTechniciansPage() {
                           <span className="text-[10px] text-slate-400 uppercase tracking-widest">({t.total_reviews} feedback)</span>
                         </div>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <div className="flex items-center justify-center flex-wrap gap-2">
                           {t.is_verified ? (
                             <span className="inline-block px-3 py-1 rounded-full bg-green-500/10 text-green-600 text-[9px] font-black uppercase tracking-widest border border-green-500/20 shadow-[0_0_10px_rgba(34,197,94,0.1)]">VERIFIED</span>
@@ -145,7 +145,7 @@ function AdminTechniciansPage() {
                           )}
                         </div>
                       </td>
-                      <td className="py-6 text-right">
+                      <td className="py-6 text-right whitespace-nowrap">
                         <div className="flex justify-end gap-2">
                            {!t.is_verified && (
                              <button disabled={busy === t.technician_id} onClick={() => act(verifyTechnician, t.technician_id)} className="px-5 py-2.5 rounded-2xl bg-blue-600 text-white text-[9px] font-black uppercase tracking-[0.2em] shadow-xl shadow-blue-500/20 hover:bg-blue-700 hover:scale-105 transition-all active:scale-95 disabled:opacity-50">Verify</button>

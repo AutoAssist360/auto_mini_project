@@ -214,7 +214,7 @@ function VendorInventoryPage({ theme, onToggleTheme }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-0 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4">
+        <header className="mb-0 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4 mr-10 sm:mr-0 relative z-[40]">
           <div className="flex items-center gap-3 w-full sm:w-auto">
              <Link to="/warehouses" className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all shadow-sm border border-slate-200/50 dark:border-slate-700/50" title="Back to Locations">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
@@ -403,7 +403,7 @@ function VendorInventoryPage({ theme, onToggleTheme }) {
         ) : (
           <div className="relative z-10 animate-in slide-in-from-bottom-4 duration-700 mt-8">
             <div className="overflow-x-auto rounded-[32px] border border-slate-200/60 bg-white/60 shadow-xl backdrop-blur-md dark:border-slate-800/60 dark:bg-[#0B1120]/60 p-2">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[600px] text-sm">
                 <thead>
                   <tr className="text-left text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 border-b border-slate-200/50 dark:border-slate-800/50">
                     <th className="px-6 py-4">Part Name</th>

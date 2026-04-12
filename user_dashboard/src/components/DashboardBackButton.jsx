@@ -23,7 +23,7 @@ function DashboardBackButton({ fallbackPath = '/dashboard' }) {
     <button
       type="button"
       onClick={handleBack}
-      className="fixed left-4 top-4 z-50 rounded-full border border-slate-300 bg-white/90 px-4 py-2 text-sm font-medium text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-100 dark:hover:bg-slate-800 sm:left-6 sm:top-6"
+      className="fixed left-3 top-3 z-50 max-w-[calc(100vw-1.5rem)] whitespace-nowrap rounded-full border border-slate-300 bg-white/90 px-3.5 py-2 text-xs font-medium text-slate-700 shadow-lg backdrop-blur transition hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900/90 dark:text-slate-100 dark:hover:bg-slate-800 sm:left-6 sm:top-6 sm:px-4 sm:text-sm"
       aria-label="Go back to previous page"
     >
       Back

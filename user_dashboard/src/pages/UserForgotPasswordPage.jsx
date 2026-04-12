@@ -47,25 +47,25 @@ export default function UserForgotPasswordPage({ theme, onToggleTheme }) {
          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-600/10 blur-[120px] rounded-full"></div>
       </div>
 
-      <div className="relative z-10 mx-auto max-w-lg min-h-screen flex flex-col justify-center px-4 py-16">
+      <div className="relative z-10 mx-auto flex min-h-screen max-w-lg flex-col justify-center px-4 py-16">
         
-        <header className="mb-12 flex items-center justify-between">
-            <Link to="/" className="group flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
+        <header className="mb-10 flex flex-wrap items-center justify-between gap-3 sm:mb-12">
+            <Link to="/" className="group flex min-w-0 items-center gap-3">
+              <div className="h-10 w-10 shrink-0 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/20 group-hover:scale-110 transition-transform">
                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
               </div>
-              <span className="text-xl font-black tracking-tighter uppercase">Quick Auto Assist</span>
+              <span className="min-w-0 text-lg font-black tracking-tight uppercase sm:text-xl">Quick Auto Assist</span>
            </Link>
-           <button onClick={onToggleTheme} className="w-10 h-10 rounded-xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:bg-white dark:hover:bg-slate-800">
+           <button onClick={onToggleTheme} className="h-10 w-10 shrink-0 rounded-xl bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:bg-white dark:hover:bg-slate-800">
               {isDark ? '🌞' : '🌙'}
            </button>
         </header>
 
-        <section className="p-8 lg:p-12 rounded-[40px] bg-white/70 dark:bg-slate-900/40 backdrop-blur-2xl border border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden group">
+        <section className="relative overflow-hidden rounded-[40px] border border-slate-200 bg-white/70 p-6 shadow-2xl backdrop-blur-2xl group dark:border-slate-800 dark:bg-slate-900/40 sm:p-8 lg:p-12">
           <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 blur-3xl rounded-full translate-x-12 -translate-y-12"></div>
           
           <div className="relative z-10">
-            <h2 className="text-3xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none mb-2">Reset Password</h2>
+            <h2 className="mb-2 text-2xl font-black leading-none tracking-tighter text-slate-900 uppercase dark:text-white sm:text-3xl">Reset Password</h2>
             <p className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-10">
               {submitted ? 'Reset link sent' : 'Enter your email to get a reset link'}
             </p>
@@ -82,7 +82,7 @@ export default function UserForgotPasswordPage({ theme, onToggleTheme }) {
                   <p className="text-sm font-medium leading-relaxed">If an account exists for <span className="font-bold underline">{email}</span>, we have sent a reset link. The link expires in 15 minutes.</p>
                 </div>
                 
-                <Link to="/auth/user/signin" className="w-full h-14 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center text-[10px] font-black uppercase tracking-widest hover:scale-[1.02] active:scale-95 transition-all shadow-xl">
+                <Link to="/auth/user/signin" className="flex h-14 w-full items-center justify-center whitespace-nowrap rounded-2xl bg-slate-900 text-[10px] font-black uppercase tracking-widest text-white transition-all shadow-xl hover:scale-[1.02] active:scale-95 dark:bg-white dark:text-slate-900">
                   GO TO SIGN IN
                 </Link>
               </div>
@@ -106,11 +106,11 @@ export default function UserForgotPasswordPage({ theme, onToggleTheme }) {
                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.206" /></svg>
                     </div>
                   </div>
-                  {fieldError && <p className="text-[9px] font-black text-red-500 uppercase tracking-widest pl-2 italic">⚠️ {fieldError}</p>}
+                  {fieldError && <p className="pl-2 text-[9px] font-black italic uppercase tracking-widest text-red-500 break-words">⚠️ {fieldError}</p>}
                 </div>
 
                 {error && (
-                  <div className="p-4 rounded-2xl bg-red-500/10 border border-red-500/20 text-red-500 text-[9px] font-black uppercase tracking-widest animate-in shake">
+                  <div className="break-words rounded-2xl border border-red-500/20 bg-red-500/10 p-4 text-[9px] font-black uppercase tracking-widest text-red-500 animate-in shake">
                     {error}
                   </div>
                 )}
@@ -118,7 +118,7 @@ export default function UserForgotPasswordPage({ theme, onToggleTheme }) {
                 <button
                   type="submit"
                   disabled={isSubmitting || !email.trim()}
-                  className="w-full h-14 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-[0.2em] hover:bg-blue-500 shadow-xl shadow-blue-600/20 active:scale-95 transition-all disabled:opacity-30"
+                  className="h-14 w-full whitespace-nowrap rounded-2xl bg-blue-600 text-[10px] font-black uppercase tracking-[0.2em] text-white transition-all shadow-xl shadow-blue-600/20 hover:bg-blue-500 active:scale-95 disabled:opacity-30"
                 >
                   {isSubmitting ? 'SENDING...' : 'SEND RESET LINK'}
                 </button>
@@ -126,7 +126,7 @@ export default function UserForgotPasswordPage({ theme, onToggleTheme }) {
             )}
 
             <div className="mt-10 pt-8 border-t border-slate-100 dark:border-slate-800 text-center">
-              <Link to="/auth/user/signin" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-blue-600 transition-colors flex items-center justify-center gap-2">
+              <Link to="/auth/user/signin" className="flex items-center justify-center gap-2 whitespace-nowrap text-[10px] font-black uppercase tracking-widest text-slate-400 transition-colors hover:text-blue-600">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7 7-7" /></svg>
                 BACK TO SIGN IN
               </Link>

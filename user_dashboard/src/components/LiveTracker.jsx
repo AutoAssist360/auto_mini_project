@@ -196,16 +196,16 @@ export default function LiveTracker({
       : 'Calculating road ETA...'
 
   return (
-    <div className={`rounded-2xl border p-5 ${dark ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}>
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <div>
+    <div className={`rounded-2xl border p-4 sm:p-5 ${dark ? 'border-gray-800 bg-gray-900' : 'border-gray-200 bg-white'}`}>
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="min-w-0">
           <h3 className="text-lg font-bold">Live Tracking</h3>
           <p className={`text-xs ${dark ? 'text-gray-400' : 'text-gray-500'}`}>
             {technicianName || 'Technician'} is sharing their route to you in real time.
           </p>
         </div>
         <span
-          className={`flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${
+          className={`inline-flex w-fit items-center gap-1.5 whitespace-nowrap rounded-full px-2.5 py-1 text-xs font-medium ${
             connectionState === 'live'
               ? 'bg-blue-500/20 text-blue-400'
               : connectionState === 'ended'
@@ -230,12 +230,12 @@ export default function LiveTracker({
         </span>
       </div>
 
-      <div className={`rounded-xl p-6 ${dark ? 'bg-gray-800' : 'bg-gray-100'}`}>
+      <div className={`rounded-xl p-4 sm:p-6 ${dark ? 'bg-gray-800' : 'bg-gray-100'}`}>
         <div className="mb-4 flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-600 text-lg text-white">T</div>
-          <div>
+          <div className="min-w-0">
             <p className="font-semibold text-sm">{technicianName || 'Technician'}</p>
-            <p className={`text-xs ${dark ? 'text-gray-400' : 'text-gray-500'}`}>
+            <p className={`break-all text-xs ${dark ? 'text-gray-400' : 'text-gray-500'}`}>
               {hasCoordinates(techLocation.lat, techLocation.lng)
                 ? `${techLocation.lat.toFixed(5)}, ${techLocation.lng.toFixed(5)}`
                 : 'Waiting for first location update'}
@@ -248,20 +248,20 @@ export default function LiveTracker({
         </div>
 
         {displayedDistance != null && (
-          <div className={`flex items-center justify-between rounded-lg p-3 ${dark ? 'bg-gray-700' : 'bg-white'}`}>
+          <div className={`flex flex-wrap items-center justify-between gap-2 rounded-lg p-3 ${dark ? 'bg-gray-700' : 'bg-white'}`}>
             <span className={`text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>
               {routeMetrics ? 'Road Distance' : 'Estimated Distance'}
             </span>
-            <span className="font-bold text-blue-500">{formatDistance(displayedDistance)}</span>
+            <span className="whitespace-nowrap font-bold text-blue-500">{formatDistance(displayedDistance)}</span>
           </div>
         )}
 
         {displayedEtaMinutes != null && (
-          <div className={`mt-2 flex items-center justify-between rounded-lg p-3 ${dark ? 'bg-gray-700' : 'bg-white'}`}>
+          <div className={`mt-2 flex flex-wrap items-center justify-between gap-2 rounded-lg p-3 ${dark ? 'bg-gray-700' : 'bg-white'}`}>
             <span className={`text-sm ${dark ? 'text-gray-300' : 'text-gray-600'}`}>
               {routeMetrics ? 'Driving ETA' : 'Estimated Arrival'}
             </span>
-            <span className="font-bold text-blue-500">{formatEta(displayedEtaMinutes)}</span>
+            <span className="whitespace-nowrap font-bold text-blue-500">{formatEta(displayedEtaMinutes)}</span>
           </div>
         )}
 
@@ -276,9 +276,9 @@ export default function LiveTracker({
             href={mapsUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-flex rounded-lg border border-blue-500 px-3 py-2 text-xs font-semibold text-blue-500 hover:bg-blue-500/10"
+            className="mt-3 inline-flex whitespace-nowrap rounded-lg border border-blue-500 px-3 py-2 text-xs font-semibold text-blue-500 hover:bg-blue-500/10"
           >
-            Open current technician pin
+            Open map pin
           </a>
         )}
 

@@ -22,6 +22,7 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
 
   const [isOnline, setIsOnline] = useState(profile?.is_online ?? false)
   const [togglingOnline, setTogglingOnline] = useState(false)
+  const [showWelcome, setShowWelcome] = useState(true)
   const [pendingCount, setPendingCount] = useState(0)
   const [activeJobsCount, setActiveJobsCount] = useState(0)
   const [earningsSummary, setEarningsSummary] = useState(null)
@@ -190,13 +191,13 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between transition-all">
+        <header className="mb-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap gap-4 items-center justify-between transition-all relative z-50">
             <div className="flex items-center gap-2">
               <span className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase sm:text-xl">Technician Dashboard</span>
               <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
             </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 ml-auto">
             <Link to="/profile" className="hidden sm:flex w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 items-center justify-center text-xs font-bold hover:border-blue-500 transition-colors">
               {userInitials}
             </Link>
@@ -206,19 +207,21 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
                 {theme === 'dark' ? '🌞' : '🌙'}
               </button>
 
-              <button onClick={handleLogout} className="ml-2 bg-blue-600 hover:bg-blue-500 text-white text-[9px] font-black px-5 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-blue-600/20">
+              <button onClick={handleLogout} className="ml-2 bg-blue-600 hover:bg-blue-500 text-white text-[9px] font-black px-5 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-blue-600/20 whitespace-nowrap w-full sm:w-auto">
                 LOGOUT
               </button>
             </MobileNav>
           </div>
         </header>
 
-        <section className="mb-8 rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-gradient-to-br dark:from-[#0B1120] dark:to-[#040814] p-6 md:p-8 shadow-xl dark:shadow-2xl relative overflow-hidden group transition-all duration-700">
-          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent)] pointer-events-none"></div>
+        {showWelcome && (
+          <section className="mb-8 rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-gradient-to-br dark:from-[#0B1120] dark:to-[#040814] p-6 md:p-8 shadow-xl dark:shadow-2xl relative overflow-hidden group transition-all duration-700 animate-in fade-in">
+            <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent)] pointer-events-none"></div>
+            <button onClick={() => setShowWelcome(false)} className="absolute top-4 right-4 z-20 flex w-8 h-8 items-center justify-center rounded-full bg-slate-100/50 dark:bg-slate-800/50 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all shadow-sm">✕</button>
 
-          <div className="relative z-10">
+            <div className="relative z-10">
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">
                 <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
                 Your dashboard
               </div>
@@ -226,7 +229,7 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
               <button
                 onClick={handleToggleOnline}
                 disabled={togglingOnline}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all font-black text-[9px] uppercase tracking-widest border hover:scale-105 active:scale-95 ${
+                className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all font-black text-[9px] uppercase tracking-widest border hover:scale-105 active:scale-95 whitespace-nowrap ${
                   isOnline
                     ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600'
                     : 'bg-slate-500/10 border-slate-500/20 text-slate-500'
@@ -237,13 +240,13 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
               </button>
 
               {isVerified ? (
-                <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase">Verified technician</div>
+                <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">Verified technician</div>
               ) : (
-                <div className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 font-black tracking-widest text-[9px] text-amber-600 dark:text-amber-400 uppercase">Verification pending</div>
+                <div className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 font-black tracking-widest text-[9px] text-amber-600 dark:text-amber-400 uppercase whitespace-nowrap">Verification pending</div>
               )}
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-4">
+            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-4 pr-10">
               Welcome, <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 bg-clip-text text-transparent">{techName.split(' ')[0]}</span>
             </h2>
 
@@ -252,6 +255,7 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
             </p>
           </div>
         </section>
+        )}
 
         {loading ? (
           <div className="py-20 flex items-center justify-center">

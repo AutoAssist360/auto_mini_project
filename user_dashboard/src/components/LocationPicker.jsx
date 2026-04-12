@@ -192,12 +192,12 @@ export default function LocationPicker({
 
       {/* Search + GPS row */}
       <div className="flex flex-col gap-2 sm:flex-row">
-        <div className="relative flex-1">
+        <div className="relative min-w-0 flex-1">
           <input
             type="text"
             value={searchQuery}
             onChange={handleSearchChange}
-            placeholder="Search for a place in Nagpur..."
+            placeholder="Search for a place..."
             disabled={disabled}
             className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 disabled:bg-gray-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-100 dark:placeholder-slate-500"
           />
@@ -213,7 +213,7 @@ export default function LocationPicker({
                 <li
                   key={i}
                   onClick={() => handleResultClick(r)}
-                  className="cursor-pointer px-3 py-2 text-sm hover:bg-blue-50 border-b border-gray-100 last:border-b-0 dark:text-slate-100 dark:hover:bg-slate-700 dark:border-slate-700"
+                  className="cursor-pointer border-b border-gray-100 px-3 py-2 text-sm leading-snug hover:bg-blue-50 last:border-b-0 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700"
                 >
                   {r.display_name}
                 </li>
@@ -225,7 +225,7 @@ export default function LocationPicker({
           type="button"
           onClick={handleUseMyLocation}
           disabled={disabled || gpsLoading}
-          className="flex h-11 w-full items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 sm:h-auto sm:w-auto sm:shrink-0"
+          className="flex h-11 w-full items-center justify-center gap-1.5 whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:opacity-50 sm:h-auto sm:w-auto sm:shrink-0"
         >
           {gpsLoading ? (
             <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
@@ -234,12 +234,12 @@ export default function LocationPicker({
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
           )}
-          GPS
+          Use my location
         </button>
       </div>
 
       {/* Map */}
-      <div className="h-64 w-full overflow-hidden rounded-lg border border-gray-300 dark:border-slate-700">
+      <div className="h-56 w-full overflow-hidden rounded-lg border border-gray-300 sm:h-64 dark:border-slate-700">
         <MapContainer
           center={markerPos || DEFAULT_CENTER}
           zoom={markerPos ? 15 : DEFAULT_ZOOM}
@@ -263,14 +263,14 @@ export default function LocationPicker({
 
       {/* Selected address display */}
       {address && (
-        <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
+        <p className="break-words text-xs leading-relaxed text-gray-500 dark:text-slate-400">
           📍 {address}
         </p>
       )}
 
       {/* Hidden-ish coordinate display for transparency */}
       {hasPosition && (
-        <p className="text-xs text-gray-400 dark:text-slate-500">
+        <p className="break-all text-xs text-gray-400 dark:text-slate-500">
           Coordinates: {Number(latitude).toFixed(5)}, {Number(longitude).toFixed(5)}
         </p>
       )}

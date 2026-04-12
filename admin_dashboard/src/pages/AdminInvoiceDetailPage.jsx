@@ -123,32 +123,32 @@ function AdminInvoiceDetailPage() {
             </div>
 
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-[11px] font-bold">
+              <table className="w-full text-left text-[11px] font-bold min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <th className="pb-4 pr-3">Classification</th>
-                    <th className="pb-4 pr-3">Item Description</th>
-                    <th className="pb-4 pr-3 text-center">Qty Vol</th>
-                    <th className="pb-4 pr-3 text-center">Unit Price</th>
-                    <th className="pb-4 text-right">Settlement Vol (₹)</th>
+                    <th className="pb-4 pr-3 whitespace-nowrap">Classification</th>
+                    <th className="pb-4 pr-3 whitespace-nowrap">Item Description</th>
+                    <th className="pb-4 pr-3 text-center whitespace-nowrap">Qty Vol</th>
+                    <th className="pb-4 pr-3 text-center whitespace-nowrap">Unit Price</th>
+                    <th className="pb-4 text-right whitespace-nowrap">Settlement Vol (₹)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                   {inv.items.map((i) => (
                     <tr key={i.item_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all">
-                      <td className="py-5 pr-3">
+                      <td className="py-5 pr-3 whitespace-nowrap">
                         <span className="px-2.5 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-900/40 text-indigo-600 dark:text-indigo-400 text-[9px] font-black uppercase tracking-widest border border-indigo-500/20">
                           {formatLabel(i.item_type)}
                         </span>
                       </td>
-                      <td className="py-5 pr-3">
+                      <td className="py-5 pr-3 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">{i.description}</p>
                       </td>
-                      <td className="py-5 pr-3 text-center">
+                      <td className="py-5 pr-3 text-center whitespace-nowrap">
                         <span className="text-slate-900 dark:text-white font-black">{i.quantity}</span>
                       </td>
-                      <td className="py-5 pr-3 text-center font-bold text-slate-500">₹{Number(i.unit_price).toLocaleString()}</td>
-                      <td className="py-5 text-right font-black text-slate-900 dark:text-white text-sm">
+                      <td className="py-5 pr-3 text-center font-bold text-slate-500 whitespace-nowrap">₹{Number(i.unit_price).toLocaleString()}</td>
+                      <td className="py-5 text-right font-black text-slate-900 dark:text-white text-sm whitespace-nowrap">
                         ₹{Number(i.total_price).toLocaleString()}
                       </td>
                     </tr>

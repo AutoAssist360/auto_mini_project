@@ -90,7 +90,7 @@ function UserOrdersPage({ theme, onToggleTheme }) {
         
         {/* Floating Header */}
         <header className="mb-8 flex flex-wrap items-center justify-between gap-6">
-           <div className="flex items-center gap-4">
+           <div className="flex items-center gap-4 w-full md:w-auto">
               <div className="w-12 h-12 rounded-2xl bg-amber-600 flex items-center justify-center text-white shadow-lg shadow-amber-600/20">
                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" /></svg>
               </div>
@@ -100,14 +100,14 @@ function UserOrdersPage({ theme, onToggleTheme }) {
               </div>
            </div>
 
-           <div className="flex items-center gap-3">
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400">
                 {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={() => navigate('/dashboard')} className="px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-black tracking-widest uppercase hover:border-blue-500 transition-all">
+             <button onClick={() => navigate('/dashboard')} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black tracking-widest uppercase hover:border-blue-500 transition-all">
                 DASHBOARD
              </button>
-             <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase active:scale-95 transition-all shadow-lg">
+             <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase active:scale-95 transition-all shadow-lg">
                 LOGOUT
              </button>
            </div>
@@ -115,12 +115,12 @@ function UserOrdersPage({ theme, onToggleTheme }) {
 
         {/* Global Filter Bar */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-4 p-4 rounded-3xl bg-white/50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 backdrop-blur-md">
-           <div className="flex items-center gap-4">
-              <div className="relative">
+           <div className="flex items-center gap-4 w-full md:w-auto">
+              <div className="relative w-full md:w-auto flex-1">
                  <select 
                    value={statusFilter} 
                    onChange={handleFilterChange} 
-                   className="appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest outline-none focus:border-blue-500 transition-all cursor-pointer pr-10"
+                   className="w-full appearance-none bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 px-6 py-2.5 rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-widest outline-none focus:border-blue-500 transition-all cursor-pointer pr-10"
                  >
                     <option value="">ALL ORDERS</option>
                     <option value="pending">PENDING</option>
@@ -136,7 +136,7 @@ function UserOrdersPage({ theme, onToggleTheme }) {
                  </div>
               </div>
            </div>
-           <button onClick={() => navigate('/parts')} className="px-8 py-3 bg-blue-600 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 shadow-xl shadow-blue-600/20 active:scale-95 transition-all">
+           <button onClick={() => navigate('/parts')} className="whitespace-nowrap w-full md:w-auto px-8 py-3 bg-blue-600 text-white rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-blue-500 shadow-xl shadow-blue-600/20 active:scale-95 transition-all">
               BROWSE PARTS
            </button>
         </div>
@@ -157,7 +157,7 @@ function UserOrdersPage({ theme, onToggleTheme }) {
              <div className="overflow-x-auto">
                 <table className="w-full text-left">
                    <thead>
-                      <tr className="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800/50">
+                      <tr className="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800/50 whitespace-nowrap">
                          <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">ORDER</th>
                          <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">STATUS</th>
                          <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">PAYMENT</th>
@@ -171,7 +171,7 @@ function UserOrdersPage({ theme, onToggleTheme }) {
                         const orderBadge = STATUS_COLORS[order.order_status] || 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                         const payBadge = PAYMENT_COLORS[order.payment_status] || 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                         return (
-                          <tr key={order.order_id} className="group hover:bg-amber-500/5 transition-all">
+                          <tr key={order.order_id} className="group hover:bg-amber-500/5 transition-all whitespace-nowrap">
                              <td className="px-8 py-6">
                                 <span className="text-[11px] font-black text-slate-900 dark:text-white font-mono opacity-80 group-hover:opacity-100">
                                    {order.order_number || `#${order.order_id.slice(0, 8)}`}
@@ -215,25 +215,25 @@ function UserOrdersPage({ theme, onToggleTheme }) {
            <div className="p-8 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-6">
               <div className="flex items-center gap-3">
                  <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
-                 <p className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
+                 <p className="whitespace-nowrap text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest">
                     Showing <span className="text-slate-900 dark:text-white">{orders.length}</span> orders
                  </p>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-center">
                  <button 
                    disabled={page <= 1} 
                    onClick={() => setPage((p) => p - 1)} 
-                   className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest disabled:opacity-20 hover:border-amber-500 transition-all"
+                   className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-20 hover:border-amber-500 transition-all"
                  >
                     PREV
                  </button>
-                 <div className="h-10 px-4 flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl text-[10px] font-black">
+                 <div className="h-10 px-4 flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl text-[10px] md:text-xs font-black whitespace-nowrap">
                     PAGE {page} / {totalPages}
                  </div>
                  <button 
                    disabled={page >= totalPages} 
                    onClick={() => setPage((p) => p + 1)} 
-                   className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest disabled:opacity-20 hover:border-amber-500 transition-all"
+                   className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-20 hover:border-amber-500 transition-all"
                  >
                     NEXT
                  </button>

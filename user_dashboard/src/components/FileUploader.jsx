@@ -117,7 +117,7 @@ export default function FileUploader({ onUploadComplete, entityType, entityId, m
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
         className={`
-          relative cursor-pointer rounded-xl border-2 border-dashed p-8 text-center transition
+          relative cursor-pointer rounded-xl border-2 border-dashed p-5 text-center transition sm:p-8
           ${dragging
             ? 'border-blue-500 bg-blue-500/10'
             : dark ? 'border-gray-700 hover:border-gray-600 bg-gray-800/50' : 'border-gray-300 hover:border-gray-400 bg-gray-50'
@@ -143,8 +143,8 @@ export default function FileUploader({ onUploadComplete, entityType, entityId, m
         ) : (
           <>
             <p className="mb-2 text-3xl">📎</p>
-            <p className={`font-medium ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
-              {multiple ? 'Drop files here or click to browse' : 'Drop a file here or click to browse'}
+            <p className={`text-sm font-medium sm:text-base ${dark ? 'text-gray-300' : 'text-gray-700'}`}>
+              {multiple ? 'Drag files here or tap to browse' : 'Drag a file here or tap to browse'}
             </p>
             <p className={`mt-1 text-xs ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
               {helperText || 'Max 10 MB per file'}
@@ -166,7 +166,7 @@ export function FileGallery({ files = [], onDelete, dark }) {
   if (files.length === 0) return null
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {files.map((file) => {
         const isImage = file.mime_type?.startsWith('image/')
         const url = file.url?.startsWith('http') ? file.url : `${API_BASE}${file.url}`
@@ -184,7 +184,7 @@ export function FileGallery({ files = [], onDelete, dark }) {
               </div>
             )}
             <div className="p-2">
-              <p className="truncate text-xs font-medium">{file.original_name}</p>
+              <p className="truncate text-xs font-medium sm:text-sm">{file.original_name}</p>
               <p className={`text-[10px] ${dark ? 'text-gray-500' : 'text-gray-400'}`}>
                 {(file.size / 1024).toFixed(0)} KB
               </p>
@@ -192,7 +192,7 @@ export function FileGallery({ files = [], onDelete, dark }) {
             {onDelete && (
               <button
                 onClick={() => onDelete(file.file_id)}
-                className="absolute right-1 top-1 flex h-6 w-6 items-center justify-center rounded-full bg-red-500/80 text-xs text-white opacity-0 transition group-hover:opacity-100"
+                className="absolute right-1 top-1 flex h-7 w-7 items-center justify-center rounded-full bg-red-500/80 text-xs text-white opacity-100 transition sm:h-6 sm:w-6 sm:opacity-0 sm:group-hover:opacity-100"
               >
                 ✕
               </button>

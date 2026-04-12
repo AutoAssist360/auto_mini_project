@@ -84,14 +84,14 @@ function VendorAnalyticsPage({ theme, onToggleTheme }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4 mt-6">
-          <div className="flex items-center gap-3 w-full sm:w-auto relative">
-             <Link to="/dashboard" className="absolute -top-7 left-2 text-[10px] font-black uppercase tracking-widest text-blue-600 hover:text-blue-500 dark:text-blue-400 transition-colors">← Back to Dashboard</Link>
-             <h1 className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase ml-2 flex items-center gap-2">
-               <span className="text-blue-500 text-2xl">📈</span> Business Overview
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-3 mt-6 mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+             <Link to="/dashboard" className="shrink-0 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-1.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 whitespace-nowrap">← Back</Link>
+             <h1 className="text-base sm:text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase flex items-center gap-2 truncate">
+               <span className="text-blue-500 text-xl shrink-0">📈</span> <span className="truncate">Business Overview</span>
              </h1>
           </div>
-          <button type="button" onClick={onToggleTheme} className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
+          <button type="button" onClick={onToggleTheme} className="hidden sm:flex shrink-0 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95 whitespace-nowrap">
             {theme === 'dark' ? '☀ Light' : '☾ Dark'}
           </button>
         </header>
@@ -104,16 +104,16 @@ function VendorAnalyticsPage({ theme, onToggleTheme }) {
 
         {/* Date range filter */}
         <div className="mb-8 flex flex-wrap items-end gap-3 rounded-[32px] border border-slate-200/60 bg-white/60 p-6 shadow-xl backdrop-blur-md dark:border-slate-800/60 dark:bg-[#0B1120]/60 animate-in slide-in-from-top-4 duration-500 relative z-10">
-          <div className="flex-1 min-w-0 sm:min-w-[140px]">
+          <div className="flex-1 min-w-[130px]">
             <label className="mb-2 block text-[10px] font-black uppercase tracking-widest text-slate-500">From Date</label>
-            <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-[#0F172A]/50 px-4 py-3 text-sm font-semibold outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all backdrop-blur-sm shadow-inner" />
+            <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-[#0F172A]/50 px-3 py-3 text-sm font-semibold outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all backdrop-blur-sm shadow-inner cursor-pointer" />
           </div>
-          <div className="flex-1 min-w-0 sm:min-w-[140px]">
+          <div className="flex-1 min-w-[130px]">
             <label className="mb-2 block text-[10px] font-black uppercase tracking-widest text-slate-500">To Date</label>
-            <input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-[#0F172A]/50 px-4 py-3 text-sm font-semibold outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all backdrop-blur-sm shadow-inner" />
+            <input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="w-full rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-[#0F172A]/50 px-3 py-3 text-sm font-semibold outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all backdrop-blur-sm shadow-inner cursor-pointer" />
           </div>
           {(from || to) && (
-            <button type="button" onClick={() => { setFrom(''); setTo('') }} className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0F172A] px-6 py-3 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 shadow-sm active:scale-95 transition-all h-[46px]">Clear Filter</button>
+            <button type="button" onClick={() => { setFrom(''); setTo('') }} className="whitespace-nowrap rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-[#0F172A] px-5 py-3 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 shadow-sm active:scale-95 transition-all h-[46px]">Clear</button>
           )}
         </div>
 

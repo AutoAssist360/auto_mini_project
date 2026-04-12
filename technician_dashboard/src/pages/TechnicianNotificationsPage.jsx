@@ -18,11 +18,12 @@ const TYPE_ICONS = {
 
 function relativeTime(d) {
   const m = Math.floor((Date.now() - new Date(d).getTime()) / 60000)
-  if (m < 1) return 'JUST_NOW'
-  if (m < 60) return `${m}M_AGO`
+  if (m < 1) return 'Just now'
+  if (m < 60) return `${m} min${m !== 1 ? 's' : ''} ago`
   const h = Math.floor(m / 60)
-  if (h < 24) return `${h}H_AGO`
-  return `${Math.floor(h / 24)}D_AGO`
+  if (h < 24) return `${h} hour${h !== 1 ? 's' : ''} ago`
+  const dCount = Math.floor(h / 24)
+  return `${dCount} day${dCount !== 1 ? 's' : ''} ago`
 }
 
 function linkFor(n) {
@@ -99,34 +100,34 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Floating Header */}
-        <header className="mb-12 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-4 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between transition-all sticky top-6">
+        <header className="mb-12 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-4 py-3 shadow-xl dark:shadow-2xl flex flex-wrap gap-4 items-center justify-between transition-all sticky top-6 z-50">
           <div className="flex items-center gap-4">
-            <button onClick={() => navigate('/dashboard')} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
+            <button onClick={() => navigate('/dashboard')} className="w-10 h-10 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
             <div className="flex flex-col">
-              <h1 className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none">Dispatcher_Feed</h1>
-              <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-1 opacity-80">CENTRAL_NOTIFICATION_HUB</span>
+              <h1 className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase leading-none whitespace-nowrap">Activity Feed</h1>
+              <span className="text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest mt-1 opacity-80 whitespace-nowrap">Notifications</span>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 ml-auto">
             {items.some(n => !n.is_read) && (
               <button 
                 onClick={handleMarkAll} 
-                className="h-10 px-5 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all border border-blue-600/20"
+                className="h-10 px-5 rounded-full bg-blue-600/10 text-blue-600 dark:text-blue-400 text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all border border-blue-600/20 whitespace-nowrap"
               >
-                ACKNOWLEDGE_ALL
+                Mark all as read
               </button>
             )}
-            <button onClick={onToggleTheme} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-lg">
+            <button onClick={onToggleTheme} className="w-10 h-10 shrink-0 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-all text-lg">
                {dark ? '🌞' : '🌙'}
             </button>
           </div>
         </header>
 
         <div className="mb-8 opacity-60 hover:opacity-100 transition-opacity">
-           <Breadcrumbs items={[{ label: 'TERMINAL', to: '/dashboard' }, { label: 'FEED' }]} />
+           <Breadcrumbs items={[{ label: 'Dashboard', to: '/dashboard' }, { label: 'System Updates' }]} />
         </div>
 
         <main className="space-y-4">
@@ -137,7 +138,7 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
           ) : items.length === 0 ? (
             <div className="py-32 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in-95 duration-700">
                <div className="w-24 h-24 rounded-full bg-slate-200 dark:bg-slate-800/50 flex items-center justify-center mb-6 text-4xl opacity-50 grayscale">🔔</div>
-               <h2 className="text-2xl font-black text-slate-800 dark:text-slate-200 uppercase tracking-tighter">ZERO_ACTIVITY</h2>
+               <h2 className="text-2xl font-black text-slate-800 dark:text-slate-200 uppercase tracking-tighter">No Activity</h2>
                <p className="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400 max-w-md">You do not have any notifications right now. New updates will appear here automatically.</p>
             </div>
           ) : (
@@ -158,20 +159,19 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
                       </div>
                       
                       <W {...(href ? { to: href } : {})} className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-1">
-                           <h3 className={`text-sm font-bold tracking-tight uppercase ${n.is_read ? 'text-slate-700 dark:text-slate-200' : 'text-blue-600 dark:text-blue-400'}`}>
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                           <h3 className={`text-sm font-bold tracking-tight uppercase break-words ${n.is_read ? 'text-slate-700 dark:text-slate-200' : 'text-blue-600 dark:text-blue-400'}`}>
                              {n.title.toUpperCase()}
                            </h3>
                            {!n.is_read && (
-                             <span className="px-2 py-0.5 rounded-full bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest leading-none">NEW_ALERT</span>
+                             <span className="px-2 py-1 rounded-full bg-blue-600 text-white text-[8px] font-black uppercase tracking-widest leading-none whitespace-nowrap shrink-0 mt-0.5">New Alert</span>
                            )}
                         </div>
                         <p className={`text-[11px] font-medium leading-relaxed max-w-2xl ${n.is_read ? 'text-slate-500 dark:text-slate-400' : 'text-slate-700 dark:text-slate-100'}`}>
                           {n.message}
                         </p>
-                        <div className="flex items-center gap-4 mt-3">
-                           <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">{relativeTime(n.created_at)}</span>
-                           <span className="text-[9px] font-black text-slate-300 dark:text-slate-600 uppercase tracking-widest">• SYSTEM_LOG_{n.notification_id.slice(-6).toUpperCase()}</span>
+                        <div className="flex items-center mt-3">
+                           <span className="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest whitespace-nowrap">{relativeTime(n.created_at)}</span>
                         </div>
                       </W>
 
@@ -201,24 +201,24 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
           )}
 
           {totalPages > 1 && (
-            <div className="flex items-center justify-between pt-8">
+            <div className="flex flex-wrap items-center justify-center sm:justify-between gap-4 pt-8">
               <button 
                 disabled={page <= 1} 
                 onClick={() => load(page - 1)} 
-                className="h-12 px-8 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-[1.05] active:scale-[0.95] transition-all disabled:opacity-40"
+                className="h-12 px-8 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-[1.05] active:scale-[0.95] transition-all disabled:opacity-40 whitespace-nowrap"
               >
-                PREV_SECTOR
+                Previous
               </button>
               <div className="flex flex-col items-center">
-                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">DATA_INDEX</span>
+                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Page</span>
                  <span className="text-sm font-black text-slate-800 dark:text-white">{page} / {totalPages}</span>
               </div>
               <button 
                 disabled={page >= totalPages} 
                 onClick={() => load(page + 1)} 
-                className="h-12 px-8 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-[1.05] active:scale-[0.95] transition-all disabled:opacity-40"
+                className="h-12 px-8 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 text-[10px] font-black uppercase tracking-[0.2em] shadow-lg hover:scale-[1.05] active:scale-[0.95] transition-all disabled:opacity-40 whitespace-nowrap"
               >
-                NEXT_SECTOR
+                Next
               </button>
             </div>
           )}

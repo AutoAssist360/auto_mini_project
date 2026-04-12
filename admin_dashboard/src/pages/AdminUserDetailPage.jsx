@@ -100,20 +100,20 @@ function AdminUserDetailPage() {
               <h2 className="text-xl font-black uppercase tracking-tight">Registered Assets</h2>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-[11px] font-bold">
+              <table className="w-full text-left text-[11px] font-bold min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest text-slate-400">
-                    <th className="pb-4 pr-3">Request ID</th>
-                    <th className="pb-4 pr-3">VIN Signature</th>
-                    <th className="pb-4">Build Variant</th>
+                    <th className="pb-4 pr-3 whitespace-nowrap">Request ID</th>
+                    <th className="pb-4 pr-3 whitespace-nowrap">VIN Signature</th>
+                    <th className="pb-4 whitespace-nowrap">Build Variant</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                   {user.vehicles.map((v) => (
                     <tr key={v.vehicle_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/20 transition-all">
-                      <td className="py-4 pr-3 text-slate-900 dark:text-white font-black tracking-widest uppercase">{v.registration_number}</td>
-                      <td className="py-4 pr-3 text-slate-500 dark:text-slate-400 font-mono tracking-tighter">{v.vin_number}</td>
-                      <td className="py-4 font-black uppercase text-blue-600 dark:text-blue-500">{v.variant?.variant_name || 'GENERIC'}</td>
+                      <td className="py-4 pr-3 text-slate-900 dark:text-white font-black tracking-widest uppercase whitespace-nowrap">{v.registration_number}</td>
+                      <td className="py-4 pr-3 text-slate-500 dark:text-slate-400 font-mono tracking-tighter whitespace-nowrap">{v.vin_number}</td>
+                      <td className="py-4 font-black uppercase text-blue-600 dark:text-blue-500 whitespace-nowrap">{v.variant?.variant_name || 'GENERIC'}</td>
                     </tr>
                   ))}
                 </tbody>

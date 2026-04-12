@@ -175,26 +175,26 @@ function UserMessagesPage({ theme, onToggleTheme }) {
       <div className="mx-auto flex min-h-[100dvh] max-w-4xl flex-col px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         
         {/* Modern Header */}
-        <header className="mb-6 flex items-center justify-between shrink-0">
-           <Link to={`/requests/${requestId}`} className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center group-hover:border-blue-500 transition-all shadow-sm">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-4 shrink-0">
+           <Link to={`/requests/${requestId}`} className="flex items-center gap-2 group w-full md:w-auto">
+              <div className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center group-hover:border-blue-500 transition-all shadow-sm">
                  <svg className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               </div>
-              <div className="hidden sm:block">
-                 <span className="text-[10px] font-black tracking-widest uppercase text-slate-400">MESSAGES</span>
-                 <h1 className="text-xs font-black uppercase text-slate-900 dark:text-white tracking-widest">CHAT WITH TECHNICIAN</h1>
+              <div className="sm:block">
+                 <span className="text-[10px] md:text-xs font-black tracking-widest uppercase text-slate-400">MESSAGES</span>
+                 <h1 className="text-xs md:text-sm font-black uppercase text-slate-900 dark:text-white tracking-widest">CHAT WITH TECHNICIAN</h1>
               </div>
            </Link>
 
-           <div className="flex items-center gap-3">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
              <div className="hidden md:flex flex-col items-end px-3 py-1 bg-blue-500/5 rounded-xl border border-blue-500/10">
                 <span className="text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">REQUEST ID</span>
                 <span className="text-[10px] font-bold text-slate-600 dark:text-slate-400 font-mono">#{requestId.slice(0, 12)}...</span>
              </div>
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all">
                 {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={handleLogout} className="px-4 py-2 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase">
+             <button onClick={handleLogout} className="whitespace-nowrap px-4 py-2 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase">
                 LOGOUT
              </button>
            </div>
@@ -217,9 +217,9 @@ function UserMessagesPage({ theme, onToggleTheme }) {
             )}
 
             {!loading && messages.length === 0 && !error && (
-              <div className="flex flex-col items-center justify-center h-full gap-6 opacity-40">
+              <div className="flex flex-col items-center justify-center h-full gap-6 opacity-40 px-4">
                  <div className="text-6xl text-slate-200">💬</div>
-                 <p className="text-[10px] font-black uppercase tracking-[0.2em] text-center max-w-[200px] leading-loose">Start the conversation by sending your first message.</p>
+                 <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-center max-w-[200px] md:max-w-[300px] leading-loose">Start the conversation by sending your first message.</p>
               </div>
             )}
 

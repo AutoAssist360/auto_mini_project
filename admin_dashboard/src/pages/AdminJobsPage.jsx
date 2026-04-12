@@ -66,41 +66,41 @@ function AdminJobsPage() {
         <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
           {loading ? <ListSkeleton /> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Job ID</th>
-                    <th className="pb-6 pr-4">Issue Type</th>
-                    <th className="pb-6 pr-4">Technician</th>
-                    <th className="pb-6 pr-4 text-center">Status</th>
-                    <th className="pb-6 pr-4">Invoice</th>
-                    <th className="pb-6 text-right">Started</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Job ID</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Issue Type</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Technician</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Status</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Invoice</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Started</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {jobs.map((j) => (
                     <tr key={j.job_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/jobs/${j.job_id}`} className="group-hover/row:text-blue-600 transition-all">
                           <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">#{j.job_id.slice(0, 8)}</p>
                           <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5">Job record</p>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400 border border-slate-200/50 dark:border-slate-700/50">
                           {formatLabel(j.request?.issue_type) || '--'}
                         </span>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight">{j.technician?.user?.full_name || '--'}</p>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${statusColor(j.status)} shadow-sm`}>
                           <div className={`w-1 h-1 rounded-full ${j.status === 'completed' || j.status === 'verified' ? 'bg-green-500' : 'bg-current animate-pulse'}`}></div>
                           {formatLabel(j.status)}
                         </span>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         {j.invoice ? (
                            <div className="flex items-center gap-2">
                              <p className="text-sm font-black text-slate-900 dark:text-white">₹{Number(j.invoice.total).toLocaleString()}</p>
@@ -110,7 +110,7 @@ function AdminJobsPage() {
                           <p className="text-slate-400 text-[10px] uppercase font-black tracking-widest leading-none">No invoice yet</p>
                         )}
                       </td>
-                      <td className="py-6 text-right">
+                      <td className="py-6 text-right whitespace-nowrap">
                         <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mb-1">{j.started_at ? new Date(j.started_at).toLocaleDateString() : 'PENDING'}</p>
                         <Link to={`/admin/jobs/${j.job_id}`} className="text-[9px] font-black text-blue-600 dark:text-blue-500 uppercase tracking-widest hover:underline transition-all">
                           Trace Sequence →
@@ -132,7 +132,7 @@ function AdminJobsPage() {
           )}
 
           {/* pagination section */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between flex-wrap">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-600 text-center md:text-left">
               Page <span className="text-blue-600 dark:text-blue-400">{pagination.page || 1}</span> of <span className="text-slate-900 dark:text-white">{pagination.totalPages || 1}</span>
             </span>

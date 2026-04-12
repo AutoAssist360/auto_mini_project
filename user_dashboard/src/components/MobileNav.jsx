@@ -27,9 +27,9 @@ export default function MobileNav({ children }) {
   }, [open])
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative shrink-0 md:w-auto">
       {/* ── Desktop: inline row (hidden below md) ──── */}
-      <div className="hidden md:flex md:flex-wrap md:gap-2">
+      <div className="hidden md:flex md:flex-wrap md:items-center md:justify-end md:gap-2">
         {children}
       </div>
 
@@ -37,7 +37,7 @@ export default function MobileNav({ children }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center rounded-xl border border-slate-300 p-2 text-sm font-medium hover:bg-slate-100 md:hidden dark:border-slate-700 dark:hover:bg-slate-800"
+        className="inline-flex shrink-0 items-center justify-center rounded-xl border border-slate-300 p-2 text-sm font-medium hover:bg-slate-100 md:hidden dark:border-slate-700 dark:hover:bg-slate-800"
         aria-label="Toggle menu"
         aria-expanded={open}
       >
@@ -54,7 +54,7 @@ export default function MobileNav({ children }) {
 
       {open && (
         <div
-          className="absolute right-0 top-full z-50 mt-2 flex w-[min(18rem,calc(100vw-2rem))] max-w-[calc(100vw-2rem)] flex-col gap-1 rounded-xl border border-slate-200 bg-white p-2 shadow-lg md:hidden dark:border-slate-700 dark:bg-slate-900"
+          className="absolute right-0 top-full z-50 mt-2 flex w-[calc(100vw-3rem)] max-w-xs origin-top-right flex-col gap-3 rounded-[24px] border border-slate-200 bg-white p-4 shadow-2xl md:hidden dark:border-slate-700 dark:bg-slate-900 overflow-hidden"
           onClick={() => setOpen(false)}
         >
           {children}

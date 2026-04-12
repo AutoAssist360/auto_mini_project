@@ -137,7 +137,7 @@ export default function VendorProfilePage({ theme, onToggleTheme }) {
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         
         {/* Floating Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between">
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-6 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-3 mr-10 sm:mr-0 relative z-[40]">
           <div className="flex items-center gap-2">
             <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Profile</span>
             <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
@@ -189,16 +189,16 @@ export default function VendorProfilePage({ theme, onToggleTheme }) {
                       {initials}
                     </div>
                   </div>
-                  <div className="flex gap-2 sm:pb-2">
+                  <div className="flex flex-wrap gap-2 sm:pb-2">
                     <button
                       onClick={() => setEditMode(true)}
-                      className="rounded-xl bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20 active:scale-95 transition-all flex items-center gap-2"
+                      className="whitespace-nowrap rounded-xl bg-blue-600 hover:bg-blue-500 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20 active:scale-95 transition-all flex items-center gap-2"
                     >
                       <span>✏️</span> Edit Profile
                     </button>
                     <Link
                       to="/change-password"
-                      className="rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-slate-700 dark:text-slate-300 shadow-sm flex items-center gap-2 active:scale-95"
+                      className="whitespace-nowrap rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-all text-slate-700 dark:text-slate-300 shadow-sm flex items-center gap-2 active:scale-95"
                     >
                       <span>🔑</span> Password
                     </Link>
@@ -221,20 +221,20 @@ export default function VendorProfilePage({ theme, onToggleTheme }) {
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Locations</p>
                   </div>
                   <div className="rounded-2xl border border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-[#0F172A]/50 p-4 text-center">
-                    <p className="text-lg font-black text-indigo-600 mt-1">
+                    <p className="text-lg font-black text-indigo-600 mt-1 truncate">
                       {vendor.role?.toUpperCase()}
                     </p>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Role</p>
                   </div>
                   <div className="rounded-2xl border border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-[#0F172A]/50 p-4 text-center">
-                    <p className={`text-lg font-black mt-1 ${vendor.is_active ? 'text-teal-600 dark:text-teal-400' : 'text-red-500'}`}>
-                      {vendor.is_active ? 'ACTIVE' : 'INACTIVE'}
+                    <p className={`text-lg font-black mt-1 whitespace-nowrap ${vendor.is_active ? 'text-teal-600 dark:text-teal-400' : 'text-red-500'}`}>
+                      {vendor.is_active ? 'Active' : 'Inactive'}
                     </p>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Status</p>
                   </div>
                   <div className="rounded-2xl border border-slate-100 dark:border-slate-800/60 bg-slate-50/50 dark:bg-[#0F172A]/50 p-4 text-center">
-                    <p className={`text-lg font-black mt-1 ${vendor.is_verified ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}`}>
-                      {vendor.is_verified ? 'VERIFIED' : 'PENDING'}
+                    <p className={`text-lg font-black mt-1 whitespace-nowrap ${vendor.is_verified ? 'text-emerald-600 dark:text-emerald-400' : 'text-amber-600 dark:text-amber-400'}`}>
+                      {vendor.is_verified ? 'Verified' : 'Pending'}
                     </p>
                     <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mt-1">Verification</p>
                   </div>

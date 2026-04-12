@@ -85,7 +85,7 @@ export default function AdminNotificationsPage({ theme, onToggleTheme }) {
       </div>
 
       <header className="sticky top-0 z-50 bg-white/70 dark:bg-slate-900/50 backdrop-blur-2xl border-b border-slate-200 dark:border-slate-800">
-        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-6 py-6 sm:flex-row sm:items-center sm:justify-between flex-wrap">
           <div className="flex items-center gap-4 sm:gap-6">
             <Link to="/admin/dashboard" className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-all shadow-inner">
                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" /></svg>

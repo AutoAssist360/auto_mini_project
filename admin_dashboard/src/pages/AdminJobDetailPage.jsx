@@ -292,22 +292,22 @@ function AdminJobDetailPage() {
 
              {job.invoice.items?.length > 0 && (
                <div className="overflow-x-auto rounded-[20px] border border-slate-100 dark:border-slate-800">
-                 <table className="w-full text-left text-[10px] font-bold">
+                 <table className="w-full text-left text-[10px] font-bold min-w-[800px]">
                    <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800">
                       <tr className="uppercase tracking-widest text-slate-400">
-                        <th className="px-4 py-3">Classification</th>
-                        <th className="px-4 py-3">Item Description</th>
-                        <th className="px-4 py-3 text-center">Qty Vol</th>
-                        <th className="px-4 py-3 text-right">Settlement (₹)</th>
+                        <th className="px-4 py-3 whitespace-nowrap">Classification</th>
+                        <th className="px-4 py-3 whitespace-nowrap">Item Description</th>
+                        <th className="px-4 py-3 text-center whitespace-nowrap">Qty Vol</th>
+                        <th className="px-4 py-3 text-right whitespace-nowrap">Settlement (₹)</th>
                       </tr>
                    </thead>
                    <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50 uppercase">
                      {job.invoice.items.map((i) => (
                        <tr key={i.item_id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                         <td className="px-4 py-3 text-slate-500 font-black">{formatLabel(i.item_type)}</td>
-                         <td className="px-4 py-3 text-slate-900 dark:text-white font-black">{i.description}</td>
-                         <td className="px-4 py-3 text-center text-slate-900 dark:text-white">{i.quantity}</td>
-                         <td className="px-4 py-3 text-right text-slate-900 dark:text-white">₹{Number(i.total_price).toLocaleString()}</td>
+                         <td className="px-4 py-3 text-slate-500 font-black whitespace-nowrap">{formatLabel(i.item_type)}</td>
+                         <td className="px-4 py-3 text-slate-900 dark:text-white font-black whitespace-nowrap">{i.description}</td>
+                         <td className="px-4 py-3 text-center text-slate-900 dark:text-white whitespace-nowrap">{i.quantity}</td>
+                         <td className="px-4 py-3 text-right text-slate-900 dark:text-white whitespace-nowrap">₹{Number(i.total_price).toLocaleString()}</td>
                        </tr>
                      ))}
                    </tbody>

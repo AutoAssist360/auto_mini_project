@@ -122,22 +122,22 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
 
       <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Navigation / Header */}
-        <header className="mb-6 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl flex items-center justify-between transition-all">
-          <div className="flex items-center gap-3">
+        <header className="mb-6 flex flex-wrap items-center justify-between gap-3 rounded-full border border-slate-200 bg-white/70 px-4 py-3 shadow-xl transition-all backdrop-blur-md dark:border-slate-800 dark:bg-[#0B1120]/80 sm:px-6">
+          <div className="flex min-w-0 items-center gap-3">
             <button onClick={() => navigate(-1)} className="group w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-blue-500/50 transition-all">
               <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <div className="hidden sm:block">
+            <div className="min-w-0">
               <span className="text-[10px] font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase leading-none">INVOICE</span>
-              <h1 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none mt-0.5">Invoice Details</h1>
+              <h1 className="mt-0.5 text-base font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none sm:text-lg">Invoice Details</h1>
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <MobileNav>
               <button onClick={onToggleTheme} className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-sm shadow-sm transition-all">{theme === 'dark' ? '🌞' : '🌙'}</button>
-              <button onClick={() => navigate('/dashboard')} className="px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all">Dashboard</button>
-              <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg">LOGOUT</button>
+              <button onClick={() => navigate('/dashboard')} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 text-[10px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-700 hover:border-blue-500 transition-all">Dashboard</button>
+              <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all shadow-lg">LOGOUT</button>
             </MobileNav>
           </div>
         </header>
@@ -147,7 +147,7 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
         </div>
 
         {/* Global Controls & Status */}
-        <section className="mb-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]/50 p-6 shadow-xl relative overflow-hidden group">
+        <section className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white p-4 shadow-xl group dark:border-slate-800 dark:bg-[#0B1120]/50 sm:p-6">
           <div className="relative z-10">
             <h2 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Find an invoice</h2>
             <div className="flex flex-wrap gap-3">
@@ -163,7 +163,7 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
               <button 
                 type="button" 
                 onClick={() => { if (manualId.trim()) navigate(`/invoices/${manualId.trim()}`) }} 
-                className="h-12 px-8 rounded-2xl bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20 active:scale-95 disabled:opacity-50"
+                className="h-12 whitespace-nowrap rounded-2xl bg-blue-600 px-6 text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/20 active:scale-95 disabled:opacity-50 sm:px-8"
                 disabled={isLoading || !manualId.trim()}
               >
                 {isLoading ? 'SEARCHING...' : 'OPEN INVOICE'}
@@ -181,13 +181,13 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
         </section>
 
         {invoice && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+          <div className="mb-12 grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-8">
             
             {/* Main Content Area */}
             <div className="lg:col-span-2 space-y-8">
               
               {/* Core Information Card */}
-              <section className="rounded-[32px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]/50 p-8 shadow-xl relative overflow-hidden group">
+              <section className="relative overflow-hidden rounded-[32px] border border-slate-200 bg-white p-5 shadow-xl group dark:border-slate-800 dark:bg-[#0B1120]/50 sm:p-8">
                  <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/5 rounded-full blur-3xl pointer-events-none group-hover:bg-blue-600/10 transition-colors"></div>
                  
                  <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
@@ -206,17 +206,17 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
                         technicianName: invoice.job?.technician?.user?.full_name,
                         issueType: invoice.job?.request?.issue_type,
                       })}
-                      className="group flex items-center gap-2 rounded-2xl border border-blue-600/30 dark:border-blue-400/30 px-5 py-3 text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest transition-all hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white active:scale-95 shadow-sm"
+                      className="group flex items-center gap-2 whitespace-nowrap rounded-2xl border border-blue-600/30 dark:border-blue-400/30 px-5 py-3 text-[10px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest transition-all hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white active:scale-95 shadow-sm"
                     >
                       <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 group-hover:-translate-y-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17v3a2 2 0 002 2h14a2 2 0 002-2v-3" /></svg>
                       Download PDF
                     </button>
                  </div>
 
-                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4 xl:gap-6">
                     <div>
                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1.5">Payment status</p>
-                       <span className={`px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border inline-block ${PAYMENT_COLORS[invoice.payment_status] || ''}`}>
+                       <span className={`inline-block whitespace-nowrap px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border ${PAYMENT_COLORS[invoice.payment_status] || ''}`}>
                          {formatLabel(invoice.payment_status)}
                        </span>
                     </div>
@@ -236,8 +236,8 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
               </section>
 
               {/* Itemized Table */}
-              <section className="rounded-[32px] border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]/50 shadow-xl overflow-hidden">
-                 <div className="px-8 py-6 border-b border-slate-100 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/30">
+              <section className="overflow-hidden rounded-[32px] border border-slate-200 bg-white dark:border-slate-800 dark:bg-[#0B1120]/50 shadow-xl">
+                 <div className="border-b border-slate-100 bg-slate-50/50 px-5 py-5 dark:border-slate-800 dark:bg-slate-900/30 sm:px-8 sm:py-6">
                     <h3 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-widest">Bill details</h3>
                  </div>
                  <div className="overflow-x-auto">
@@ -272,7 +272,7 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
             {/* Payment & Sidebar */}
             <div className="space-y-8">
                {invoice.payment_status !== 'completed' && (
-                 <section className="rounded-[32px] border border-blue-200 dark:border-blue-800 bg-blue-50/50 dark:bg-[#0B1120]/80 p-8 shadow-xl relative overflow-hidden group border-2">
+                 <section className="relative overflow-hidden rounded-[32px] border-2 border-blue-200 bg-blue-50/50 p-5 shadow-xl group dark:border-blue-800 dark:bg-[#0B1120]/80 sm:p-8">
                     <div className="absolute top-0 right-0 w-48 h-48 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
                     
                     <div className="flex items-center gap-3 mb-8">
@@ -286,7 +286,7 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
                     </div>
 
                     <div className="space-y-6">
-                       <div className="rounded-3xl border-2 border-dashed border-blue-400/30 bg-white dark:bg-slate-900 p-6 flex flex-col items-center gap-4 transition-all hover:border-blue-500/50">
+                       <div className="flex flex-col items-center gap-4 rounded-3xl border-2 border-dashed border-blue-400/30 bg-white dark:bg-slate-900 p-4 transition-all hover:border-blue-500/50 sm:p-6">
                           {qrLoading ? (
                             <div className="h-[220px] w-full flex items-center justify-center">
                                <div className="w-10 h-10 border-4 border-blue-500/30 border-t-blue-500 rounded-full animate-spin"></div>
@@ -294,11 +294,11 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
                           ) : qrData?.upi_url ? (
                              <>
                                 <div className="rounded-2xl bg-white p-3 shadow-inner ring-1 ring-slate-100">
-                                   <QRCodeSVG value={qrData.upi_url} size={200} level="H" includeMargin className="dark:bg-white p-1 rounded-sm" />
+                                   <QRCodeSVG value={qrData.upi_url} size={180} level="H" includeMargin className="dark:bg-white p-1 rounded-sm sm:h-[200px] sm:w-[200px]" />
                                 </div>
                                 <div className="text-center">
                                    <p className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">₹{qrData.amount}</p>
-                                   <p className="mt-1 text-[9px] font-black text-slate-400 uppercase tracking-widest">{qrData.admin_upi_id}</p>
+                                   <p className="mt-1 break-all text-[9px] font-black text-slate-400 uppercase tracking-widest">{qrData.admin_upi_id}</p>
                                 </div>
                              </>
                           ) : (
@@ -323,7 +323,7 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
                           <button 
                              type="submit" 
                              disabled={isPaying || !payment.transaction_id.trim()} 
-                             className="w-full h-14 rounded-2xl bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 active:scale-95 disabled:opacity-50"
+                             className="h-14 w-full whitespace-nowrap rounded-2xl bg-blue-600 text-white text-[11px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 active:scale-95 disabled:opacity-50"
                           >
                              {isPaying ? 'PROCESSING...' : 'CONFIRM PAYMENT'}
                           </button>
@@ -333,13 +333,13 @@ function UserInvoiceDetailPage({ theme, onToggleTheme }) {
                )}
 
                {/* Associated Details */}
-               <section className="rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]/50 p-6 shadow-xl">
+               <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl dark:border-slate-800 dark:bg-[#0B1120]/50 sm:p-6">
                   <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Related job</h3>
                   <div className="space-y-4">
                      <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-100 dark:border-slate-800">
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Issue Reported</p>
                         <p className="text-sm font-bold text-slate-900 dark:text-white mt-0.5 capitalize">{invoice.job?.request?.issue_type?.replace(/_/g, ' ') || 'GENERAL SERVICE'}</p>
-                        <Link to={`/jobs/${invoice.job_id}`} className="mt-3 text-[9px] font-black text-blue-600 dark:text-blue-400 flex items-center gap-1 uppercase tracking-widest hover:translate-x-1 transition-transform">
+                        <Link to={`/jobs/${invoice.job_id}`} className="mt-3 flex items-center gap-1 whitespace-nowrap text-[9px] font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest hover:translate-x-1 transition-transform">
                            View job 
                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
                         </Link>

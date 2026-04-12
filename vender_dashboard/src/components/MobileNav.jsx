@@ -37,7 +37,7 @@ export default function MobileNav({ children }) {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="inline-flex items-center justify-center rounded-xl border border-slate-300 p-2 text-sm font-medium hover:bg-slate-100 md:hidden dark:border-slate-700 dark:hover:bg-slate-800"
+        className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white/50 dark:bg-slate-800/50 dark:border-slate-700 text-slate-500 hover:text-slate-900 md:hidden dark:text-slate-400 dark:hover:text-white transition-all shadow-sm"
         aria-label="Toggle menu"
         aria-expanded={open}
       >

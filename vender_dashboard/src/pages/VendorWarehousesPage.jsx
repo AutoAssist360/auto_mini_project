@@ -134,22 +134,22 @@ function VendorWarehousesPage({ theme, onToggleTheme }) {
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4 mt-6">
-          <div className="flex items-center gap-3 w-full sm:w-auto">
-             <Link to="/dashboard" className="flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all shadow-sm border border-slate-200/50 dark:border-slate-700/50" title="Back to Dashboard">
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-3 mt-6 mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+             <Link to="/dashboard" className="shrink-0 flex items-center justify-center w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-white dark:hover:bg-slate-700 hover:scale-105 active:scale-95 transition-all shadow-sm border border-slate-200/50 dark:border-slate-700/50" title="Back to Dashboard">
                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                </svg>
              </Link>
-             <h1 className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase flex items-center gap-2">
-               <span className="text-blue-500 text-2xl">🏢</span> Locations
+             <h1 className="text-base sm:text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase flex items-center gap-2 truncate">
+               <span className="text-blue-500 text-xl shrink-0">🏢</span> <span className="truncate">Locations</span>
              </h1>
           </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={openCreate} className="rounded-full bg-blue-600 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 active:scale-95 transition-all">
-              + Add Location
+          <div className="shrink-0 flex items-center gap-2">
+            <button type="button" onClick={openCreate} className="whitespace-nowrap rounded-full bg-blue-600 px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-blue-500/20 hover:bg-blue-500 active:scale-95 transition-all">
+              + Add
             </button>
-            <button type="button" onClick={onToggleTheme} className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
+            <button type="button" onClick={onToggleTheme} className="hidden sm:flex whitespace-nowrap rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
               {theme === 'dark' ? '☀ Light' : '☾ Dark'}
             </button>
           </div>
@@ -252,9 +252,9 @@ function VendorWarehousesPage({ theme, onToggleTheme }) {
                       🏢
                     </div>
                     <div>
-                      <div className="flex items-center gap-3">
+                      <div className="flex flex-wrap items-center gap-3">
                         <h3 className="text-xl font-black text-slate-900 dark:text-white uppercase tracking-tight">{w.name}</h3>
-                        <span className={`rounded-lg px-2 py-0.5 text-[9px] font-black uppercase tracking-widest ${w.is_active ? 'bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-800/50' : 'bg-red-100 text-red-700 border border-red-200 dark:bg-red-900/40 dark:text-red-300 dark:border-red-800/50'}`}>
+                        <span className={`whitespace-nowrap rounded-lg px-2 py-0.5 text-[9px] font-black uppercase tracking-widest ${w.is_active ? 'bg-blue-100 text-blue-700 border border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-800/50' : 'bg-red-100 text-red-700 border border-red-200 dark:bg-red-900/40 dark:text-red-300 dark:border-red-800/50'}`}>
                           {w.is_active ? 'Active' : 'Inactive'}
                         </span>
                       </div>
