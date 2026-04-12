@@ -245,29 +245,29 @@ function AdminRequestDetailPage() {
               Technician offers ({req.offers.length})
             </h2>
             <div className="overflow-x-auto rounded-3xl border border-slate-100 dark:border-slate-800">
-              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight">
+              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight min-w-[800px]">
                 <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 text-slate-400">
                   <tr>
-                    <th className="px-6 py-4">Technician</th>
-                    <th className="px-6 py-4">Deployment</th>
-                    <th className="px-6 py-4 text-right">Settlement (₹)</th>
-                    <th className="px-6 py-4 text-center">Cycle Time</th>
-                    <th className="px-6 py-4 text-right">Status</th>
+                    <th className="px-6 py-4 whitespace-nowrap">Technician</th>
+                    <th className="px-6 py-4 whitespace-nowrap">Deployment</th>
+                    <th className="px-6 py-4 text-right whitespace-nowrap">Settlement (₹)</th>
+                    <th className="px-6 py-4 text-center whitespace-nowrap">Cycle Time</th>
+                    <th className="px-6 py-4 text-right whitespace-nowrap">Status</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                   {req.offers.map((o) => (
                     <tr key={o.offer_id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all group/row">
-                      <td className="px-6 py-6 font-['Outfit']">
+                      <td className="px-6 py-6 font-['Outfit'] whitespace-nowrap">
                         <Link to={`/admin/technicians/${o.technician_id}`} className="text-slate-900 dark:text-white font-black hover:text-blue-500 transition-colors uppercase">
                           {o.technician?.user?.full_name || o.technician_id.slice(0, 8)}
                         </Link>
                         <p className="text-[8px] text-slate-400 tracking-widest mt-1 font-['Inter'] font-black">TECH_NODE_IDX</p>
                       </td>
-                      <td className="px-6 py-6 text-slate-500 font-black">{formatLabel(o.repair_mode)}</td>
-                      <td className="px-6 py-6 text-right text-slate-900 dark:text-white font-black">₹{Number(o.estimated_cost).toLocaleString()}</td>
-                      <td className="px-6 py-6 text-center text-slate-500 font-black tabular-nums">{o.estimated_time} MIN</td>
-                      <td className="px-6 py-6 text-right">
+                      <td className="px-6 py-6 text-slate-500 font-black whitespace-nowrap">{formatLabel(o.repair_mode)}</td>
+                      <td className="px-6 py-6 text-right text-slate-900 dark:text-white font-black whitespace-nowrap">₹{Number(o.estimated_cost).toLocaleString()}</td>
+                      <td className="px-6 py-6 text-center text-slate-500 font-black tabular-nums whitespace-nowrap">{o.estimated_time} MIN</td>
+                      <td className="px-6 py-6 text-right whitespace-nowrap">
                         <span className="inline-flex px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-600 border border-slate-200 dark:border-slate-800 text-[8px] font-black uppercase tracking-widest">
                           {formatLabel(o.status)}
                         </span>

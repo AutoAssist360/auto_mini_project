@@ -75,48 +75,48 @@ function AdminRequestsPage() {
         <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
           {loading ? <ListSkeleton /> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Request ID</th>
-                    <th className="pb-6 pr-4">Customer</th>
-                    <th className="pb-6 pr-4">Issue Type</th>
-                    <th className="pb-6 pr-4 text-center">Status</th>
-                    <th className="pb-6 pr-4 text-center">Offers</th>
-                    <th className="pb-6 text-right">Created</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Request ID</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Customer</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Issue Type</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Status</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Offers</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Created</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {requests.map((r) => (
                     <tr key={r.request_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/requests/${r.request_id}`} className="group-hover/row:text-blue-600 transition-all">
                           <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">#{r.request_id.slice(0, 8)}</p>
                           <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5 font-['Inter'] font-black">Request record</p>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight leading-none">{r.user?.full_name || '--'}</p>
                         <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-1 font-['Inter'] font-black">Customer</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                            <div className="w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700"></div>
                            <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight capitalize">{formatLabel(r.issue_type)}</p>
                         </div>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm ${r.status === 'completed' ? 'text-emerald-500' : 'text-blue-500'}`}>
                           <div className={`w-1 h-1 rounded-full ${r.status === 'completed' ? 'bg-emerald-500' : 'bg-blue-500 animate-pulse'}`}></div>
                           {formatLabel(r.status)}
                         </span>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-800 text-[10px] font-black text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700">
                           {r._count?.offers ?? 0}
                         </span>
                       </td>
-                      <td className="py-6 text-right font-['Inter']">
+                      <td className="py-6 text-right font-['Inter'] whitespace-nowrap">
                         <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mb-1">{new Date(r.created_at).toLocaleDateString()}</p>
                         <Link to={`/admin/requests/${r.request_id}`} className="text-[9px] font-black text-blue-600 dark:text-blue-500 uppercase tracking-widest hover:underline transition-all font-['Outfit']">
                           Inspect Event →
@@ -138,7 +138,7 @@ function AdminRequestsPage() {
           )}
 
           {/* pagination section */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between flex-wrap">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-600 text-center md:text-left">
               Page <span className="text-blue-600 dark:text-blue-400">{pagination.page || 1}</span> of <span className="text-slate-900 dark:text-white">{pagination.totalPages || 1}</span>
             </span>

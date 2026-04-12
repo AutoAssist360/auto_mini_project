@@ -37,7 +37,7 @@ function AdminUsersPage() {
       </div>
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+        <div className="mb-8 flex flex-col gap-4 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left flex-wrap">
           <div>
             <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white uppercase">Users</h1>
             <p className="mt-1 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.2em]">View and manage customer accounts</p>
@@ -48,7 +48,7 @@ function AdminUsersPage() {
         </div>
 
         {/* glass filters */}
-        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center">
+        <div className="mb-8 p-6 rounded-[32px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-xl shadow-xl flex flex-wrap gap-4 items-center flex-wrap">
           <div className="relative min-w-0 flex-grow sm:min-w-[280px]">
             <input
               value={search}
@@ -84,21 +84,21 @@ function AdminUsersPage() {
         {!loading && (
           <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">User</th>
-                    <th className="pb-6 pr-4">Email</th>
-                    <th className="pb-6 pr-4">Role</th>
-                    <th className="pb-6 pr-4">Status</th>
-                    <th className="pb-6 pr-4">Joined</th>
-                    <th className="pb-6 text-right">Actions</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">User</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Email</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Role</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Status</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Joined</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {users.map((u) => (
                     <tr key={u.user_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <Link to={`/admin/users/${u.user_id}`} className="flex items-center gap-3 group">
                           <div className="w-10 h-10 rounded-full bg-blue-600/10 flex items-center justify-center text-blue-600 text-xs font-black group-hover:bg-blue-600 group-hover:text-white transition-all shadow-inner uppercase">
                             {u.full_name[0]}
@@ -109,13 +109,13 @@ function AdminUsersPage() {
                           </div>
                         </Link>
                       </td>
-                      <td className="py-5 pr-4 text-slate-500 dark:text-slate-400">{u.email}</td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 text-slate-500 dark:text-slate-400 whitespace-nowrap">{u.email}</td>
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <span className="inline-block px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-300">
                           {u.role}
                         </span>
                       </td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         {u.is_active ? (
                           <div className="flex items-center gap-2">
                             <div className="w-1.5 h-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)]"></div>
@@ -128,10 +128,10 @@ function AdminUsersPage() {
                           </div>
                         )}
                       </td>
-                      <td className="py-5 pr-4 text-slate-400 font-medium uppercase tracking-tighter">
+                      <td className="py-5 pr-4 text-slate-400 font-medium uppercase tracking-tighter whitespace-nowrap">
                         {new Date(u.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
                       </td>
-                      <td className="py-5 text-right">
+                      <td className="py-5 text-right whitespace-nowrap">
                         <div className="flex justify-end gap-2">
                           {u.role !== 'admin' && (
                             <>

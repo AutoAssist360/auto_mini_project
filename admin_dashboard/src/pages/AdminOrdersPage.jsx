@@ -75,50 +75,50 @@ function AdminOrdersPage() {
         <div className="relative group rounded-[40px] border border-white/20 dark:border-slate-800/50 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-2xl p-4 md:p-8 shadow-2xl transition-all duration-500">
           {loading ? <ListSkeleton /> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs font-bold font-['Outfit']">
+              <table className="w-full text-left text-xs font-bold font-['Outfit'] min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Order ID</th>
-                    <th className="pb-6 pr-4">Customer</th>
-                    <th className="pb-6 pr-4">Warehouse</th>
-                    <th className="pb-6 pr-4">Total</th>
-                    <th className="pb-6 pr-4 text-center">Order Status</th>
-                    <th className="pb-6 pr-4 text-center">Payment Status</th>
-                    <th className="pb-6 text-right">Created</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Order ID</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Customer</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Warehouse</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Total</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Order Status</th>
+                    <th className="pb-6 pr-4 text-center whitespace-nowrap">Payment Status</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Created</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/30">
                   {orders.map((o) => (
                     <tr key={o.order_id} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <Link to={`/admin/orders/${o.order_id}`} className="group-hover/row:text-blue-600 transition-all">
                           <p className="text-slate-900 dark:text-white uppercase tracking-tight font-black">#{o.order_number || o.order_id.slice(0, 8)}</p>
                           <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5">Order record</p>
                         </Link>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight">{o.user?.full_name || '--'}</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold uppercase tracking-tight truncate max-w-[150px]">{o.warehouse?.name || '--'}</p>
                         <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5">{o.warehouse?.city || 'Unknown city'}</p>
                       </td>
-                      <td className="py-6 pr-4">
+                      <td className="py-6 pr-4 whitespace-nowrap">
                          <p className="text-sm font-black text-slate-900 dark:text-white leading-none">₹{Number(o.total).toLocaleString()}</p>
                          <p className="text-[8px] text-slate-400 uppercase tracking-widest mt-1">Order total</p>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-sm`}>
                           <div className={`w-1 h-1 rounded-full ${o.order_status === 'delivered' ? 'bg-green-500' : 'bg-blue-500 animate-pulse'}`}></div>
                           {formatLabel(o.order_status)}
                         </span>
                       </td>
-                      <td className="py-6 pr-4 text-center">
+                      <td className="py-6 pr-4 text-center whitespace-nowrap">
                         <span className={`inline-flex items-center px-2 py-0.5 rounded-lg text-[8px] font-black uppercase tracking-widest ${o.payment_status === 'completed' ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20' : 'bg-slate-100 dark:bg-slate-800 text-slate-500 border-slate-200 dark:border-slate-700'} border`}>
                           {formatLabel(o.payment_status)}
                         </span>
                       </td>
-                      <td className="py-6 text-right">
+                      <td className="py-6 text-right whitespace-nowrap">
                         <p className="text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest mb-1">{new Date(o.created_at).toLocaleDateString()}</p>
                         <Link to={`/admin/orders/${o.order_id}`} className="text-[9px] font-black text-blue-600 dark:text-blue-500 uppercase tracking-widest hover:underline transition-all">
                           Trace Transaction →
@@ -140,7 +140,7 @@ function AdminOrdersPage() {
           )}
 
           {/* pagination section */}
-          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between">
+          <div className="mt-8 flex flex-col gap-4 border-t border-slate-100 pt-8 dark:border-slate-800/50 md:flex-row md:items-center md:justify-between flex-wrap">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 dark:text-slate-600 text-center md:text-left">
               Page <span className="text-blue-600 dark:text-blue-400">{pagination.page || 1}</span> of <span className="text-slate-900 dark:text-white">{pagination.totalPages || 1}</span>
             </span>

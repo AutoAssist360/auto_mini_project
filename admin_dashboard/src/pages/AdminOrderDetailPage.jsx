@@ -166,27 +166,27 @@ function AdminOrderDetailPage() {
               Bill of Materials ({order.items.length})
             </h2>
             <div className="overflow-x-auto rounded-3xl border border-slate-100 dark:border-slate-800">
-              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight">
+              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight min-w-[800px]">
                 <thead className="bg-slate-50 dark:bg-slate-900/50 border-b border-slate-100 dark:border-slate-800 text-slate-400">
                   <tr>
-                    <th className="px-6 py-4">Part Specification</th>
-                    <th className="px-6 py-4 text-center">Volume</th>
-                    <th className="px-6 py-4 text-right">Unit settlement</th>
-                    <th className="px-6 py-4 text-right">Gross Total (₹)</th>
+                    <th className="px-6 py-4 whitespace-nowrap">Part Specification</th>
+                    <th className="px-6 py-4 text-center whitespace-nowrap">Volume</th>
+                    <th className="px-6 py-4 text-right whitespace-nowrap">Unit settlement</th>
+                    <th className="px-6 py-4 text-right whitespace-nowrap">Gross Total (₹)</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/50">
                   {order.items.map((i) => (
                     <tr key={i.order_item_id} className="hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all group/row">
-                      <td className="px-6 py-6 border-transparent">
+                      <td className="px-6 py-6 border-transparent whitespace-nowrap">
                         <p className="text-slate-900 dark:text-white font-black">{i.part?.part_name || `PART_NODE_${i.part_id}`}</p>
                         <p className="text-[8px] text-slate-400 tracking-[0.2em] mt-1 italic">INV_SPEC_IDX</p>
                       </td>
-                      <td className="px-6 py-6 text-center border-transparent">
+                      <td className="px-6 py-6 text-center border-transparent whitespace-nowrap">
                         <span className="px-3 py-1 rounded-lg bg-slate-100 dark:bg-slate-900/50 text-slate-900 dark:text-white font-black">{i.quantity}</span>
                       </td>
-                      <td className="px-6 py-6 text-right text-slate-500 font-black border-transparent">₹{Number(i.unit_price).toLocaleString()}</td>
-                      <td className="px-6 py-6 text-right text-slate-900 dark:text-white font-black border-transparent">₹{Number(i.total_price).toLocaleString()}</td>
+                      <td className="px-6 py-6 text-right text-slate-500 font-black border-transparent whitespace-nowrap">₹{Number(i.unit_price).toLocaleString()}</td>
+                      <td className="px-6 py-6 text-right text-slate-900 dark:text-white font-black border-transparent whitespace-nowrap">₹{Number(i.total_price).toLocaleString()}</td>
                     </tr>
                   ))}
                 </tbody>

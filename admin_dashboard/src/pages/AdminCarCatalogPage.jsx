@@ -255,7 +255,7 @@ function Section({ title, description, toolbar, alert, form, table }) {
     <div className="space-y-6">
       <div className={`${card} p-8 overflow-hidden relative`}>
         <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 blur-3xl rounded-full"></div>
-        <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between flex-wrap">
           <div className="max-w-2xl">
             <h2 className="text-2xl font-black uppercase tracking-tight text-slate-900 dark:text-white leading-none mb-3">{title}</h2>
             <p className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest leading-loose">{description}</p>

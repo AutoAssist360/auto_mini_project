@@ -329,26 +329,26 @@ function AdminAnalyticsPage() {
                </div>
                
                <div className="overflow-x-auto">
-                 <table className="w-full text-left font-['Outfit']">
+                 <table className="w-full text-left font-['Outfit'] min-w-[800px]">
                     <thead>
                       <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                        <th className="pb-6 pr-6">Rank</th>
-                        <th className="pb-6 pr-6">Technician</th>
-                        <th className="pb-6 text-right">Completed Jobs</th>
+                        <th className="pb-6 pr-6 whitespace-nowrap">Rank</th>
+                        <th className="pb-6 pr-6 whitespace-nowrap">Technician</th>
+                        <th className="pb-6 text-right whitespace-nowrap">Completed Jobs</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-slate-50 dark:divide-slate-800/20">
                       {(pf('topTechnicians', 'top_technicians') || []).map((t, i) => (
                         <tr key={i} className="group/row hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                          <td className="py-6 pr-6">
+                          <td className="py-6 pr-6 whitespace-nowrap">
                              <div className="w-8 h-8 rounded-xl bg-slate-900 dark:bg-white flex items-center justify-center text-white dark:text-slate-900 text-[10px] font-black shadow-lg">
                                {i + 1}
                              </div>
                           </td>
-                          <td className="py-6 pr-6">
+                          <td className="py-6 pr-6 whitespace-nowrap">
                             <p className="text-sm font-black uppercase tracking-tight text-slate-900 dark:text-white">{t.name || t.full_name || '--'}</p>
                           </td>
-                          <td className="py-6 text-right">
+                          <td className="py-6 text-right whitespace-nowrap">
                              <p className="text-lg font-black text-blue-600 dark:text-blue-400">{t.completed_jobs ?? t.completedJobs ?? '--'}</p>
                           </td>
                         </tr>

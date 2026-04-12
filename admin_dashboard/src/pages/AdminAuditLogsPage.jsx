@@ -139,15 +139,15 @@ function AdminAuditLogsPage() {
 
           {loading ? <ListSkeleton /> : (
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight">
+              <table className="w-full text-left text-[11px] font-bold uppercase tracking-tight min-w-[800px]">
                 <thead>
                   <tr className="border-b-2 border-slate-100 dark:border-slate-800/50 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
-                    <th className="pb-6 pr-4">Time</th>
-                    <th className="pb-6 pr-4">Type</th>
-                    <th className="pb-6 pr-4">Record ID</th>
-                    <th className="pb-6 pr-4">Action</th>
-                    <th className="pb-6 pr-4">Done by</th>
-                    <th className="pb-6 text-right">Changes</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Time</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Type</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Record ID</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Action</th>
+                    <th className="pb-6 pr-4 whitespace-nowrap">Done by</th>
+                    <th className="pb-6 text-right whitespace-nowrap">Changes</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50 dark:divide-slate-800/20 font-['Outfit']">
@@ -157,25 +157,25 @@ function AdminAuditLogsPage() {
                         <p className="text-slate-900 dark:text-white font-black">{new Date(l.created_at).toLocaleDateString()}</p>
                         <p className="text-[8px] text-slate-400 tracking-widest mt-1 font-['Inter'] font-black">{new Date(l.created_at).toLocaleTimeString()}</p>
                       </td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <span className="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-[8px] font-black text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-700">
                           {l.entity_type?.replace(/_/g, ' ')}
                         </span>
                       </td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-black tabular-nums font-mono text-[10px]">#{l.entity_id?.slice(0, 8)}</p>
                       </td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <div className="flex items-center gap-2">
                            <div className={`w-1.5 h-1.5 rounded-full ${l.action === 'delete' ? 'bg-red-500' : 'bg-blue-500'}`}></div>
                            <p className="text-slate-900 dark:text-slate-200 font-black tracking-tight">{l.action?.replace(/_/g, ' ')}</p>
                         </div>
                       </td>
-                      <td className="py-5 pr-4">
+                      <td className="py-5 pr-4 whitespace-nowrap">
                         <p className="text-slate-900 dark:text-slate-200 font-bold tracking-tight">{l.performer?.full_name || '--'}</p>
                         <p className="text-[8px] text-slate-400 tracking-widest mt-1 font-['Inter'] font-black">{l.performed_by?.slice(0, 8) || 'SYSTEM'}</p>
                       </td>
-                      <td className="py-5 text-right font-['Inter']">
+                      <td className="py-5 text-right font-['Inter'] whitespace-nowrap">
                         <div className="flex justify-end gap-1.5">
                            {l.old_values && (
                              <span className="px-2 py-0.5 rounded bg-red-500/10 text-red-500 text-[8px] font-black border border-red-500/20 cursor-help" title={JSON.stringify(l.old_values)}>OLD_VALUES</span>

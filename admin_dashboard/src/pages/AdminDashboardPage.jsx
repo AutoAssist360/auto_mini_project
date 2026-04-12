@@ -29,6 +29,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
 
   const [data, setData] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [showWelcome, setShowWelcome] = useState(true)
   const [unread, setUnread] = useState(0)
   const [profile, setProfile] = useState(null)
   const [profileLoading, setProfileLoading] = useState(true)
@@ -249,7 +250,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
 
       <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Floating Capsule Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl transition-all">
+        <header className="relative z-50 mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl transition-all">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center gap-2">
               <span className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase sm:text-xl">Admin Dashboard</span>
@@ -262,11 +263,13 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
               </div>
 
               <MobileNav>
-                <Link to="/admin/notifications" className="relative flex h-11 w-full items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-slate-600 transition-all hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 md:h-10 md:w-10 md:rounded-full">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                  </svg>
-                  {unread > 0 && <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold ring-2 ring-white dark:ring-[#0B1120] text-white">{unread}</span>}
+                <Link to="/admin/notifications" className="flex h-11 w-full items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 text-slate-600 transition-all hover:bg-slate-200 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 md:h-10 md:w-10 md:rounded-full">
+                  <div className="relative flex items-center justify-center">
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                    </svg>
+                    {unread > 0 && <span className="absolute top-0 right-0 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-blue-600 px-1.5 text-[10px] font-bold text-white ring-2 ring-white dark:ring-[#0B1120] transform translate-x-[70%] -translate-y-[40%] whitespace-nowrap leading-none">{unread}</span>}
+                  </div>
                 </Link>
 
                 <button
@@ -301,17 +304,27 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
         {!loading && (
           <>
             {/* Hero Section */}
-            <section className="mb-8 rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-gradient-to-br dark:from-[#0B1120] dark:to-[#040814] p-8 md:p-12 shadow-xl dark:shadow-2xl relative overflow-hidden group hover:border-blue-500 transition-all duration-700">
-              <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.02),transparent)] pointer-events-none"></div>
-              <div className="absolute inset-0 bg-blue-600/[0.02] dark:bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+            {showWelcome && (
+              <section className="mb-8 rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-gradient-to-br dark:from-[#0B1120] dark:to-[#040814] p-8 md:p-12 shadow-xl dark:shadow-2xl relative overflow-hidden group hover:border-blue-500 transition-all duration-700">
+                <button
+                  type="button"
+                  onClick={() => setShowWelcome(false)}
+                  className="absolute top-6 right-6 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-slate-100/50 text-slate-500 transition-all hover:bg-slate-200 hover:text-slate-900 dark:bg-slate-800/50 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-white"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+                <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.02),transparent)] pointer-events-none"></div>
+                <div className="absolute inset-0 bg-blue-600/[0.02] dark:bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                  Admin access
-                </div>
+                <div className="relative z-10">
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                    Admin access
+                  </div>
 
-                <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-6 group-hover:translate-x-2 transition-transform duration-700 uppercase">
+                  <h2 className="text-4xl md:text-7xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-6 group-hover:translate-x-2 transition-transform duration-700 uppercase">
                   Welcome back, <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 bg-clip-text text-transparent">{profileForm.full_name?.split(' ')[0] || 'Admin'}</span>
                 </h2>
 
@@ -331,6 +344,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
                 </div>
               </div>
             </section>
+            )}
 
             <section className="mb-8">
               <div className="mb-5 px-1">
@@ -358,7 +372,7 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
               <div className="space-y-6">
                 {/* Key Metrics Grid */}
                 <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                   {[
+                  {[
                     ['Users', s.users?.total, 'bg-blue-100 text-blue-600 dark:bg-blue-900/30', s.users?.active ?? 0],
                     ['Technicians', s.technicians?.total, 'bg-amber-100 text-amber-600 dark:bg-amber-900/30', s.technicians?.online ?? 0],
                     ['Vendors', s.vendors?.total, 'bg-purple-100 text-purple-600 dark:bg-purple-900/30', 'Partners'],
@@ -429,8 +443,8 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
                         </article>
                       ))}
                     </div>
-                    <div className="hidden overflow-x-auto md:block">
-                      <table className="w-full text-left text-[11px] font-bold">
+                    <div className="hidden overflow-x-auto md:block w-full">
+                      <table className="w-full min-w-[600px] text-left text-[11px] font-bold">
                         <thead>
                           <tr className="border-b-2 border-slate-100 dark:border-slate-800 uppercase tracking-widest text-slate-400">
                             <th className="pb-4 pr-4">User</th>
@@ -442,14 +456,14 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
                         <tbody className="divide-y divide-slate-50 dark:divide-slate-800/50">
                           {s.recentRequests.map((request) => (
                             <tr key={request.request_id} className="group hover:bg-slate-50 dark:hover:bg-slate-800/30 transition-all">
-                              <td className="py-4 pr-4 text-slate-900 dark:text-white uppercase tracking-tight">{request.user?.full_name || '--'}</td>
-                              <td className="py-4 pr-4 text-slate-500 dark:text-slate-400 uppercase tracking-wider">{request.issue_type?.replace(/_/g, ' ')}</td>
-                              <td className="py-4 pr-4 text-center">
+                              <td className="py-4 pr-4 text-slate-900 dark:text-white uppercase tracking-tight whitespace-nowrap">{request.user?.full_name || '--'}</td>
+                              <td className="py-4 pr-4 text-slate-500 dark:text-slate-400 uppercase tracking-wider whitespace-nowrap">{request.issue_type?.replace(/_/g, ' ')}</td>
+                              <td className="py-4 pr-4 text-center whitespace-nowrap">
                                 <span className="inline-block rounded-full bg-slate-100 dark:bg-slate-800 px-3 py-1 text-[9px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-400">
                                   {request.status.replace(/_/g, ' ')}
                                 </span>
                               </td>
-                              <td className="py-4 text-right text-slate-400 font-medium">{new Date(request.created_at).toLocaleDateString()}</td>
+                              <td className="py-4 text-right text-slate-400 font-medium whitespace-nowrap">{new Date(request.created_at).toLocaleDateString()}</td>
                             </tr>
                           ))}
                         </tbody>

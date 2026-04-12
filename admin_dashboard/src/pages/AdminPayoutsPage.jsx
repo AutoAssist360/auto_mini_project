@@ -142,10 +142,10 @@ function AdminPayoutsPage() {
             <div className="space-y-4">
               {payouts.map((p) => (
                 <div key={p.payout_id} className="rounded-3xl border border-slate-100 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/30 p-6 transition-all hover:shadow-lg">
-                  <div className="flex flex-wrap items-start justify-between gap-6">
-                    <div className="space-y-3 flex-1">
-                      <div className="flex items-center gap-3">
-                        <span className="text-sm font-black uppercase tracking-tight">{p.recipient?.full_name || 'UNKNOWN'}</span>
+                  <div className="flex flex-col sm:flex-row items-start justify-between gap-6">
+                    <div className="space-y-3 flex-1 w-full min-w-0">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="text-sm font-black uppercase tracking-tight break-words">{p.recipient?.full_name || 'UNKNOWN'}</span>
                         <span className={`px-3 py-1 rounded-full text-[8px] font-black uppercase tracking-widest ${p.recipient_role === 'technician' ? 'bg-blue-600/10 text-blue-600 border border-blue-600/20' : 'bg-purple-600/10 text-purple-600 border border-purple-600/20'}`}>
                           {p.recipient_role}
                         </span>
@@ -174,26 +174,26 @@ function AdminPayoutsPage() {
                       )}
                     </div>
                     
-                    <div className="text-right space-y-2 flex flex-col items-end">
-                      <div className="space-y-1.5 font-mono text-[10px] text-right">
+                    <div className="sm:text-right space-y-2 flex flex-col items-start sm:items-end w-full sm:w-auto mt-4 sm:mt-0 pt-4 sm:pt-0 border-t border-slate-100 dark:border-slate-800/50 sm:border-0">
+                      <div className="space-y-1.5 font-mono text-[10px] w-full text-left sm:text-right">
                         {p.recipient?.upi_id && (
-                          <div className="flex items-center gap-3 justify-end">
+                          <div className="flex items-center gap-3 justify-start sm:justify-end">
                             <span className="text-slate-400 text-[8px] font-black uppercase">UPI:</span>
                             <span className="font-black text-blue-600 dark:text-blue-400 select-all">{p.recipient.upi_id}</span>
                           </div>
                         )}
                         {p.recipient?.bank_account_number && (
                           <>
-                            <div className="flex items-center gap-3 justify-end">
+                            <div className="flex items-center gap-3 justify-start sm:justify-end">
                               <span className="text-slate-400 text-[8px] font-black uppercase">A/C:</span>
                               <span className="font-black select-all">{p.recipient.bank_account_number}</span>
                             </div>
-                            <div className="flex items-center gap-3 justify-end">
+                            <div className="flex items-center gap-3 justify-start sm:justify-end">
                               <span className="text-slate-400 text-[8px] font-black uppercase">IFSC:</span>
                               <span className="font-black select-all uppercase">{p.recipient.bank_ifsc}</span>
                             </div>
                             {p.recipient.bank_holder_name && (
-                              <div className="flex items-center gap-3 justify-end">
+                              <div className="flex items-center gap-3 justify-start sm:justify-end">
                                 <span className="text-slate-400 text-[8px] font-black uppercase">Name:</span>
                                 <span className="font-black uppercase text-[9px]">{p.recipient.bank_holder_name}</span>
                               </div>
