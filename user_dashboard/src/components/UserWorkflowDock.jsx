@@ -144,9 +144,9 @@ function UserWorkflowDock() {
   return (
     <nav className="pointer-events-none fixed inset-x-0 bottom-3 z-50 px-3 sm:px-6">
       <div ref={dockRef} className="pointer-events-auto mx-auto max-w-6xl rounded-[28px] border border-slate-200/80 bg-white/92 p-3 shadow-2xl backdrop-blur-xl dark:border-slate-700/70 dark:bg-[#020617]/90">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-row-reverse">
           <div className="min-w-0 flex-1 rounded-2xl border border-blue-500/10 bg-blue-50/80 px-4 py-3 dark:border-blue-500/20 dark:bg-blue-500/10">
-            <p className="text-[10px] font-black uppercase tracking-[0.28em] text-blue-600 dark:text-blue-400">
+            <p className="text-[10px] font-black uppercase tracking-[0.22em] text-blue-600 dark:text-blue-400">
               Quick guide
             </p>
             <p className="truncate text-sm font-bold text-slate-900 dark:text-white">
@@ -183,7 +183,7 @@ function UserWorkflowDock() {
                 <button
                   type="button"
                   onClick={handleBack}
-                  className="inline-flex h-11 min-w-0 items-center justify-center rounded-2xl border border-slate-200 bg-slate-100 px-4 text-[10px] font-black uppercase tracking-[0.22em] text-slate-700 transition-all hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:bg-slate-700 dark:hover:text-blue-400"
+                  className="inline-flex h-11 min-w-0 items-center justify-center whitespace-nowrap rounded-2xl border border-slate-200 bg-slate-100 px-4 text-[10px] font-black uppercase tracking-[0.16em] text-slate-700 transition-all hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:bg-slate-700 dark:hover:text-blue-400"
                 >
                   Back
                 </button>
@@ -193,7 +193,7 @@ function UserWorkflowDock() {
                 <button
                   type="button"
                   onClick={() => navigate(nextItem.to)}
-                  className="inline-flex h-11 min-w-0 items-center justify-center rounded-2xl bg-slate-900 px-4 text-[10px] font-black uppercase tracking-[0.22em] text-white transition-all hover:bg-blue-600 dark:bg-white dark:text-slate-900 dark:hover:bg-blue-500 dark:hover:text-white"
+                  className="inline-flex h-11 min-w-0 items-center justify-center overflow-hidden text-ellipsis whitespace-nowrap rounded-2xl bg-slate-900 px-4 text-[10px] font-black uppercase tracking-[0.14em] text-white transition-all hover:bg-blue-600 dark:bg-white dark:text-slate-900 dark:hover:bg-blue-500 dark:hover:text-white"
                 >
                   Next: {nextItem.label}
                 </button>
@@ -209,7 +209,7 @@ function UserWorkflowDock() {
                     key={item.to}
                     type="button"
                     onClick={() => navigate(item.to)}
-                    className={`min-w-0 rounded-2xl border px-3 py-2.5 text-center text-[10px] font-black uppercase leading-tight tracking-[0.2em] transition-all lg:px-4 ${
+                    className={`min-w-0 overflow-hidden text-ellipsis whitespace-nowrap rounded-2xl border px-3 py-2.5 text-center text-[10px] font-black uppercase tracking-[0.14em] transition-all lg:px-4 ${
                       isActive
                         ? 'border-blue-600 bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                         : 'border-slate-200 bg-slate-100 text-slate-700 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:bg-slate-700 dark:hover:text-blue-400'

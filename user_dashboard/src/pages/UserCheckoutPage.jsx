@@ -328,7 +328,7 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
             {
               return (
                 <section key={`${ group.warehouse_id || group.warehouse_name || 'group' }-${ index }`} className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
-                  <div className="mb-4 flex items-center justify-between border-b border-slate-100 pb-3 dark:border-slate-800">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-3 dark:border-slate-800">
                     <div>
                       <h2 className="flex items-center gap-2 font-semibold text-slate-900 dark:text-white">
                         <span className="text-xl">🏪</span>
@@ -341,24 +341,24 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
                   <div className="space-y-4">
                     {group.items.map( ( item ) => (
                       <div key={item.part_id} className="flex flex-wrap justify-between gap-4 rounded-2xl border border-transparent bg-slate-50 p-3 dark:bg-slate-800/50">
-                        <div className="min-w-50 flex-1">
+                        <div className="min-w-0 flex-1 sm:min-w-[12rem]">
                           <p className="text-sm font-semibold text-slate-900 dark:text-white">{item.part_name}</p>
                           <p className="mt-1 text-xs font-medium uppercase tracking-wide text-blue-600 dark:text-blue-400">{item.category_name}</p>
                           <p className="mt-2 text-sm text-slate-500">
                             Qty: <span className="font-semibold text-slate-800 dark:text-slate-200">{item.quantity}</span>
                           </p>
                         </div>
-                        <div className="text-right">
-                          <p className="text-sm font-bold text-slate-900 dark:text-white">{formatPrice( item.unit_cost * item.quantity )}</p>
-                          <p className="mt-0.5 text-xs text-slate-400">{formatPrice( item.unit_cost )} each</p>
+                        <div className="text-left sm:text-right">
+                          <p className="whitespace-nowrap text-sm font-bold text-slate-900 dark:text-white">{formatPrice( item.unit_cost * item.quantity )}</p>
+                          <p className="mt-0.5 whitespace-nowrap text-xs text-slate-400">{formatPrice( item.unit_cost )} each</p>
                         </div>
                       </div>
                     ) )}
                   </div>
 
-                  <div className="mt-4 flex items-center justify-between border-t border-slate-100 px-2 pt-3 dark:border-slate-800">
+                  <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 px-2 pt-3 dark:border-slate-800">
                     <span className="text-sm font-medium text-slate-500">Seller subtotal</span>
-                    <span className="text-sm font-bold text-slate-900 dark:text-white">{formatPrice( group.subtotal )}</span>
+                    <span className="whitespace-nowrap text-sm font-bold text-slate-900 dark:text-white">{formatPrice( group.subtotal )}</span>
                   </div>
                 </section>
               )
@@ -379,12 +379,12 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
 
                 <div className="mt-5 grid gap-5 lg:grid-cols-[240px,1fr]">
                   <div className="rounded-3xl border border-blue-200 bg-blue-50 p-4 dark:border-blue-900/50 dark:bg-blue-900/20">
-                    <div className="rounded-2xl border-2 border-blue-300 bg-white p-3 dark:border-blue-700">
-                      <QRCodeSVG value={paymentOrder.upi_url} size={210} level="H" includeMargin />
+                    <div className="flex justify-center rounded-2xl border-2 border-blue-300 bg-white p-3 dark:border-blue-700">
+                      <QRCodeSVG value={paymentOrder.upi_url} size={180} level="H" includeMargin />
                     </div>
                     <a
                       href={paymentOrder.upi_url}
-                      className="mt-4 block rounded-xl bg-blue-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-500"
+                      className="mt-4 block whitespace-nowrap rounded-xl bg-blue-600 px-4 py-2 text-center text-sm font-semibold text-white hover:bg-blue-500"
                     >
                       Open in UPI App
                     </a>
@@ -411,7 +411,7 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
                         <button
                           type="button"
                           onClick={() => handleCopy( paymentOrder.vendor_upi_id, 'UPI ID' )}
-                          className="rounded-xl border border-slate-300 px-3 py-2 text-xs font-semibold hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
+                          className="whitespace-nowrap rounded-xl border border-slate-300 px-3 py-2 text-xs font-semibold hover:bg-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
                         >
                           Copy UPI ID
                         </button>
@@ -434,7 +434,7 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
                         type="button"
                         onClick={() => handleConfirmPayment( paymentOrder )}
                         disabled={paymentOrder.payment_status === 'completed' || paymentOrder.is_confirming}
-                        className="mt-3 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+                        className="mt-3 whitespace-nowrap rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
                       >
                         {paymentOrder.payment_status === 'completed'
                           ? 'Payment confirmed'
@@ -456,19 +456,19 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
               </h2>
 
               <div className="space-y-3 text-sm">
-                <div className="flex justify-between text-slate-600 dark:text-slate-400">
+                <div className="flex flex-wrap justify-between gap-2 text-slate-600 dark:text-slate-400">
                   <span>Items Subtotal</span>
-                  <span className="font-medium text-slate-900 dark:text-white">{formatPrice( activeCartTotal )}</span>
+                  <span className="whitespace-nowrap font-medium text-slate-900 dark:text-white">{formatPrice( activeCartTotal )}</span>
                 </div>
-                <div className="flex justify-between text-slate-600 dark:text-slate-400">
+                <div className="flex flex-wrap justify-between gap-2 text-slate-600 dark:text-slate-400">
                   <span>Estimated tax (18% GST)</span>
-                  <span className="font-medium text-slate-900 dark:text-white">{formatPrice( taxAmount )}</span>
+                  <span className="whitespace-nowrap font-medium text-slate-900 dark:text-white">{formatPrice( taxAmount )}</span>
                 </div>
 
                 <div className="mt-4 border-t border-slate-200 pt-4 dark:border-slate-700">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="text-base font-bold text-slate-900 dark:text-white">Grand Total</span>
-                    <span className="text-2xl font-black text-blue-600 dark:text-blue-400">{formatPrice( grandTotal )}</span>
+                    <span className="whitespace-nowrap text-2xl font-black text-blue-600 dark:text-blue-400">{formatPrice( grandTotal )}</span>
                   </div>
                 </div>
               </div>
@@ -491,7 +491,7 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
                       >
                         <p className="text-sm font-semibold">UPI Payment</p>
                         <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                          Create seller QR codes and confirm payment now.
+                          Create seller QR codes and pay now.
                         </p>
                       </button>
                       <button
@@ -620,7 +620,7 @@ function UserCheckoutPage ( { theme, onToggleTheme } )
                     type="button"
                     onClick={handleProceedToPay}
                     disabled={isPreparingPayment || !isDeliveryReady}
-                    className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-linear-to-r from-blue-600 to-green-600 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:from-blue-500 hover:to-green-500 disabled:cursor-not-allowed disabled:opacity-60"
+                    className="mt-6 flex w-full items-center justify-center gap-2 whitespace-nowrap rounded-2xl bg-linear-to-r from-blue-600 to-green-600 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-blue-600/25 transition-all hover:from-blue-500 hover:to-green-500 disabled:cursor-not-allowed disabled:opacity-60"
                   >
                     {isPreparingPayment
                       ? paymentMethod === 'cash_on_delivery'

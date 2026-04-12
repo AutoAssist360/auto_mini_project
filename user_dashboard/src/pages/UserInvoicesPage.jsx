@@ -74,8 +74,8 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
 
       <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <header className="mb-8 flex flex-wrap items-center justify-between gap-3 rounded-full border border-slate-200 bg-white/70 px-4 py-3 shadow-xl backdrop-blur-md dark:border-slate-800 dark:bg-[#0B1120]/80 sm:px-6">
+          <div className="flex min-w-0 items-center gap-3">
             <button onClick={() => navigate('/dashboard')} className="group w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-blue-500/50 transition-all">
               <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
@@ -84,12 +84,12 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
               <h1 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none">My Invoices</h1>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="hidden sm:block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{auth.user?.full_name}</span>
+          <div className="flex flex-wrap items-center justify-end gap-2">
+            <span className="hidden max-w-[12rem] truncate text-[10px] font-bold text-slate-400 uppercase tracking-widest sm:block">{auth.user?.full_name}</span>
             <button onClick={onToggleTheme} className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-sm hover:border-blue-500/50 transition-all">
               {theme === 'dark' ? '🌞' : '🌙'}
             </button>
-            <button onClick={handleLogout} className="px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-lg">
+            <button onClick={handleLogout} className="whitespace-nowrap px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-lg">
               LOGOUT
             </button>
           </div>
@@ -97,18 +97,18 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
 
         {/* Filters + Count */}
         <div className="mb-6 flex flex-wrap items-center gap-3">
-          <div className="flex items-center gap-2 p-1 rounded-2xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="flex max-w-full flex-wrap items-center gap-2 rounded-2xl border border-slate-200 bg-white p-1 shadow-sm dark:border-slate-800 dark:bg-[#0B1120]">
             {FILTERS.map((f) => (
               <button
                 key={f}
                 onClick={() => { setStatusFilter(f); setPage(1) }}
-                className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${statusFilter === f ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
+                className={`whitespace-nowrap px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${statusFilter === f ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-900 dark:hover:text-white'}`}
               >
                 {FILTER_LABELS[f]}
               </button>
             ))}
           </div>
-          <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{total} Invoice{total !== 1 ? 's' : ''}</span>
+          <span className="whitespace-nowrap text-[10px] font-black text-slate-400 uppercase tracking-widest">{total} Invoice{total !== 1 ? 's' : ''}</span>
         </div>
 
         {/* Error */}
@@ -172,13 +172,13 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
             <div className="md:hidden space-y-4">
               {invoices.map((inv) => (
                 <div key={inv.invoice_id} className="p-5 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#0B1120]/50 shadow-lg">
-                  <div className="flex items-center justify-between mb-4">
+                  <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                     <span className="font-mono text-[11px] font-bold text-slate-500">{inv.invoice_id?.slice(0, 8)}…</span>
-                    <span className={`px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${PAYMENT_COLORS[inv.payment_status] || 'bg-slate-100 text-slate-500 border-slate-200'}`}>
+                    <span className={`whitespace-nowrap px-2.5 py-1 rounded-full text-[9px] font-black uppercase tracking-widest border ${PAYMENT_COLORS[inv.payment_status] || 'bg-slate-100 text-slate-500 border-slate-200'}`}>
                       {formatLabel(inv.payment_status)}
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
                     <div>
                       <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Issue</p>
                       <p className="text-sm font-semibold capitalize">{inv.job?.request?.issue_type?.replace(/_/g, ' ') || '—'}</p>
@@ -196,7 +196,7 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
                       <p className="text-xs font-semibold">{new Date(getInvoiceDateLabel(inv)).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' })}</p>
                     </div>
                   </div>
-                  <Link to={`/invoices/${inv.invoice_id}`} className="w-full h-10 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest flex items-center justify-center hover:opacity-90 active:scale-95 transition-all">
+                  <Link to={`/invoices/${inv.invoice_id}`} className="flex h-10 w-full items-center justify-center whitespace-nowrap rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
                     View Invoice
                   </Link>
                 </div>
@@ -205,12 +205,12 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-3">
-                <button type="button" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <button type="button" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1} className="h-10 whitespace-nowrap px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
                   ← Prev
                 </button>
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{page} / {totalPages}</span>
-                <button type="button" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className="h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
+                <span className="whitespace-nowrap text-[10px] font-black text-slate-400 uppercase tracking-widest">{page} / {totalPages}</span>
+                <button type="button" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page >= totalPages} className="h-10 whitespace-nowrap px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
                   Next →
                 </button>
               </div>

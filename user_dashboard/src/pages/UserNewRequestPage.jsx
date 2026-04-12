@@ -249,9 +249,9 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
     <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-['Outfit',_sans-serif] selection:bg-blue-500/30 transition-colors duration-500">
       <div className="relative mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Simplified Header */}
-        <header className="mb-10 flex items-center justify-between">
-           <Link to="/dashboard" className="flex items-center gap-2 group">
-              <div className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center group-hover:border-blue-500 transition-all">
+        <header className="mb-10 flex flex-wrap items-center justify-between gap-4">
+           <Link to="/dashboard" className="flex items-center gap-2 group w-full md:w-auto">
+              <div className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center group-hover:border-blue-500 transition-all">
                 <svg className="w-5 h-5 text-slate-600 dark:text-slate-400 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -259,11 +259,11 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
               <span className="text-xs font-black tracking-widest uppercase text-slate-500 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">BACK</span>
            </Link>
 
-           <div className="flex items-center gap-3">
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400 dark:hover:border-slate-600">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all hover:border-slate-400 dark:hover:border-slate-600">
                {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all shadow-lg active:scale-95">
+             <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all shadow-lg active:scale-95">
                LOGOUT
              </button>
            </div>
@@ -295,7 +295,7 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
                       <button
                         type="button"
                         onClick={() => navigate('/vehicles')}
-                        className="inline-flex h-9 items-center justify-center gap-2 rounded-2xl border border-blue-500/20 bg-blue-50 px-3 text-[10px] font-black uppercase tracking-[0.22em] text-blue-600 transition-all hover:border-blue-500 hover:bg-blue-100 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
+                        className="whitespace-nowrap inline-flex h-9 items-center justify-center gap-2 rounded-2xl border border-blue-500/20 bg-blue-50 px-3 text-[10px] md:text-xs font-black uppercase tracking-[0.22em] text-blue-600 transition-all hover:border-blue-500 hover:bg-blue-100 dark:border-blue-500/30 dark:bg-blue-500/10 dark:text-blue-400 dark:hover:bg-blue-500/20"
                       >
                         <span className="text-sm leading-none">+</span>
                         Add vehicle
@@ -364,7 +364,7 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
                       </div>
                       <label className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white/70 px-4 py-3 cursor-pointer group dark:border-slate-800 dark:bg-slate-900/60 sm:min-w-[190px]">
                         <input type="checkbox" className="hidden" checked={form.requires_towing} onChange={handleChange('requires_towing')} />
-                        <div className={`w-10 h-6 rounded-full p-1 transition-all ${form.requires_towing ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}>
+                        <div className={`shrink-0 w-10 h-6 rounded-full p-1 transition-all ${form.requires_towing ? 'bg-blue-600' : 'bg-slate-300 dark:bg-slate-700'}`}>
                            <div className={`w-4 h-4 rounded-full bg-white transition-all shadow-md ${form.requires_towing ? 'translate-x-4' : ''}`} />
                         </div>
                         <span className="text-[10px] font-black tracking-widest text-slate-500 uppercase group-hover:text-blue-500">TOWING REQUIRED</span>

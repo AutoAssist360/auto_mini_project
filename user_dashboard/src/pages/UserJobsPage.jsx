@@ -82,24 +82,24 @@ function UserJobsPage({ theme, onToggleTheme }) {
         
         {/* Premium Floating Header */}
         <header className="mb-8 flex flex-wrap items-center justify-between gap-6">
-           <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
+           <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+              <div className="shrink-0 w-12 h-12 rounded-2xl bg-indigo-600 flex items-center justify-center text-white shadow-lg shadow-indigo-600/20">
                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
               </div>
-              <div>
-                 <span className="text-[10px] font-black tracking-widest text-slate-400 uppercase">REPAIRS</span>
-                 <h1 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">My Repair Jobs</h1>
+              <div className="flex-1 min-w-[200px]">
+                 <span className="text-[10px] md:text-xs font-black tracking-widest text-slate-400 uppercase">REPAIRS</span>
+                 <h1 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">My Repair Jobs</h1>
               </div>
            </div>
 
-           <div className="flex items-center gap-3">
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center transition-all">
                 {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={() => navigate('/dashboard')} className="px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] font-black tracking-widest uppercase hover:border-blue-500 transition-all">
+             <button onClick={() => navigate('/dashboard')} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black tracking-widest uppercase hover:border-blue-500 transition-all">
                 DASHBOARD
              </button>
-             <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase shadow-lg">
+             <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase shadow-lg">
                 LOGOUT
              </button>
            </div>
@@ -137,7 +137,7 @@ function UserJobsPage({ theme, onToggleTheme }) {
               <div className="overflow-x-auto">
                 <table className="w-full text-left">
                   <thead>
-                    <tr className="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800/50">
+                    <tr className="bg-slate-50/50 dark:bg-slate-800/30 border-b border-slate-100 dark:border-slate-800/50 whitespace-nowrap">
                       <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">JOB ID</th>
                       <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">PROBLEM</th>
                       <th className="px-8 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">STATUS</th>
@@ -151,7 +151,7 @@ function UserJobsPage({ theme, onToggleTheme }) {
                     {jobs.map((j) => {
                        const badgeColor = STATUS_COLORS[j.status] || 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-300'
                        return (
-                        <tr key={j.job_id} className="group hover:bg-indigo-500/5 transition-all">
+                        <tr key={j.job_id} className="group hover:bg-indigo-500/5 transition-all whitespace-nowrap">
                           <td className="px-8 py-6 font-mono text-[11px] font-black text-slate-900 dark:text-white opacity-80">#{j.job_id.slice(0, 8)}</td>
                           <td className="px-8 py-6 text-xs font-black uppercase text-slate-700 dark:text-slate-200">{formatLabel(j.request?.issue_type) || 'General'}</td>
                           <td className="px-8 py-6">
@@ -177,9 +177,9 @@ function UserJobsPage({ theme, onToggleTheme }) {
                             )}
                           </td>
                           <td className="px-8 py-6 text-right">
-                            <button onClick={() => navigate(`/jobs/${j.job_id}`)} className="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-all group/btn">
+                            <button onClick={() => navigate(`/jobs/${j.job_id}`)} className="whitespace-nowrap inline-flex items-center gap-2 text-[10px] md:text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-all group/btn">
                                VIEW JOB
-                               <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                               <svg className="shrink-0 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                             </button>
                           </td>
                         </tr>
@@ -191,16 +191,16 @@ function UserJobsPage({ theme, onToggleTheme }) {
 
               {/* Pagination */}
               <div className="p-8 border-t border-slate-100 dark:border-slate-800 flex flex-wrap items-center justify-between gap-6">
-                 <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
-                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
+                 <div className="flex items-center gap-3 w-full md:w-auto">
+                    <div className="shrink-0 w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></div>
+                    <p className="whitespace-nowrap text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-widest">
                        Jobs shown: <span className="text-slate-900 dark:text-white font-black">{jobs.length}</span>
                     </p>
                  </div>
-                 <div className="flex items-center gap-2">
-                    <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest disabled:opacity-20 hover:border-indigo-500 transition-all">PREV</button>
-                    <div className="h-10 px-4 flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl text-[10px] font-black">PAGE {page} / {totalPages}</div>
-                    <button disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] font-black uppercase tracking-widest disabled:opacity-20 hover:border-indigo-500 transition-all">NEXT</button>
+                 <div className="flex flex-wrap items-center gap-2 w-full md:w-auto justify-end">
+                    <button disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="whitespace-nowrap h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-20 hover:border-indigo-500 transition-all">PREV</button>
+                    <div className="whitespace-nowrap h-10 px-4 flex items-center bg-slate-100 dark:bg-slate-800 rounded-xl text-[10px] md:text-xs font-black">PAGE {page} / {totalPages}</div>
+                    <button disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="whitespace-nowrap h-10 px-6 rounded-xl border border-slate-200 dark:border-slate-800 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-20 hover:border-indigo-500 transition-all">NEXT</button>
                  </div>
               </div>
             </>

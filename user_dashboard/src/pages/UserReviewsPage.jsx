@@ -66,21 +66,21 @@ function UserReviewsPage({ theme, onToggleTheme }) {
 
       <div className="relative mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <button onClick={() => navigate('/dashboard')} className="group w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-amber-500/50 transition-all">
+        <header className="mb-8 rounded-[32px] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <button onClick={() => navigate('/dashboard')} className="shrink-0 group w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-amber-500/50 transition-all">
               <svg className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </button>
-            <div>
-              <span className="text-[10px] font-black tracking-widest text-amber-600 dark:text-amber-400 uppercase">Feedback Archive</span>
-              <h1 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none">My Reviews</h1>
+            <div className="flex-1 min-w-[200px]">
+              <span className="text-[10px] md:text-xs font-black tracking-widest text-amber-600 dark:text-amber-400 uppercase">Feedback Archive</span>
+              <h1 className="text-lg md:text-xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-none break-all">My Reviews</h1>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button onClick={onToggleTheme} className="w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-blue-500/50 transition-all text-sm">
+          <div className="flex flex-wrap items-center justify-end gap-3 w-full sm:w-auto">
+            <button onClick={onToggleTheme} className="shrink-0 w-9 h-9 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center hover:border-blue-500/50 transition-all text-sm">
               {theme === 'dark' ? '🌞' : '🌙'}
             </button>
-            <button onClick={handleLogout} className="px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-lg">
+            <button onClick={handleLogout} className="whitespace-nowrap px-4 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase hover:scale-105 active:scale-95 transition-all shadow-lg">
               LOGOUT
             </button>
           </div>
@@ -152,12 +152,12 @@ function UserReviewsPage({ theme, onToggleTheme }) {
 
             {/* Pagination */}
             {totalPages > 1 && (
-              <div className="mt-8 flex items-center justify-center gap-3">
-                <button type="button" disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <button type="button" disabled={page <= 1} onClick={() => setPage((p) => p - 1)} className="whitespace-nowrap h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
                   ← Prev
                 </button>
-                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Page {page} of {totalPages}</span>
-                <button type="button" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
+                <span className="whitespace-nowrap text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-widest">Page {page} of {totalPages}</span>
+                <button type="button" disabled={page >= totalPages} onClick={() => setPage((p) => p + 1)} className="whitespace-nowrap h-10 px-5 rounded-2xl border border-slate-200 dark:border-slate-700 text-[10px] md:text-xs font-black uppercase tracking-widest disabled:opacity-40 hover:border-blue-500 transition-all">
                   Next →
                 </button>
               </div>

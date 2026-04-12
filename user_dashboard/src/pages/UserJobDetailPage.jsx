@@ -82,15 +82,15 @@ function SuggestedParts({ parts, dispatch }) {
     <section className="p-8 lg:p-10 rounded-[40px] bg-white dark:bg-[#0B1120]/50 border border-slate-200 dark:border-slate-800 shadow-2xl relative overflow-hidden">
       <div className="absolute top-0 right-0 w-32 h-32 bg-amber-600/5 blur-3xl rounded-full translate-x-12 -translate-y-12"></div>
       <div className="flex flex-wrap items-center justify-between gap-6 mb-8">
-        <div>
-           <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest flex items-center gap-3">
-              <span className="w-8 h-8 rounded-xl bg-amber-600 flex items-center justify-center text-white">🔩</span>
+        <div className="w-full md:w-auto">
+           <h2 className="text-sm md:text-base font-black text-slate-900 dark:text-white uppercase tracking-widest flex items-center gap-3">
+              <span className="w-8 h-8 rounded-xl bg-amber-600 flex items-center justify-center text-white shrink-0">🔩</span>
               RECOMMENDED PARTS
            </h2>
-           <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">Buy the parts your technician recommended for this repair.</p>
+           <p className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest mt-1">Buy the parts your technician recommended for this repair.</p>
         </div>
         {parts.length > 1 && !allAdded && (
-           <button onClick={handleAddAllToCart} disabled={Object.values(partStatus).includes('loading')} className="h-11 px-6 rounded-2xl bg-amber-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-amber-500 shadow-lg shadow-amber-600/20 active:scale-95 transition-all">
+           <button onClick={handleAddAllToCart} disabled={Object.values(partStatus).includes('loading')} className="w-full md:w-auto whitespace-nowrap h-11 px-6 rounded-2xl bg-amber-600 text-white text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-amber-500 shadow-lg shadow-amber-600/20 active:scale-95 transition-all">
               ADD ALL TO CART
            </button>
         )}
@@ -116,7 +116,7 @@ function SuggestedParts({ parts, dispatch }) {
                     {status === 'added' ? <span className="text-[9px] font-black text-blue-500 uppercase italic">✓ ADDED</span> : 
                      status === 'no_stock' ? <span className="text-[9px] font-black text-red-500 uppercase">OUT OF STOCK</span> : 
                      status === 'error' ? <span className="text-[9px] font-black text-red-500 uppercase">TRY AGAIN</span> : (
-                      <button disabled={status === 'loading'} onClick={() => handleAddToCart(rp)} className="h-9 px-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[9px] font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">
+                      <button disabled={status === 'loading'} onClick={() => handleAddToCart(rp)} className="whitespace-nowrap h-9 px-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[9px] md:text-xs font-black uppercase tracking-widest hover:scale-105 active:scale-95 transition-all">
                         {status === 'loading' ? 'ADDING...' : 'ADD TO CART'}
                       </button>
                     )}
@@ -223,24 +223,24 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
         
         {/* Header Section */}
         <header className="mb-10 flex flex-wrap items-center justify-between gap-6 backdrop-blur-xl bg-white/50 dark:bg-[#0B1120]/50 p-6 rounded-[32px] border border-slate-200 dark:border-slate-800 shadow-2xl">
-           <div className="flex items-center gap-4">
-              <button onClick={() => navigate('/jobs')} className="w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500 transition-all shadow-sm group">
+           <div className="flex flex-wrap items-center gap-4 w-full md:w-auto">
+              <button onClick={() => navigate('/jobs')} className="shrink-0 w-12 h-12 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center text-slate-400 hover:text-blue-500 hover:border-blue-500 transition-all shadow-sm group">
                  <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
               </button>
-              <div>
-                 <span className="text-[10px] font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase">JOB DETAILS</span>
-                 <h1 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-tight flex items-center gap-3">
+              <div className="flex-1 min-w-[200px]">
+                 <span className="text-[10px] md:text-xs font-black tracking-widest text-blue-600 dark:text-blue-400 uppercase">JOB DETAILS</span>
+                 <h1 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tighter leading-tight flex flex-wrap items-center gap-3">
                    REPAIR JOB
                    {job?.status && <Badge status={job.status} />}
                  </h1>
               </div>
            </div>
 
-           <div className="flex items-center gap-3">
-             <button onClick={onToggleTheme} className="w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:border-blue-500/50 transition-all">
+           <div className="flex flex-wrap items-center gap-3 w-full md:w-auto justify-end">
+             <button onClick={onToggleTheme} className="shrink-0 w-10 h-10 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center justify-center hover:border-blue-500/50 transition-all">
                 {theme === 'dark' ? '🌞' : '🌙'}
              </button>
-             <button onClick={handleLogout} className="px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] font-black tracking-widest uppercase hover:scale-105 transition-all shadow-lg active:scale-95">
+             <button onClick={handleLogout} className="whitespace-nowrap px-5 py-2.5 rounded-2xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-[10px] md:text-xs font-black tracking-widest uppercase hover:scale-105 transition-all shadow-lg active:scale-95">
                 LOGOUT
              </button>
            </div>
@@ -284,12 +284,12 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
               {/* Job Operational Info */}
               <div className="lg:col-span-2 p-8 rounded-3xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
                 <div className="absolute -top-8 -right-8 w-32 h-32 bg-blue-500/5 rounded-full blur-2xl"></div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                  <div className="shrink-0 w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                   </div>
-                  <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Job Summary</h2>
-                  <div className="ml-auto"><Badge status={job.status} /></div>
+                  <h2 className="text-sm md:text-base font-black text-slate-900 dark:text-white uppercase tracking-widest">Job Summary</h2>
+                  <div className="ml-auto whitespace-nowrap"><Badge status={job.status} /></div>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                   <InfoRow label="Job ID"><span className="font-mono text-[11px]">#{job.job_id.slice(0, 10)}…</span></InfoRow>
@@ -317,8 +317,8 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Contact</p>
                     <p className="text-xs font-semibold text-slate-700 dark:text-slate-300 truncate">{tech.user?.email || '—'}</p>
                     {req && (
-                      <button onClick={() => navigate(`/requests/${req.request_id}/messages`)} className="w-full h-11 mt-2 rounded-2xl bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
-                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+                      <button onClick={() => navigate(`/requests/${req.request_id}/messages`)} className="w-full whitespace-nowrap h-11 mt-2 rounded-2xl bg-blue-600 text-white text-[10px] md:text-xs font-black uppercase tracking-widest hover:bg-blue-500 transition-all active:scale-95 shadow-lg shadow-blue-600/20 flex items-center justify-center gap-2">
+                        <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
                         Message Technician
                       </button>
                     )}
@@ -338,12 +338,12 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
             {req && (
               <div className="p-8 rounded-3xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
                 <div className="absolute -top-8 -right-8 w-32 h-32 bg-violet-500/5 rounded-full blur-2xl"></div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center">
+                <div className="flex flex-wrap items-center gap-3 mb-6">
+                  <div className="shrink-0 w-9 h-9 rounded-xl bg-violet-600 flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
                   </div>
-                  <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Original Request</h2>
-                  <button onClick={() => navigate(`/requests/${req.request_id}`)} className="ml-auto text-[10px] font-black text-blue-600 hover:text-blue-500 uppercase tracking-widest flex items-center gap-1">
+                  <h2 className="text-sm md:text-base font-black text-slate-900 dark:text-white uppercase tracking-widest">Original Request</h2>
+                  <button onClick={() => navigate(`/requests/${req.request_id}`)} className="whitespace-nowrap ml-auto w-full sm:w-auto mt-2 sm:mt-0 text-[10px] md:text-xs font-black text-blue-600 hover:text-blue-500 uppercase tracking-widest flex items-center justify-end gap-1">
                     View Request <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3"><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                   </button>
                 </div>
@@ -364,14 +364,14 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
             <div className="p-8 rounded-3xl bg-white dark:bg-[#0B1120] border border-slate-200 dark:border-slate-800 shadow-xl relative overflow-hidden">
               <div className="absolute -top-8 -right-8 w-32 h-32 bg-emerald-500/5 rounded-full blur-2xl"></div>
               <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
+                <div className="flex items-center gap-3 w-full md:w-auto">
+                  <div className="shrink-0 w-9 h-9 rounded-xl bg-emerald-600 flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5"><path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
                   </div>
-                  <h2 className="text-sm font-black text-slate-900 dark:text-white uppercase tracking-widest">Invoice and Payment</h2>
+                  <h2 className="text-sm md:text-base font-black text-slate-900 dark:text-white uppercase tracking-widest">Invoice and Payment</h2>
                 </div>
                 {invoice?.invoice_id && (
-                  <button onClick={() => navigate(`/invoices/${invoice.invoice_id}`)} className="px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-[10px] font-black uppercase tracking-widest text-slate-600 dark:text-slate-300 hover:border-blue-500 hover:text-blue-600 transition-all">
+                  <button onClick={() => navigate(`/invoices/${invoice.invoice_id}`)} className="w-full md:w-auto whitespace-nowrap px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-600 dark:text-slate-300 hover:border-blue-500 hover:text-blue-600 transition-all">
                     Open Full Invoice ↗
                   </button>
                 )}
