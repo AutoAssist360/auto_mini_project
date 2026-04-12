@@ -139,19 +139,19 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         
         {/* Floating Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Link to="/dashboard" className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 flex items-center gap-2">
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-3 mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+            <Link to="/dashboard" className="shrink-0 rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 flex items-center gap-1.5 whitespace-nowrap">
               ← Back
             </Link>
-            <div className="flex items-center gap-2 ml-2">
-              <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Orders</span>
-              <span className="flex h-6 items-center justify-center rounded-full bg-blue-500/10 px-2.5 text-[11px] font-black text-blue-600 dark:text-blue-400">
+            <div className="flex items-center gap-2 ml-1 min-w-0">
+              <span className="text-lg sm:text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Orders</span>
+              <span className="shrink-0 flex h-6 items-center justify-center rounded-full bg-blue-500/10 px-2.5 text-[11px] font-black text-blue-600 dark:text-blue-400">
                 {total}
               </span>
             </div>
           </div>
-          <button type="button" onClick={onToggleTheme} className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300">
+          <button type="button" onClick={onToggleTheme} className="hidden sm:flex rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 whitespace-nowrap">
             {theme === 'dark' ? '☀ Light' : '☾ Dark'}
           </button>
         </header>
@@ -201,21 +201,18 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
                 >
                   <div className="absolute inset-0 bg-blue-600/[0.02] dark:bg-blue-600/[0.05] opacity-0 transition-opacity duration-300 group-hover:opacity-100 pointer-events-none"></div>
                   
-                  <div className="flex flex-wrap items-start justify-between gap-4 relative z-10">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 relative z-10">
                     <div className="min-w-0 flex-1">
                       <div className="flex flex-wrap items-center gap-3">
-                        <span className="text-sm font-black tracking-wider text-slate-900 dark:text-white">
-                          #{order.order_number}
-                        </span>
-                        <span className={`rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest ${ORDER_STATUS_COLORS[order.order_status] || ''}`}>
+                        <span className={`whitespace-nowrap rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest ${ORDER_STATUS_COLORS[order.order_status] || ''}`}>
                           {formatLabel(order.order_status)}
                         </span>
                       </div>
-                      <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 opacity-80 border-l-2 border-slate-200 dark:border-slate-700 pl-2">
+                      <p className="mt-2 text-[11px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 opacity-80 border-l-2 border-slate-200 dark:border-slate-700 pl-2 break-words">
                         {order.user?.full_name || order.user?.email} <span className="mx-1">•</span> {order.warehouse?.name}
                       </p>
                       <div className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-slate-600 dark:text-slate-300">
-                        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/50 px-2 py-1 rounded-lg">
+                        <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/50 px-2 py-1 rounded-lg whitespace-nowrap">
                           <span>📅</span> {formatDate(order.created_at)}
                         </div>
                         <div className="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-800/50 px-2 py-1 rounded-lg">
@@ -224,17 +221,17 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
                       </div>
                     </div>
 
-                    <div className="text-right flex flex-col items-end shrink-0 min-w-32 bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/60">
-                      <p className="text-xl font-black tracking-tight text-slate-900 dark:text-white">Rs {Number(order.total).toLocaleString()}</p>
-                      <p className={`mt-1 text-[9px] font-black uppercase tracking-widest ${order.payment_status === 'completed' ? 'text-teal-600 dark:text-teal-400' : order.payment_status === 'refunded' ? 'text-slate-500' : 'text-amber-600 dark:text-amber-400'}`}>
+                    <div className="text-right flex flex-col items-end w-full sm:w-auto sm:min-w-[8rem] bg-slate-50 dark:bg-slate-900/50 p-4 rounded-2xl border border-slate-100 dark:border-slate-800/60">
+                      <p className="text-xl font-black tracking-tight text-slate-900 dark:text-white whitespace-nowrap">Rs {Number(order.total).toLocaleString()}</p>
+                      <p className={`mt-1 text-[9px] font-black uppercase tracking-widest whitespace-nowrap ${order.payment_status === 'completed' ? 'text-teal-600 dark:text-teal-400' : order.payment_status === 'refunded' ? 'text-slate-500' : 'text-amber-600 dark:text-amber-400'}`}>
                         {formatLabel(order.payment_status)}
                       </p>
                       <div className="mt-auto pt-3 text-[10px] font-black tracking-widest uppercase flex flex-col gap-1 items-end">
-                        <span className="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded-md text-right max-w-full">
+                        <span className="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20 px-2 py-0.5 rounded-md text-right max-w-full whitespace-nowrap">
                           {getNextActionLabel(order)}
                         </span>
-                        <span className="text-slate-400 mt-1">
-                          {order._count?.items ?? 0} ITEMS <span className="opacity-50">•</span> {order._count?.fulfillments ?? 0} DELIVERY UPDATES
+                        <span className="text-slate-400 mt-1 whitespace-nowrap">
+                          {order._count?.items ?? 0} items · {order._count?.fulfillments ?? 0} updates
                         </span>
                       </div>
                     </div>

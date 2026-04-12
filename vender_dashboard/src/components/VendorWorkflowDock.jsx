@@ -207,13 +207,13 @@ function VendorWorkflowDock() {
                     key={item.to}
                     type="button"
                     onClick={() => navigate(item.to)}
-                    className={`min-w-0 rounded-2xl border px-3 py-2.5 text-center text-[10px] font-black uppercase leading-tight tracking-[0.2em] transition-all lg:px-4 ${
+                    className={`min-w-0 overflow-hidden rounded-2xl border px-3 py-2.5 text-center text-[10px] font-black uppercase leading-tight tracking-[0.2em] transition-all lg:px-4 ${
                       isActive
                         ? 'border-blue-600 bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                         : 'border-slate-200 bg-slate-100 text-slate-700 hover:border-blue-500 hover:bg-blue-50 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:bg-slate-700 dark:hover:text-blue-400'
                     }`}
                   >
-                    {item.shortLabel}
+                    <span className="block whitespace-nowrap overflow-hidden text-ellipsis">{item.shortLabel}</span>
                   </button>
                 )
               })}

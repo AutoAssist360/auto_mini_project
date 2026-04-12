@@ -107,17 +107,17 @@ export default function VendorNotificationsPage({ theme, onToggleTheme }) {
 
       <div className="relative z-10 mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Floating Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between transition-all">
-          <div className="flex items-center gap-3">
-            <Link to="/dashboard" className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-blue-600 transition-all">
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-2 transition-all mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+            <Link to="/dashboard" className="shrink-0 w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 hover:text-blue-600 transition-all">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
             </Link>
-            <h1 className="text-xl font-black tracking-tighter uppercase">Alerts Hub</h1>
+            <h1 className="text-lg sm:text-xl font-black tracking-tighter uppercase truncate">Alerts Hub</h1>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
             {items.some(n => !n.is_read) && (
               <button
                 onClick={handleMarkAll}

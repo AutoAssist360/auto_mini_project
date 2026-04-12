@@ -282,34 +282,37 @@ function VendorLedgerPage({ theme, onToggleTheme }) {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-['Outfit',_sans-serif] selection:bg-blue-500/30 overflow-x-hidden relative transition-colors duration-500">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#030712] text-slate-900 dark:text-slate-100 font-['Outfit',_sans-serif] selection:bg-blue-500/30 relative transition-colors duration-500">
       <div className="absolute top-0 left-0 w-full h-screen overflow-hidden pointer-events-none z-0">
         <div className="absolute top-[-10%] -left-[10%] w-[40%] h-[40%] bg-blue-600/5 dark:bg-blue-600/10 blur-[120px] rounded-full"></div>
         <div className="absolute top-[30%] -right-[5%] w-[30%] h-[30%] bg-indigo-600/5 dark:bg-indigo-600/10 blur-[120px] rounded-full"></div>
       </div>
 
       <div className="relative z-10 mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <header className="mb-0 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div>
-              <h1 className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase ml-2 flex items-center gap-2">
-                <span className="text-blue-500 text-2xl">📓</span> Payments
+        <header className="mb-0 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl flex items-center justify-between gap-3 mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-blue-500 text-xl shrink-0">📓</span>
+            <div className="min-w-0">
+              <h1 className="text-base sm:text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase truncate">
+                Payments
               </h1>
-              <p className="mt-0.5 ml-2 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">
-                Daily 5% admin fee and earnings history
+              <p className="hidden sm:block mt-0.5 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 truncate">
+                Daily 5% admin fee · Earnings history
               </p>
             </div>
           </div>
-          <MobileNav>
-            <div className="flex flex-wrap items-center gap-3">
-              <Link to="/dashboard" className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
-                Dashboard
-              </Link>
-              <button type="button" onClick={onToggleTheme} className="rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-5 py-2.5 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
-                {theme === 'dark' ? '☀ Light' : '☾ Dark'}
-              </button>
-            </div>
-          </MobileNav>
+          <div className="shrink-0">
+            <MobileNav>
+              <div className="flex flex-wrap items-center gap-3">
+                <Link to="/dashboard" className="whitespace-nowrap rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
+                  Dashboard
+                </Link>
+                <button type="button" onClick={onToggleTheme} className="whitespace-nowrap rounded-full border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-4 py-2 text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm text-slate-600 dark:text-slate-300 active:scale-95">
+                  {theme === 'dark' ? '☀ Light' : '☾ Dark'}
+                </button>
+              </div>
+            </MobileNav>
+          </div>
         </header>
 
         <div className="mb-8 mt-6 ml-2">
@@ -398,7 +401,7 @@ function VendorLedgerPage({ theme, onToggleTheme }) {
         ) : (
           <div className="relative z-10 animate-in slide-in-from-bottom-4 duration-700 mt-8">
             <div className="overflow-x-auto rounded-[32px] border border-slate-200/60 bg-white/60 shadow-xl backdrop-blur-md dark:border-slate-800/60 dark:bg-[#0B1120]/60 p-2">
-              <table className="w-full text-sm">
+              <table className="w-full min-w-[700px] text-sm">
                 <thead>
                   <tr className="text-left text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400 border-b border-slate-200/50 dark:border-slate-800/50">
                     <th className="px-6 py-4">Date</th>
@@ -422,18 +425,18 @@ function VendorLedgerPage({ theme, onToggleTheme }) {
                         <td className="px-6 py-5 whitespace-nowrap text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
                           {formatLedgerDate(entry.created_at)}
                         </td>
-                        <td className="px-6 py-5 font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
+                         <td className="px-6 py-5 whitespace-nowrap font-mono text-xs font-bold text-slate-700 dark:text-slate-300">
                           {String(entry.reference || entry.order_id || entry.payout_id || '-').slice(0, 18)}
                         </td>
-                        <td className="px-6 py-5">
+                        <td className="px-6 py-5 whitespace-nowrap">
                           <span className="capitalize text-xs font-bold text-slate-700 dark:text-slate-300">{String(entry.type || 'payout').replace(/_/g, ' ')}</span>
                         </td>
-                        <td className="px-6 py-5 text-slate-600 dark:text-slate-300">{entry.warehouse || '-'}</td>
-                        <td className={`px-6 py-5 text-right font-mono font-black text-sm ${amountClass}`}>
+                        <td className="px-6 py-5 whitespace-nowrap text-slate-600 dark:text-slate-300">{entry.warehouse || '-'}</td>
+                        <td className={`px-6 py-5 whitespace-nowrap text-right font-mono font-black text-sm ${amountClass}`}>
                           {amount < 0 ? '-' : '+'}
                           {formatCurrency(Math.abs(amount))}
                         </td>
-                        <td className="px-6 py-5 text-center">
+                        <td className="px-6 py-5 text-center whitespace-nowrap">
                           <span className={`inline-block rounded-xl border px-3 py-1 text-[9px] font-black tracking-widest uppercase shadow-sm ${STATUS_COLORS[entry.status] || STATUS_COLORS.pending} border-current/20`}>
                             {entry.status || 'pending'}
                           </span>

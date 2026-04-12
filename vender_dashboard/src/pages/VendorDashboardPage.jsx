@@ -27,6 +27,7 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
   const [inventoryStats, setInventoryStats] = useState(null)
   const [warehouseCount, setWarehouseCount] = useState(0)
   const [error, setError] = useState('')
+  const [showHero, setShowHero] = useState(true)
 
   const token = typeof window !== 'undefined' ? localStorage.getItem('qa-vendor-socket-token') : null
   const { on, off } = useSocket(token)
@@ -201,13 +202,13 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Floating Header */}
-        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl transition-all flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase">Vendor Dashboard</span>
-            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+        <header className="mb-8 rounded-full border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md pl-4 pr-1 sm:px-6 py-3 shadow-xl dark:shadow-2xl transition-all flex items-center justify-between gap-2 mr-10 sm:mr-0 relative z-[40]">
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-base sm:text-xl font-black tracking-tighter text-slate-900 dark:text-white uppercase truncate">Vendor Dashboard</span>
+            <div className="w-1.5 h-1.5 shrink-0 rounded-full bg-blue-500 animate-pulse"></div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 shrink-0">
             <MobileNav>
               <Link to="/profile" className="hidden sm:flex w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 items-center justify-center text-xs font-bold hover:border-blue-500 transition-colors text-slate-700 dark:text-slate-300">
                 {vendorInitials}
@@ -227,9 +228,9 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
 
               <button
                 onClick={handleLogout}
-                className="ml-2 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black px-5 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase"
+                className="whitespace-nowrap ml-2 bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-black px-4 py-2.5 rounded-full transition-all active:scale-95 shadow-lg shadow-blue-600/20 uppercase"
               >
-                LOGOUT
+                Logout
               </button>
             </MobileNav>
           </div>
@@ -238,9 +239,22 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
         {error && <div className="mb-6 rounded-2xl border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-900/20 px-4 py-3 text-sm text-red-600 dark:text-red-400 shadow-sm">{error}</div>}
 
         {/* Hero Section */}
+        {showHero && (
         <section className="mb-8 rounded-[40px] border border-slate-200 dark:border-slate-800/50 bg-white dark:bg-gradient-to-br dark:from-[#0B1120] dark:to-[#040814] p-8 md:p-12 shadow-xl dark:shadow-2xl relative overflow-hidden group hover:border-blue-500 transition-all duration-700 flex flex-col md:flex-row md:items-center justify-between gap-8">
           <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.03),transparent)] pointer-events-none"></div>
           <div className="absolute inset-0 bg-blue-600/[0.01] dark:bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+          {/* Dismiss button */}
+          <button
+            type="button"
+            onClick={() => setShowHero(false)}
+            className="absolute top-4 right-4 z-[60] flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all active:scale-90"
+            aria-label="Dismiss greeting"
+          >
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
           <div className="relative z-10 flex-1">
             <div className="flex flex-wrap items-center gap-3 mb-6">
@@ -280,6 +294,7 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
              </Link>
           </div>
         </section>
+        )}
 
         {loading ? (
           <div className="py-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
