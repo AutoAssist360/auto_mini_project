@@ -54,7 +54,11 @@ vendorAuthRouter.post(
     try {
       await sendOtpEmail(email, otp);
     } catch (emailErr) {
-      console.error("Failed to send vendor OTP email:", emailErr.message);
+      console.error("Failed to send vendor OTP email:", emailErr);
+      throw new AppError(
+        "Unable to send the verification code right now. Please check the email service configuration and try again.",
+        502
+      );
     }
 
     res.json({
@@ -234,7 +238,7 @@ vendorAuthRouter.post(
     try {
       await sendPasswordResetEmail(user.email, resetUrl, "Vendor");
     } catch (emailErr) {
-      console.error("Failed to send vendor reset email:", emailErr.message);
+      console.error("Failed to send vendor reset email:", emailErr);
     }
 
     res.json({ message: "If an account with that email exists, a password reset link has been sent" });

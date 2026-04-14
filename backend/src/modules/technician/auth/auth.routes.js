@@ -54,7 +54,11 @@ techAuthRouter.post(
     try {
       await sendOtpEmail(email, otp);
     } catch (emailErr) {
-      console.error("Failed to send technician OTP email:", emailErr.message);
+      console.error("Failed to send technician OTP email:", emailErr);
+      throw new AppError(
+        "Unable to send the verification code right now. Please check the email service configuration and try again.",
+        502
+      );
     }
 
     res.json({
@@ -251,7 +255,7 @@ techAuthRouter.post(
     try {
       await sendPasswordResetEmail(user.email, resetUrl, "Technician");
     } catch (emailErr) {
-      console.error("Failed to send tech reset email:", emailErr.message);
+      console.error("Failed to send tech reset email:", emailErr);
     }
 
     res.json({ message: "If an account with that email exists, a password reset link has been sent" });
