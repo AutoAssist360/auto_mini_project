@@ -14,7 +14,7 @@ function AdminVendorsPage() {
   const [busy, setBusy]           = useState(null)
 
   const load = useCallback(() => {
-    getVendors({ page, limit: 15, search: search || undefined, is_verified: verifiedFilter || undefined, is_active: activeFilter || undefined })
+    getVendors({ page, limit: 20, search: search || undefined, is_verified: verifiedFilter || undefined, is_active: activeFilter || undefined })
       .then((r) => { setVendors(r.vendors || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

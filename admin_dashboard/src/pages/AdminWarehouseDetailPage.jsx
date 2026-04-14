@@ -18,7 +18,7 @@ function AdminWarehouseDetailPage() {
   }, [warehouseId])
 
   const loadInv = useCallback(() => {
-    getWarehouseInventory(warehouseId, { page: invPage, limit: 15 }).then((r) => setInv(r)).catch(() => null)
+    getWarehouseInventory(warehouseId, { page: invPage, limit: 20 }).then((r) => setInv(r)).catch(() => null)
   }, [warehouseId, invPage])
   useEffect(loadInv, [loadInv])
 

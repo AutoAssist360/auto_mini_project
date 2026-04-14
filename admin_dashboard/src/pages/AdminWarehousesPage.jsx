@@ -14,7 +14,7 @@ function AdminWarehousesPage() {
   const [loading, setLoading] = useState(true)
 
   const load = useCallback(() => {
-    const q = { page, limit: 15 }
+    const q = { page, limit: 20 }
     if (search) q.search = search
     if (city) q.city = city
     if (state) q.state = state

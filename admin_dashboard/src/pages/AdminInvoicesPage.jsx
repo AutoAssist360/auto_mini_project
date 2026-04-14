@@ -15,7 +15,7 @@ function AdminInvoicesPage() {
   const [busy, setBusy]           = useState(null)
 
   const load = useCallback(() => {
-    getInvoices({ page, limit: 15, payment_status: payStatus || undefined })
+    getInvoices({ page, limit: 20, payment_status: payStatus || undefined })
       .then((r) => { setInvoices(r.invoices || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

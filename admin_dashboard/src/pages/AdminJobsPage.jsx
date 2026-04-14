@@ -14,7 +14,7 @@ function AdminJobsPage() {
   const [loading, setLoading]     = useState(true)
 
   const load = useCallback(() => {
-    getJobs({ page, limit: 15, status: status || undefined })
+    getJobs({ page, limit: 20, status: status || undefined })
       .then((r) => { setJobs(r.jobs || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

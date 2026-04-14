@@ -16,7 +16,7 @@ function AdminRequestsPage() {
   const [loading, setLoading]     = useState(true)
 
   const load = useCallback(() => {
-    getRequests({ page, limit: 15, status: status || undefined, issue_type: issueType || undefined })
+    getRequests({ page, limit: 20, status: status || undefined, issue_type: issueType || undefined })
       .then((r) => { setRequests(r.requests || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

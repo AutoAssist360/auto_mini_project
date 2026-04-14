@@ -16,7 +16,7 @@ function AdminTechniciansPage() {
   const [confirmSuspendId, setConfirmSuspendId] = useState(null)
 
   const load = useCallback(() => {
-    getTechnicians({ page, limit: 15, search: search || undefined, is_verified: verified || undefined, is_online: online || undefined, technician_type: techType || undefined })
+    getTechnicians({ page, limit: 20, search: search || undefined, is_verified: verified || undefined, is_online: online || undefined, technician_type: techType || undefined })
       .then((r) => { setTechs(r.technicians || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

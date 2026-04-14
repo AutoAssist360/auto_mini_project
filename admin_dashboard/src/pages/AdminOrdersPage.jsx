@@ -16,7 +16,7 @@ function AdminOrdersPage() {
   const [loading, setLoading]     = useState(true)
 
   const load = useCallback(() => {
-    getOrders({ page, limit: 15, order_status: orderStatus || undefined, payment_status: payStatus || undefined })
+    getOrders({ page, limit: 20, order_status: orderStatus || undefined, payment_status: payStatus || undefined })
       .then((r) => { setOrders(r.orders || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

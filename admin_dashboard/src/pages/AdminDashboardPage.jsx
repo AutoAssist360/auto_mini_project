@@ -119,9 +119,9 @@ function AdminDashboardPage({ theme, onToggleTheme }) {
     on('notification:changed', handleNotificationChanged)
 
     return () => {
-      off('admin:dashboard_refresh', handleAdminRefresh)
-      off('notification:new', handleNotification)
-      off('notification:changed', handleNotificationChanged)
+      off?.('admin:dashboard_refresh', handleAdminRefresh)
+      off?.('notification:new', handleNotification)
+      off?.('notification:changed', handleNotificationChanged)
     }
   }, [off, on, queueRefresh])
 

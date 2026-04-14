@@ -89,8 +89,8 @@ export default function UserNotificationsPage({ theme, onToggleTheme }) {
 
     return () => {
       window.clearTimeout(loadInitialId)
-      off('notification:new', reload)
-      off('notification:changed', reload)
+      off?.('notification:new', reload)
+      off?.('notification:changed', reload)
     }
   }, [load, off, on])
 

@@ -82,7 +82,7 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
   const [error, setError] = useState('')
   const { on, off } = useSocket(null)
 
-  const limit = 15
+  const limit = 20
 
   const loadOrders = useCallback(async () => {
     setLoading(true)
@@ -100,7 +100,7 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
     } finally {
       setLoading(false)
     }
-  }, [page, statusFilter])
+  }, [page, statusFilter]) // limit is constant
 
   useEffect(() => { loadOrders() }, [loadOrders])
 
@@ -111,16 +111,16 @@ function VendorOrdersPage({ theme, onToggleTheme }) {
         reload()
       }
     }
-    on('notification:new', reload)
-    on('vendor:orders_refresh', reload)
-    on('vendor:dashboard_refresh', reload)
+    on?.('notification:new', reload)
+    on?.('vendor:orders_refresh', reload)
+    on?.('vendor:dashboard_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('notification:new', reload)
-      off('vendor:orders_refresh', reload)
-      off('vendor:dashboard_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('vendor:orders_refresh', reload)
+      off?.('vendor:dashboard_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }

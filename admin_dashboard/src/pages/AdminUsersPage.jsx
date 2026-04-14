@@ -14,7 +14,7 @@ function AdminUsersPage() {
   const [busy, setBusy]           = useState(null)
 
   const load = useCallback(() => {
-    getUsers({ page, limit: 15, search: search || undefined, role: roleFilter || undefined, is_active: activeFilter || undefined })
+    getUsers({ page, limit: 20, search: search || undefined, role: roleFilter || undefined, is_active: activeFilter || undefined })
       .then((r) => { setUsers(r.users || []); setPagination(r.pagination || {}) })
       .catch(() => null)
       .finally(() => setLoading(false))

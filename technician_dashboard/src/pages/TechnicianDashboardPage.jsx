@@ -79,11 +79,11 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('notification:new', reload)
-      off('technician:dashboard_refresh', reload)
-      off('technician:assignments_refresh', reload)
-      off('technician:jobs_refresh', reload)
-      off('technician:discover_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('technician:dashboard_refresh', reload)
+      off?.('technician:assignments_refresh', reload)
+      off?.('technician:jobs_refresh', reload)
+      off?.('technician:discover_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }

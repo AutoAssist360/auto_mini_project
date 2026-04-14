@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getVendorReviews } from '../lib/api'
 
 function VendorReviewsPage() {
@@ -6,11 +6,7 @@ function VendorReviewsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    fetchReviews()
-  }, [])
-
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     setLoading(true)
     try {
       const data = await getVendorReviews()
@@ -20,7 +16,11 @@ function VendorReviewsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchReviews()
+  }, [fetchReviews])
 
   // Calculate Average Rating
   const avgRating = reviews.length > 0

@@ -174,7 +174,7 @@ function UserJobDetailPage({ theme, onToggleTheme }) {
     on('notification:new', reload); on('user:jobs_refresh', reload); on('user:requests_refresh', reload)
     window.addEventListener('focus', reload); document.addEventListener('visibilitychange', handleVisibility)
     return () => {
-      off('notification:new', reload); off('user:jobs_refresh', reload); off('user:requests_refresh', reload)
+      off?.('notification:new', reload); off?.('user:jobs_refresh', reload); off?.('user:requests_refresh', reload)
       window.removeEventListener('focus', reload); document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [loadJob, off, on])

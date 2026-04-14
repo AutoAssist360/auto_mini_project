@@ -209,7 +209,7 @@ function VendorLedgerPage({ theme, onToggleTheme }) {
     } finally {
       setLoading(false)
     }
-  }, [page])
+  }, [page, limit])
 
   useEffect(() => {
     loadLedger()

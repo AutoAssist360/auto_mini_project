@@ -65,8 +65,8 @@ export default function AdminNotificationsPage({ theme, onToggleTheme }) {
     on('notification:changed', reload)
 
     return () => {
-      off('notification:new', reload)
-      off('notification:changed', reload)
+      off?.('notification:new', reload)
+      off?.('notification:changed', reload)
     }
   }, [load, off, on])
 

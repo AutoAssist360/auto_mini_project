@@ -87,10 +87,10 @@ function VendorDashboardPage({ theme, onToggleTheme }) {
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('notification:new', reload)
-      off('vendor:orders_refresh', reload)
-      off('vendor:dashboard_refresh', reload)
-      off('inventory:updated', handleInventoryUpdate)
+      off?.('notification:new', reload)
+      off?.('vendor:orders_refresh', reload)
+      off?.('vendor:dashboard_refresh', reload)
+      off?.('inventory:updated', handleInventoryUpdate)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }

@@ -53,7 +53,7 @@ export default function VendorReservationsPage({ theme, onToggleTheme }) {
       }
     }
     load()
-  }, [selectedWarehouse])
+  }, [])
 
   const loadReservations = useCallback(async () => {
     if (!selectedWarehouse) return
