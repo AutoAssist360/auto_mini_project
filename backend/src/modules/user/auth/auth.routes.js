@@ -61,7 +61,11 @@ authRouter.post(
     try {
       await sendOtpEmail(email, otp);
     } catch (emailErr) {
-      console.error("Failed to send OTP email:", emailErr.message);
+      console.error("Failed to send OTP email:", emailErr);
+      throw new AppError(
+        "Unable to send the verification code right now. Please check the email service configuration and try again.",
+        502
+      );
     }
 
     res.json({
@@ -282,7 +286,7 @@ authRouter.post(
     try {
       await sendPasswordResetEmail(user.email, resetUrl, "User");
     } catch (emailErr) {
-      console.error("Failed to send password reset email:", emailErr.message);
+      console.error("Failed to send password reset email:", emailErr);
     }
 
     res.json({
