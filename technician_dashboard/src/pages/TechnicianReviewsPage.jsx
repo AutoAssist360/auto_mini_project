@@ -6,11 +6,7 @@ function TechnicianReviewsPage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
-  useEffect(() => {
-    fetchReviews()
-  }, [])
-
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     setLoading(true)
     try {
       const data = await getMyReviews()
@@ -20,7 +16,11 @@ function TechnicianReviewsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [])
+
+  useEffect(() => {
+    fetchReviews()
+  }, [fetchReviews])
 
   // Calculate Average Rating
   const avgRating = reviews.length > 0

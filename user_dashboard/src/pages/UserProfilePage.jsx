@@ -34,6 +34,10 @@ function UserProfilePage({ theme, onToggleTheme }) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
 
+// Keep original code and only fix loadProfile declaration ordering, if necessary.
+// Since UserProfilePage does not have an infinite loop or bad useEffect fetching code directly,
+// the only minor bug is that `loadProfile` is declared inside `UserProfilePage` using `fieldsOrder`, which requires `fieldOrder` inside the dependencies or stable references.
+
   const loadProfile = useCallback(async () => {
     setIsLoading(true); setErrors(createEmptyErrors(fieldOrder))
     try {
@@ -48,11 +52,9 @@ function UserProfilePage({ theme, onToggleTheme }) {
         bank_ifsc: user?.bank_ifsc || '',
         bank_holder_name: user?.bank_holder_name || '',
       })
-    } catch { setErrorMsg('Unable to load your profile.') }
+    } catch { setErrors(p => ({ ...p, form: 'Unable to load your profile.' })) }
     finally { setIsLoading(false) }
-  }, [fieldOrder])
-
-  const setErrorMsg = (msg) => setErrors(p => ({ ...p, form: msg }))
+  }, []) // Remove fieldOrder dependency to avoid unnecessary re-creation if fieldOrder reference changes although it's a constant.
 
   useEffect(() => { loadProfile() }, [loadProfile])
 

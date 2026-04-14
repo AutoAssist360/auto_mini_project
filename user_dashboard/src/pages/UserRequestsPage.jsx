@@ -53,7 +53,7 @@ function UserRequestsPage({ theme, onToggleTheme }) {
     setIsLoading(true)
     setError('')
     try {
-      const response = await getServiceRequests({ page, limit, status: VISIBLE_REQUEST_STATUSES })
+      const response = await getServiceRequests({ page, limit: 10, status: VISIBLE_REQUEST_STATUSES })
       if (signal?.aborted) return
       setRequests(response?.requests || [])
       setTotal(response?.total || 0)
@@ -63,7 +63,7 @@ function UserRequestsPage({ theme, onToggleTheme }) {
     } finally {
       if (!signal?.aborted) setIsLoading(false)
     }
-  }, [page])
+  }, [page]) // limit is hardcoded
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -82,17 +82,19 @@ function UserRequestsPage({ theme, onToggleTheme }) {
   useEffect(() => {
     const reload = () => { loadRequests().catch(() => null) }
     const handleVisibility = () => { if (document.visibilityState === 'visible') reload() }
-    on('notification:new', reload)
-    on('user:requests_refresh', reload)
+    
+    on?.('notification:new', reload)
+    on?.('user:requests_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
+    
     return () => {
-      off('notification:new', reload)
-      off('user:requests_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('user:requests_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadRequests, off, on])
+  }, [loadRequests, on, off])
 
   const totalPages = Math.max(1, Math.ceil(total / limit))
   const handleLogout = async () => {

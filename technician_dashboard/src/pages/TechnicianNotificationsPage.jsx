@@ -51,7 +51,7 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
   const load = useCallback(async (p = 1) => {
     setLoading(true)
     try {
-      const res = await getNotifications({ page: p, limit: 20 })
+      const res = await getNotifications({ page: p, limit: 10 })
       setItems(res.notifications || [])
       setTotal(res.total || 0)
       setPage(p)
@@ -63,12 +63,12 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
     load(1)
     const reload = () => { load(1).catch(() => {}) }
 
-    on('notification:new', reload)
-    on('notification:changed', reload)
+    on?.('notification:new', reload)
+    on?.('notification:changed', reload)
 
     return () => {
-      off('notification:new', reload)
-      off('notification:changed', reload)
+      off?.('notification:new', reload)
+      off?.('notification:changed', reload)
     }
   }, [load, off, on])
 
@@ -88,7 +88,7 @@ export default function TechnicianNotificationsPage({ theme, onToggleTheme }) {
     setTotal(t => t - 1) 
   }
 
-  const totalPages = Math.ceil(total / 20)
+  const totalPages = Math.ceil(total / 10)
 
   return (
     <div className={`min-h-screen ${dark ? 'dark bg-[#030712] text-slate-100' : 'bg-slate-50 text-slate-900'} font-['Outfit',_sans-serif] transition-colors duration-500 relative overflow-x-hidden pb-24`}>

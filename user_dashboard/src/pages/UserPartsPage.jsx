@@ -48,7 +48,7 @@ function UserPartsPage({ theme, onToggleTheme }) {
         category_id: selectedCategory || undefined,
         in_stock: inStockOnly || undefined,
         page,
-        limit: LIMIT,
+        limit: 20,
       })
       setParts(res?.parts ?? [])
       setTotalPages(res?.totalPages ?? 1)
@@ -58,10 +58,14 @@ function UserPartsPage({ theme, onToggleTheme }) {
     } finally {
       setLoading(false)
     }
-  }, [search, selectedCategory, inStockOnly, page])
+  }, [search, selectedCategory, inStockOnly, page]) // limit is constant (20)
 
   useEffect(() => { loadCategories() }, [])
+  
+  // UseEffect for resetting page
   useEffect(() => { setPage(1) }, [search, selectedCategory, inStockOnly])
+  
+  // UseEffect for loading parts
   useEffect(() => { loadParts() }, [loadParts])
 
   const handleSearch = (e) => { e.preventDefault(); setSearch(searchInput) }

@@ -32,7 +32,7 @@ function UserReviewsPage({ theme, onToggleTheme }) {
     setLoading(true)
     const fetchData = async () => {
       try {
-        const data = await getReviews({ page, limit })
+        const data = await getReviews({ page, limit: 10 })
         if (!cancelled) {
           setReviews(data.reviews || [])
           setTotal(data.total || 0)

@@ -126,6 +126,9 @@ function UserOrderDetailPage({ theme, onToggleTheme }) {
 
   useEffect(() => {
     if (!orderId) return undefined
+    
+    // We already have `useSocket` from `../lib/useSocket`, but here it uses Raw Socket.io.
+    // That's fine, we will just stabilize it.
     const socket = io(SOCKET_URL, { withCredentials: true, transports: ['websocket', 'polling'], reconnection: true })
     socket.on('connect', () => setLiveStatus('live'))
     socket.on('disconnect', () => setLiveStatus('offline'))

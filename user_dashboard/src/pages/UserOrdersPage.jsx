@@ -51,7 +51,7 @@ function UserOrdersPage({ theme, onToggleTheme }) {
     } finally {
       if (!signal?.aborted) setIsLoading(false)
     }
-  }, [page, statusFilter])
+  }, [page, statusFilter]) // limit is constant (10)
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -62,17 +62,21 @@ function UserOrdersPage({ theme, onToggleTheme }) {
   useEffect(() => {
     const reload = () => { loadOrders().catch(() => null) }
     const handleVisibility = () => { if (document.visibilityState === 'visible') reload() }
-    on('notification:new', reload)
-    on('user:orders_refresh', reload)
+    
+    // Add event listeners
+    on?.('notification:new', reload)
+    on?.('user:orders_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
+    
     return () => {
-      off('notification:new', reload)
-      off('user:orders_refresh', reload)
+      // Cleanup
+      off?.('notification:new', reload)
+      off?.('user:orders_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadOrders, off, on])
+  }, [loadOrders, on, off])
 
   const totalPages = Math.max(1, Math.ceil(total / limit))
   const handleFilterChange = (e) => { setStatusFilter(e.target.value); setPage(1) }

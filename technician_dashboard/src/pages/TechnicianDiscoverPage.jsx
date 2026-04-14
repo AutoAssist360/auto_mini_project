@@ -83,7 +83,7 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
     setLoading(true)
     setError('')
     try {
-      const res = await getOpenRequests(page, 12)
+      const res = await getOpenRequests(page, 10)
       setRequests(res?.requests ?? [])
       setTotal(res?.total ?? 0)
     } catch (err) {
@@ -108,18 +108,18 @@ function TechnicianDiscoverPage({ theme, onToggleTheme }) {
       }
     }
 
-    on('technician:discover_refresh', reload)
+    on?.('technician:discover_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('technician:discover_refresh', reload)
+      off?.('technician:discover_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadRequests, off, on])
+  }, [loadRequests, on, off])
 
-  const totalPages = Math.ceil(total / 12) || 1
+  const totalPages = Math.ceil(total / 10) || 1
 
   const resetModalState = () => {
     setOfferTarget(null)

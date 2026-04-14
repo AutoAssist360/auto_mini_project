@@ -49,7 +49,7 @@ function TechnicianOffersPage({ theme, onToggleTheme }) {
     setLoading(true)
     setError('')
     try {
-      const res = await getOffers(page, 12)
+      const res = await getOffers(page, 10)
       setOffers(res?.offers ?? [])
       setTotal(res?.total ?? 0)
     } catch (err) {
@@ -63,7 +63,7 @@ function TechnicianOffersPage({ theme, onToggleTheme }) {
     loadOffers()
   }, [loadOffers])
 
-  const totalPages = Math.ceil(total / 12) || 1
+  const totalPages = Math.ceil(total / 10) || 1
 
   const timeAgo = (dateStr) => {
     const diff = Date.now() - new Date(dateStr).getTime()

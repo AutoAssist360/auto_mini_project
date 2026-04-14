@@ -36,7 +36,7 @@ function UserJobsPage({ theme, onToggleTheme }) {
   const loadJobs = useCallback(async (signal) => {
     setLoading(true)
     try {
-      const data = await getJobs({ page, limit })
+      const data = await getJobs({ page, limit: 10 })
       if (signal?.aborted) return
       setJobs(data.jobs || [])
       setTotal(data.total || 0)
@@ -46,7 +46,7 @@ function UserJobsPage({ theme, onToggleTheme }) {
     } finally {
       if (!signal?.aborted) setLoading(false)
     }
-  }, [page])
+  }, [page]) // limit is internal to function
 
   useEffect(() => {
     const abortController = new AbortController()
@@ -57,17 +57,19 @@ function UserJobsPage({ theme, onToggleTheme }) {
   useEffect(() => {
     const reload = () => { loadJobs().catch(() => null) }
     const handleVisibility = () => { if (document.visibilityState === 'visible') reload() }
-    on('notification:new', reload)
-    on('user:jobs_refresh', reload)
+    
+    on?.('notification:new', reload)
+    on?.('user:jobs_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
+    
     return () => {
-      off('notification:new', reload)
-      off('user:jobs_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('user:jobs_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadJobs, off, on])
+  }, [loadJobs, on, off])
 
   const totalPages = Math.max(1, Math.ceil(total / limit))
   const handleLogout = async () => {

@@ -141,21 +141,21 @@ function UserVehiclesPage({ theme, onToggleTheme }) {
 
   const canSubmit = useMemo(() => selectedVariant && form.registration_number.trim(), [selectedVariant, form])
 
-  const loadVehicles = async () => {
+  const loadVehicles = useCallback(async () => {
     const response = await getMyVehicles()
     setVehicles(response?.vehicles || [])
-  }
+  }, [])
 
-  const loadCompanies = useCallback(async (query = '') => { try { const resp = await getVehicleCompanies({ query }); setCompanies(resp?.companies || []) } catch { setCompanies([]) } }, [])
-  const loadModels = useCallback(async (cid, query = '') => { try { const resp = await getModelsByCompany(cid, { query }); setModels(resp?.models || []) } catch { setModels([]) } }, [])
-  const loadVariants = useCallback(async (mid) => { try { const resp = await getVariantsByModel(mid); setVariants(resp?.variants || []) } catch { setVariants([]) } }, [])
+  const loadCompanies = useCallback(async (query = '') => { try { const resp = await getVehicleCompanies({ query, limit: 20 }); setCompanies(resp?.companies || []) } catch { setCompanies([]) } }, [])
+  const loadModels = useCallback(async (cid, query = '') => { try { const resp = await getModelsByCompany(cid, { query, limit: 20 }); setModels(resp?.models || []) } catch { setModels([]) } }, [])
+  const loadVariants = useCallback(async (mid) => { try { const resp = await getVariantsByModel(mid, { limit: 20 }); setVariants(resp?.variants || []) } catch { setVariants([]) } }, [])
 
   const initializePage = useCallback(async () => {
     setIsLoading(true); setError('')
     try { await Promise.all([loadVehicles(), loadCompanies()]) }
     catch (err) { setError(err instanceof ApiError ? err.message : 'Could not load your vehicles right now.') }
     finally { setIsLoading(false) }
-  }, [loadCompanies])
+  }, [loadVehicles, loadCompanies])
 
   useEffect(() => { initializePage() }, [initializePage])
 

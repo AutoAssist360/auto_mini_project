@@ -69,20 +69,20 @@ function TechnicianAssignmentsPage({ theme, onToggleTheme }) {
         reload()
       }
     }
-    on('notification:new', reload)
-    on('technician:assignments_refresh', reload)
-    on('technician:dashboard_refresh', reload)
+    on?.('notification:new', reload)
+    on?.('technician:assignments_refresh', reload)
+    on?.('technician:dashboard_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('notification:new', reload)
-      off('technician:assignments_refresh', reload)
-      off('technician:dashboard_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('technician:assignments_refresh', reload)
+      off?.('technician:dashboard_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadAssignments, off, on])
+  }, [loadAssignments, on, off])
 
   const handleAccept = async (jobId) => {
     setActing(jobId)

@@ -49,7 +49,7 @@ function TechnicianJobsPage({ theme, onToggleTheme }) {
     setLoading(true)
     setError('')
     try {
-      const res = await getJobs(page, 20, statusFilter)
+      const res = await getJobs(page, 10, statusFilter)
       setJobs(res?.jobs ?? [])
       setTotal(res?.total ?? 0)
     } catch (err) {
@@ -68,22 +68,22 @@ function TechnicianJobsPage({ theme, onToggleTheme }) {
         reload()
       }
     }
-    on('notification:new', reload)
-    on('technician:jobs_refresh', reload)
-    on('technician:dashboard_refresh', reload)
+    on?.('notification:new', reload)
+    on?.('technician:jobs_refresh', reload)
+    on?.('technician:dashboard_refresh', reload)
     window.addEventListener('focus', reload)
     document.addEventListener('visibilitychange', handleVisibility)
 
     return () => {
-      off('notification:new', reload)
-      off('technician:jobs_refresh', reload)
-      off('technician:dashboard_refresh', reload)
+      off?.('notification:new', reload)
+      off?.('technician:jobs_refresh', reload)
+      off?.('technician:dashboard_refresh', reload)
       window.removeEventListener('focus', reload)
       document.removeEventListener('visibilitychange', handleVisibility)
     }
-  }, [loadJobs, off, on])
+  }, [loadJobs, on, off])
 
-  const totalPages = Math.ceil(total / 20) || 1
+  const totalPages = Math.ceil(total / 10) || 1
 
   return (
     <div className={`min-h-screen ${theme === 'dark' ? 'dark bg-[#030712] text-slate-100' : 'bg-slate-50 text-slate-900'} font-['Outfit',_sans-serif] transition-colors duration-500 relative overflow-x-hidden pb-24`}>

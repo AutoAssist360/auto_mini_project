@@ -33,7 +33,7 @@ function UserInvoicesPage({ theme, onToggleTheme }) {
 
     const loadInvoices = async () => {
       try {
-        const response = await getInvoices(page, limit, statusFilter || undefined)
+        const response = await getInvoices(page, 10, statusFilter || undefined)
         if (!cancelled) {
           setInvoices(response?.invoices || [])
           setTotal(response?.total || 0)
