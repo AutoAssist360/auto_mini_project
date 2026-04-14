@@ -39,14 +39,23 @@ function StepBar({ step }) {
 }
 
 // ─── Technician card ───────────────────────────────────────────
-function TechCard({ tech, onBook, isBooking }) {
+function TechCard({ tech, onSelect, isSelected }) {
   const stars = Math.round(tech.average_rating || 0)
   const dist = tech.distance_km != null ? `${tech.distance_km.toFixed(1)}km` : '?'
   
   return (
-    <div className="group relative rounded-3xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 p-5 transition-all hover:border-blue-500/50 hover:shadow-xl hover:-translate-y-1">
+    <div 
+      onClick={() => onSelect(tech.technician_id)}
+      className={`group cursor-pointer relative rounded-3xl border p-5 transition-all hover:-translate-y-1 ${
+        isSelected 
+          ? 'border-blue-500 ring-2 ring-blue-500/30 bg-blue-50/50 dark:bg-blue-900/20 shadow-lg' 
+          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:border-blue-500/50 hover:shadow-xl'
+      }`}
+    >
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl font-bold text-blue-600">
+        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl font-bold transition-colors ${
+          isSelected ? 'bg-blue-600 text-white shadow-xl shadow-blue-500/30' : 'bg-slate-100 dark:bg-slate-800 text-blue-600 group-hover:bg-blue-500/10'
+        }`}>
           {tech.user?.full_name?.[0] || 'T'}
         </div>
         <div className="flex-1 min-w-0">
@@ -67,14 +76,13 @@ function TechCard({ tech, onBook, isBooking }) {
           </p>
         </div>
       </div>
-      <button
-        type="button"
-        disabled={isBooking}
-        onClick={() => onBook(tech.technician_id)}
-        className="mt-4 w-full rounded-2xl bg-slate-900 dark:bg-white dark:text-slate-900 text-white py-2.5 text-xs font-black uppercase tracking-widest hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white transition-all active:scale-95 disabled:opacity-50"
-      >
-        {isBooking ? 'SELECTING...' : 'CHOOSE'}
-      </button>
+      <div className={`mt-4 w-full rounded-2xl py-2.5 text-[10px] font-black text-center uppercase tracking-[0.2em] transition-all ${
+        isSelected
+          ? 'bg-blue-600 text-white shadow-lg shadow-blue-500/20'
+          : 'bg-slate-100 dark:bg-slate-800 text-slate-500 group-hover:bg-blue-500/10 group-hover:text-blue-500'
+      }`}>
+        {isSelected ? 'SELECTED' : 'SELECT'}
+      </div>
     </div>
   )
 }
@@ -105,6 +113,8 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
   const [technicians, setTechnicians] = useState([])
   const [techLoading, setTechLoading] = useState(false)
   const [techError, setTechError] = useState('')
+  const [assignmentMode, setAssignmentMode] = useState('select')
+  const [selectedTechId, setSelectedTechId] = useState(null)
   const [bookingTechId, setBookingTechId] = useState(null)
   const [bookError, setBookError] = useState('')
 
@@ -197,20 +207,24 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
     }
   }
 
-  const handleBookTech = async (technicianId) => {
-    if (!createdRequestId) return
-    setBookingTechId(technicianId)
+  const handleConfirmAssignment = async () => {
+    if (assignmentMode === 'broadcast') {
+      navigate(`/requests/${createdRequestId}`)
+      return
+    }
+
+    if (!selectedTechId || !createdRequestId) return
+
+    setBookingTechId(selectedTechId)
     setBookError('')
     try {
-      await bookTechnician(createdRequestId, technicianId)
+      await bookTechnician(createdRequestId, selectedTechId)
       navigate(`/requests/${createdRequestId}`)
     } catch (err) {
-      setBookError(err?.message || 'Failed to choose technician.')
+      setBookError(err?.message || 'Failed to assign technician.')
       setBookingTechId(null)
     }
   }
-
-  const handleSkipTechSelection = () => navigate(`/requests/${createdRequestId}`)
 
   const handleUploadComplete = (files) => {
     setAttachmentError('')
@@ -439,40 +453,105 @@ function UserNewRequestPage({ theme, onToggleTheme }) {
 
           {step === 1 && (
             <div className="max-w-4xl mx-auto space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-               <div className="text-center space-y-2">
-                 <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">TECHNICIANS FOUND</h3>
-                 <p className="text-slate-500 text-sm">Review nearby technicians and choose one if you want.</p>
+               <div className="text-center space-y-2 mb-10">
+                 <h3 className="text-2xl font-black text-slate-900 dark:text-white uppercase tracking-tight">ASSIGN TECHNICIAN</h3>
+                 <p className="text-slate-500 text-sm">How would you like to assign a technician for your request?</p>
                </div>
 
-               {techLoading ? (
-                 <div className="flex flex-col items-center gap-4 py-20">
-                    <div className="w-12 h-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin"></div>
-                    <span className="text-[10px] font-black tracking-[0.2em] text-blue-600 animate-pulse">LOOKING FOR NEARBY TECHNICIANS...</span>
+               {/* Toggle mechanism */}
+               <div className="flex flex-col sm:flex-row gap-4 p-1.5 bg-slate-100 dark:bg-slate-800/50 rounded-3xl mx-auto max-w-2xl relative">
+                  <button 
+                    onClick={() => setAssignmentMode('select')}
+                    className={`flex-1 flex flex-col items-center justify-center p-4 rounded-[20px] transition-all duration-300 relative z-10 ${
+                      assignmentMode === 'select' 
+                        ? 'bg-white dark:bg-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none translate-y-0 scale-100 border border-slate-200 dark:border-slate-600' 
+                        : 'hover:bg-slate-200 dark:hover:bg-slate-800 border border-transparent scale-95 opacity-70'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${assignmentMode === 'select' ? 'bg-blue-100 text-blue-600 dark:bg-blue-900/30' : 'bg-slate-200 dark:bg-slate-900 text-slate-400'}`}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                    </div>
+                    <span className={`text-[11px] font-black uppercase tracking-[0.1em] ${assignmentMode === 'select' ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>Select Technician</span>
+                    <span className="text-[10px] text-slate-400 mt-1">Pick a specific pro nearby</span>
+                  </button>
+
+                  <button 
+                    onClick={() => setAssignmentMode('broadcast')}
+                    className={`flex-1 flex flex-col items-center justify-center p-4 rounded-[20px] transition-all duration-300 relative z-10 ${
+                      assignmentMode === 'broadcast' 
+                        ? 'bg-white dark:bg-slate-700 shadow-xl shadow-slate-200/50 dark:shadow-none translate-y-0 scale-100 border border-slate-200 dark:border-slate-600' 
+                        : 'hover:bg-slate-200 dark:hover:bg-slate-800 border border-transparent scale-95 opacity-70'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${assignmentMode === 'broadcast' ? 'bg-amber-100 text-amber-600 dark:bg-amber-900/30' : 'bg-slate-200 dark:bg-slate-900 text-slate-400'}`}>
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" /></svg>
+                    </div>
+                    <span className={`text-[11px] font-black uppercase tracking-[0.1em] ${assignmentMode === 'broadcast' ? 'text-slate-900 dark:text-white' : 'text-slate-500 dark:text-slate-400'}`}>Broadcast Issue</span>
+                    <span className="text-[10px] text-slate-400 mt-1">Wait for someone to reply</span>
+                  </button>
+               </div>
+
+               {/* Mode: Broadcast */}
+               {assignmentMode === 'broadcast' && (
+                 <div className="p-8 rounded-[32px] border border-amber-500/20 bg-amber-50/50 dark:bg-amber-500/10 max-w-2xl mx-auto flex flex-col items-center text-center animate-in fade-in zoom-in-95 duration-500">
+                    <div className="w-16 h-16 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-600 dark:text-amber-500 flex items-center justify-center mb-4">
+                      <svg className="w-8 h-8 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" /></svg>
+                    </div>
+                    <h4 className="text-lg font-black text-slate-900 dark:text-white uppercase tracking-tight mb-2">Issue Broadcast Mode</h4>
+                    <p className="text-sm font-medium text-slate-600 dark:text-slate-400 max-w-sm">We will broadcast this issue to all available technicians nearby and notify you as soon as someone accepts the job.</p>
                  </div>
-               ) : (
-                 <>
-                   {techError && <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-red-500">{techError}</div>}
-                   {bookError && <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-red-500">{bookError}</div>}
-                   <div className="grid gap-6 sm:grid-cols-2">
-                     {technicians.map(tech => (
-                       <TechCard key={tech.technician_id} tech={tech} onBook={handleBookTech} isBooking={bookingTechId === tech.technician_id} />
-                     ))}
-                     {technicians.length === 0 && (
-                       <div className="col-span-full py-20 text-center space-y-4">
-                          <div className="inline-flex w-20 h-20 rounded-full bg-slate-100 dark:bg-slate-900 items-center justify-center text-3xl">🔍</div>
-                          <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">No nearby technicians found right now.</p>
-                          <button onClick={handleSkipTechSelection} className="text-blue-600 font-black text-[10px] uppercase tracking-widest hover:underline">Continue to request details</button>
-                       </div>
-                     )}
-                   </div>
-                 </>
                )}
 
-               {!techLoading && technicians.length > 0 && (
-                 <div className="text-center">
-                    <button onClick={handleSkipTechSelection} className="text-slate-400 hover:text-slate-900 dark:hover:text-white text-[10px] font-black uppercase tracking-[0.2em] transition-colors">SKIP THIS STEP — I WILL WAIT FOR OFFERS</button>
+               {/* Mode: Select */}
+               {assignmentMode === 'select' && (
+                 <div className="animate-in fade-in zoom-in-95 duration-500 relative">
+                   {techLoading ? (
+                     <div className="flex flex-col items-center gap-4 py-20">
+                        <div className="w-12 h-12 rounded-full border-4 border-blue-600 border-t-transparent animate-spin"></div>
+                        <span className="text-[10px] font-black tracking-[0.2em] text-blue-600 animate-pulse">LOOKING FOR NEARBY TECHNICIANS...</span>
+                     </div>
+                   ) : (
+                     <div className="max-w-4xl mx-auto">
+                       {techError && <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-red-500 mb-6">{techError}</div>}
+                       {bookError && <div className="rounded-2xl border border-red-500/20 bg-red-500/10 px-4 py-3 text-center text-[10px] font-black uppercase tracking-widest text-red-500 mb-6">{bookError}</div>}
+                       
+                       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                         {technicians.map(tech => (
+                           <TechCard 
+                              key={tech.technician_id} 
+                              tech={tech} 
+                              onSelect={setSelectedTechId} 
+                              isSelected={selectedTechId === tech.technician_id} 
+                           />
+                         ))}
+                         {technicians.length === 0 && (
+                           <div className="col-span-full py-20 text-center space-y-4">
+                              <div className="inline-flex w-20 h-20 rounded-full bg-slate-100 dark:bg-slate-900 items-center justify-center text-3xl">🔍</div>
+                              <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">No nearby technicians found right now.</p>
+                           </div>
+                         )}
+                       </div>
+                     </div>
+                   )}
                  </div>
                )}
+
+               {/* Bottom Confirm Action */}
+               <div className="max-w-md mx-auto pt-8 flex border-t border-slate-200 dark:border-slate-800">
+                  <button 
+                    onClick={handleConfirmAssignment}
+                    disabled={bookingTechId !== null || (assignmentMode === 'select' && !selectedTechId) || (assignmentMode === 'select' && technicians.length === 0)}
+                    className="w-full h-16 flex items-center justify-center gap-3 rounded-[28px] bg-slate-900 text-white dark:bg-white dark:text-slate-900 disabled:bg-slate-200 dark:disabled:bg-slate-800 text-xs font-black uppercase tracking-[0.2em] shadow-2xl transition-all hover:bg-blue-600 dark:hover:bg-blue-500 dark:hover:text-white hover:disabled:bg-slate-200 disabled:text-slate-400 disabled:shadow-none active:scale-95"
+                  >
+                    {bookingTechId !== null ? (
+                      'ASSIGNING PRO...'
+                    ) : assignmentMode === 'broadcast' ? (
+                      <>CONFIRM BROADCAST <span className="text-lg">→</span></>
+                    ) : (
+                      <>CONFIRM SELECTION <span className="text-lg">→</span></>
+                    )}
+                  </button>
+               </div>
             </div>
           )}
         </section>
