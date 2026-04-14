@@ -192,10 +192,10 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <header className="mb-8 rounded-[2rem] border border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-[#0B1120]/80 backdrop-blur-md px-6 py-3 shadow-xl dark:shadow-2xl flex flex-wrap gap-4 items-center justify-between transition-all relative z-50">
-            <div className="flex items-center gap-2">
-              <span className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase sm:text-xl">Technician Dashboard</span>
-              <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-lg font-black tracking-tighter text-slate-900 dark:text-white uppercase sm:text-xl">Technician Dashboard</span>
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+          </div>
 
           <div className="flex items-center gap-3 ml-auto">
             <Link to="/profile" className="hidden sm:flex w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 items-center justify-center text-xs font-bold hover:border-blue-500 transition-colors">
@@ -220,41 +220,40 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
             <button onClick={() => setShowWelcome(false)} className="absolute top-4 right-4 z-20 flex w-8 h-8 items-center justify-center rounded-full bg-slate-100/50 dark:bg-slate-800/50 text-slate-500 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all shadow-sm">✕</button>
 
             <div className="relative z-10">
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                Your dashboard
-              </div>
+              <div className="flex flex-wrap items-center gap-3 mb-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                  Your dashboard
+                </div>
 
-              <button
-                onClick={handleToggleOnline}
-                disabled={togglingOnline}
-                className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all font-black text-[9px] uppercase tracking-widest border hover:scale-105 active:scale-95 whitespace-nowrap ${
-                  isOnline
+                <button
+                  onClick={handleToggleOnline}
+                  disabled={togglingOnline}
+                  className={`flex items-center gap-2 px-3 py-1 rounded-full transition-all font-black text-[9px] uppercase tracking-widest border hover:scale-105 active:scale-95 whitespace-nowrap ${isOnline
                     ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-600'
                     : 'bg-slate-500/10 border-slate-500/20 text-slate-500'
-                }`}
-              >
-                <div className={`w-1.2 h-1.2 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`}></div>
-                {togglingOnline ? 'Updating...' : isOnline ? 'Available for jobs' : 'Currently offline'}
-              </button>
+                    }`}
+                >
+                  <div className={`w-1.2 h-1.2 rounded-full ${isOnline ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'}`}></div>
+                  {togglingOnline ? 'Updating...' : isOnline ? 'Available for jobs' : 'Currently offline'}
+                </button>
 
-              {isVerified ? (
-                <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">Verified technician</div>
-              ) : (
-                <div className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 font-black tracking-widest text-[9px] text-amber-600 dark:text-amber-400 uppercase whitespace-nowrap">Verification pending</div>
-              )}
+                {isVerified ? (
+                  <div className="px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 font-black tracking-widest text-[9px] text-blue-600 dark:text-blue-400 uppercase whitespace-nowrap">Verified technician</div>
+                ) : (
+                  <div className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 font-black tracking-widest text-[9px] text-amber-600 dark:text-amber-400 uppercase whitespace-nowrap">Verification pending</div>
+                )}
+              </div>
+
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-4 pr-10">
+                Welcome, <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 bg-clip-text text-transparent">{techName.split(' ')[0]}</span>
+              </h2>
+
+              <p className="max-w-xl text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed mb-6">
+                Start with open requests, move to assignments, then manage active jobs and payments from here.
+              </p>
             </div>
-
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-none mb-4 pr-10">
-              Welcome, <span className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-500 bg-clip-text text-transparent">{techName.split(' ')[0]}</span>
-            </h2>
-
-            <p className="max-w-xl text-slate-500 dark:text-slate-400 text-sm md:text-base leading-relaxed mb-6">
-              Start with open requests, move to assignments, then manage active jobs and payments from here.
-            </p>
-          </div>
-        </section>
+          </section>
         )}
 
         {loading ? (
@@ -263,12 +262,12 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
           </div>
         ) : (
           <>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-8">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
               {[
                 { label: 'Pending Assignments', value: pendingCount },
                 { label: 'Active Jobs', value: activeJobsCount },
                 { label: 'Earned This Month', value: `Rs ${Number(earningsSummary?.total_earned ?? 0).toLocaleString()}` },
-                { label: 'Success Rate', value: '98%' },
+                // { label: 'Success Rate', value: '98%' },
               ].map((stat, idx) => (
                 <div key={idx} className="p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-white/5 backdrop-blur-sm transition-all hover:scale-105 hover:bg-white dark:hover:bg-white/10 hover:border-blue-500/30 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 group cursor-default">
                   <span className="text-[10px] font-black text-slate-500 dark:text-slate-400 uppercase tracking-widest group-hover:text-blue-500 transition-colors">{stat.label}</span>
@@ -292,11 +291,10 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
 
                   <div className="p-8 flex-grow relative z-10">
                     <div className="flex items-center justify-between mb-8">
-                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-inner group-hover:scale-110 group-hover:rotate-12 ${
-                        card.primary
-                          ? 'bg-blue-600 text-white shadow-blue-500/20'
-                          : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-blue-400/80 border border-slate-200/50 dark:border-slate-700/50'
-                      }`}>
+                      <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 shadow-inner group-hover:scale-110 group-hover:rotate-12 ${card.primary
+                        ? 'bg-blue-600 text-white shadow-blue-500/20'
+                        : 'bg-slate-50 dark:bg-slate-800 text-slate-600 dark:text-blue-400/80 border border-slate-200/50 dark:border-slate-700/50'
+                        }`}>
                         {card.icon}
                       </div>
                       {card.highlight && (
@@ -315,11 +313,10 @@ function TechnicianDashboardPage({ theme, onToggleTheme }) {
                   <div className="p-8 pt-0 relative z-10">
                     <button
                       onClick={() => navigate(card.path)}
-                      className={`w-full h-14 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-[0.95] relative overflow-hidden group/btn ${
-                        card.primary
-                          ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg'
-                          : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
-                      }`}
+                      className={`w-full h-14 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all active:scale-[0.95] relative overflow-hidden group/btn ${card.primary
+                        ? 'bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-lg'
+                        : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
+                        }`}
                     >
                       <span className="relative z-10">{card.title.replace(/^Step \d+: /, 'Open ')}</span>
                       <div className="absolute inset-0 bg-blue-500/10 translate-y-full group-hover/btn:translate-y-0 transition-transform"></div>
