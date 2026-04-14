@@ -13,12 +13,9 @@ export const PORT = process.env.PORT || 3000;
 
 export const IS_PRODUCTION = process.env.NODE_ENV === "production";
 
-// ─── SMTP (Gmail) ─────────────────────────────────────────────
-export const SMTP_HOST = process.env.SMTP_HOST || "smtp.gmail.com";
-export const SMTP_PORT = Number(process.env.SMTP_PORT) || 587;
-export const SMTP_USER = process.env.SMTP_USER || "";
-export const SMTP_PASS = process.env.SMTP_PASS || "";
-export const SMTP_FROM = process.env.SMTP_FROM || SMTP_USER;
+// ─── Brevo Transactional Email API ──────────────────────────────
+export const BREVO_API_KEY = process.env.BREVO_API_KEY || "";
+export const EMAIL_FROM = process.env.EMAIL_FROM || "noreply@quickautoassist.com";
 
 // Frontend URLs (for email links)
 export const FRONTEND_URL_USER = process.env.FRONTEND_URL_USER || "http://localhost:5174";

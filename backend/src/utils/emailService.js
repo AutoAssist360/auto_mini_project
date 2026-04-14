@@ -1,51 +1,50 @@
-import nodemailer from "nodemailer";
-import {
-  SMTP_HOST,
-  SMTP_PORT,
-  SMTP_USER,
-  SMTP_PASS,
-  SMTP_FROM,
-} from "../../config.js";
-
-// ─── Transporter ────────────────────────────────────────────
-// Falls back to a "console" transport when no SMTP credentials are set
-// so the app works in dev without a real mail server.
-let transporter;
-
-if (SMTP_USER && SMTP_PASS) {
-  transporter = nodemailer.createTransport({
-    host: SMTP_HOST,
-    port: SMTP_PORT,
-    secure: SMTP_PORT === 465,        // true for 465, false for 587
-    auth: { user: SMTP_USER, pass: SMTP_PASS },
-  });
-} else {
-  // Dev fallback — logs to console
-  transporter = {
-    sendMail: async (mailOptions) => {
-      console.log("───── EMAIL (dev-mode – no SMTP configured) ─────");
-      console.log("To:     ", mailOptions.to);
-      console.log("Subject:", mailOptions.subject);
-      console.log("Body:\n", mailOptions.text || mailOptions.html);
-      console.log("─────────────────────────────────────────────────");
-      return { messageId: "dev-mode" };
-    },
-  };
-}
+import { BREVO_API_KEY, EMAIL_FROM } from "../../config.js";
 
 // ─── Send helpers ───────────────────────────────────────────
 
 /**
- * Generic send function
+ * Generic send function using Brevo Transactional Email API
  */
 export async function sendEmail({ to, subject, text, html }) {
-  return transporter.sendMail({
-    from: SMTP_FROM || "Quick Auto Assist <noreply@quickautoassist.com>",
-    to,
-    subject,
-    text,
-    html,
-  });
+  if (!BREVO_API_KEY) {
+    // Dev fallback — logs to console
+    console.log("───── EMAIL (dev-mode – no Brevo API Key configured) ─────");
+    console.log("To:     ", to);
+    console.log("Subject:", subject);
+    console.log("Body:\n", text || html);
+    console.log("──────────────────────────────────────────────────────────");
+    return { messageId: "dev-mode" };
+  }
+
+  try {
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "accept": "application/json",
+        "api-key": BREVO_API_KEY,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        sender: { name: "Quick Auto Assist", email: EMAIL_FROM },
+        to: [{ email: to }],
+        subject: subject,
+        htmlContent: html,
+        textContent: text,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Brevo Email API Error:", errorData);
+      throw new Error("Failed to send email via Brevo.");
+    }
+
+    const data = await response.json();
+    return data; // contains messageId
+  } catch (error) {
+    console.error("Error sending email:", error);
+    throw error;
+  }
 }
 
 /**
