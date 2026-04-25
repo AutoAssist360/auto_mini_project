@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import CarScrollAnimation from '../components/CarScrollAnimation'
 import requestHelpImg from './requesthelp.jpg'
 import connectToTechImg from './connecttotech.png'
 import getRescuedImg from './getrescued.png'
@@ -12,6 +13,15 @@ function LandingPage({ theme, onToggleTheme }) {
 
   const [isEmergencyModalOpen, setIsEmergencyModalOpen] = useState(false)
   const [requestSubmitted, setRequestSubmitted] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   const [quickRequest, setQuickRequest] = useState({
     fullName: '',
     phone: '',
@@ -66,10 +76,10 @@ function LandingPage({ theme, onToggleTheme }) {
   }, [quickRequest])
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
-      <div className="mx-auto max-w-7xl px-4 pb-10 pt-4 sm:px-6 lg:px-8">
-        <header className="sticky top-6 z-50 w-full animate-in fade-in slide-in-from-top-4 duration-700">
-          <nav className="flex items-center justify-between gap-3 rounded-[32px] border border-white/20 bg-white/70 p-2 pl-3 shadow-2xl backdrop-blur-2xl dark:border-slate-800/50 dark:bg-[#0B1120]/70 sm:pl-6">
+    <div className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-[#050505] dark:text-slate-100 pb-10">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 px-4 sm:px-6 lg:px-8 ${isScrolled ? 'pt-4 pointer-events-auto' : 'pt-6 sm:pt-8 pointer-events-none'}`}>
+        <div className="mx-auto max-w-7xl animate-in fade-in slide-in-from-top-4 duration-700 pointer-events-none">
+          <nav className={`pointer-events-auto flex items-center justify-between gap-3 rounded-[32px] transition-all duration-500 ${isScrolled ? 'border border-white/20 bg-white/70 shadow-2xl backdrop-blur-2xl dark:border-slate-800/50 dark:bg-[#050505]/80 p-2 pl-3 sm:pl-6' : 'border border-transparent bg-transparent p-2 pl-3 sm:pl-6 shadow-none'}`}>
             {/* Logo Section */}
             <Link to="/" className="group flex min-w-0 items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-blue-600 text-lg font-black text-white shadow-lg shadow-blue-500/30 transition-transform group-hover:scale-110">
@@ -134,65 +144,12 @@ function LandingPage({ theme, onToggleTheme }) {
               </button>
             </div>
           </nav>
-        </header>
+        </div>
+      </header>
 
-        <main className="mt-8 relative z-10">
-          <section className="relative overflow-hidden min-h-[calc(100vh-14rem)] rounded-[48px] border border-white/20 shadow-2xl backdrop-blur-3xl dark:border-slate-800/50 flex flex-col justify-center animate-in zoom-in-95 duration-1000">
+      <CarScrollAnimation openRolePage={openRolePage} />
 
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              <img src={backgroundImg} alt="Hero Background" className="h-[120%] w-[120%] max-w-none -ml-[10%] -mt-[10%] object-cover object-center opacity-100 dark:opacity-80 scale-125 origin-center animate-pulse duration-[8s]" />
-              <div className="absolute inset-0 bg-gradient-to-br from-white via-white/80 to-transparent dark:from-[#030712] dark:via-[#030712]/90 dark:to-transparent"></div>
-            </div>
-
-            {/* Content Area */}
-            <div className="relative z-10 max-w-4xl p-6 sm:p-8 lg:p-16">
-              <div className="inline-flex items-center gap-2 rounded-full bg-blue-600/10 px-4 py-2 border border-blue-500/20 mb-6 sm:mb-8">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                </span>
-                <p className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400">
-                  24/7 Live Roadside Support
-                </p>
-              </div>
-
-              <h1 className="text-4xl font-black leading-[0.9] tracking-tighter text-slate-900 dark:text-white sm:text-7xl lg:text-8xl">
-                Roadside help <br />
-                <span className="text-blue-600 dark:text-blue-400">when you need it.</span>
-              </h1>
-
-              <p className="mt-8 max-w-2xl text-lg font-medium text-slate-600 dark:text-slate-300 sm:text-xl leading-relaxed">
-                Tell us what went wrong, share your location, and get connected with a nearby technician. You can follow the arrival time and pay safely in one place.
-              </p>
-
-              <div className="mt-12 flex flex-col sm:flex-row items-center gap-6">
-                <button
-                  type="button"
-                  onClick={() => openRolePage('help')}
-                  className="w-full sm:w-auto rounded-[24px] bg-blue-600 px-10 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-white shadow-2xl shadow-blue-500/40 hover:bg-blue-500 hover:shadow-blue-500/50 hover:scale-105 active:scale-95 transition-all"
-                >
-                  Get Help Now
-                </button>
-                {/* <button
-                  type="button"
-                  onClick={() => openRolePage('login')}
-                  className="w-full sm:w-auto rounded-[24px] border border-slate-200 bg-white/50 backdrop-blur-md px-10 py-5 text-[10px] font-black uppercase tracking-[0.2em] text-slate-900 hover:bg-white hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 dark:text-white transition-all active:scale-95"
-                >
-                  Continue to Login
-                </button> */}
-              </div>
-
-              <div className="mt-12 flex items-center gap-4 text-slate-400">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3].map(i => (
-                    <div key={i} className="h-10 w-10 rounded-full border-2 border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-black">U{i}</div>
-                  ))}
-                </div>
-                <p className="text-[10px] font-bold uppercase tracking-widest">1,200+ drivers helped</p>
-              </div>
-            </div>
-          </section>
-        </main>
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 md:mt-24">
 
         <section className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 relative z-10" aria-label="Service options">
           {/* Feature 1 */}
