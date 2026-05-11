@@ -1,13 +1,15 @@
 # AutoAssist 
 
+### **Live Link:** https://auto-assist-360.vercel.app/
+
 ## MAIN Branch
 - for production use only.
 ## Team Members
 - Shivanand Gupta (as Svont) (Developer)
 - Soham Dhakate (Developer)
 - Shobhit Choradia (Developer)
-- member_name (Developer)
-- member_name (Developer)
+- Tejas Devane (Developer)
+-  Tirtha Pande (Developer)
 
 ## Branching & Workflow Rules
 1. **Never push directly** to `main` or `dev`.
